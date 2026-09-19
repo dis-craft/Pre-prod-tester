@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_65d317037b54",
+      "commit": "65d317037b545f6eae4341c122f6264d8460cb71",
+      "parent": "713c594a4e3dba5a041c423661169d205b920381",
+      "branch": "main",
+      "message": "fix: capture text diffs for binary-marked files",
+      "captured_at": "2026-09-19T09:58:13.873878+00:00",
+      "files_changed": 1,
+      "additions": 9,
+      "deletions": 10,
+      "url": "scans/65d317037b545f6eae4341c122f6264d8460cb71.json"
+    },
+    {
       "scan_id": "scn_948ddf2dfa41",
       "commit": "948ddf2dfa41ca5b501cd77b5e04d716af9c689e",
       "parent": "898ec28b8e48bf2d667d88bf6980b9265ab0e0c2",
