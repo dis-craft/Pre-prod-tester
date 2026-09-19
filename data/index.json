@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_6b1a44c39075",
+      "commit": "6b1a44c3907516b20470bf6f3e24e3b87da4aca6",
+      "parent": "f53b87fa95e7b2f9b53ade4fc38563591d653eb2",
+      "branch": "main",
+      "message": "feat: add reusable Pre-prod Tester integration",
+      "captured_at": "2026-09-19T09:12:11.549038+00:00",
+      "files_changed": 1,
+      "additions": 52,
+      "deletions": 0,
+      "url": "scans/6b1a44c3907516b20470bf6f3e24e3b87da4aca6.json"
+    },
+    {
       "scan_id": "scn_845ae357023b",
       "commit": "845ae357023bab348815ec1d52cfdf1841b0ecfc",
       "parent": "a13e3e4539b59e864dece3e28811ce58563b2008",
