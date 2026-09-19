@@ -1,0 +1,40 @@
+name: Pre-prod Tester
+
+on:
+  workflow_call:
+    inputs:
+      output:
+        description: Structured JSON output path.
+        required: false
+        type: string
+        default: .preprod/scan.json
+    outputs:
+      scan-file:
+        description: Generated structured diff JSON.
+        value: ${{ jobs.scan.outputs.scan_file }}
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      scan_file: ${{ steps.capture.outputs.scan_file }}
+    steps:
+      - name: Checkout caller repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Capture exact push diff
+        id: capture
+        uses: dis-craft/Pre-prod-tester/.github/actions/capture-diff@main
+        with:
+          output: ${{ inputs.output }}
+
+      - name: Upload scan artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: preprod-scan-${{ github.sha }}
+          path: ${{ inputs.output }}
+          if-no-files-found: error
