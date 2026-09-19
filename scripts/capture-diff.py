@@ -3,7 +3,7 @@
 
 This script only reads Git metadata/diffs. It never executes repository code.
 Generated data is written to the runner workspace and published as a Pages
-artifact; the workflow does NOT commit the generated data back to main.
+artifact. The workflow persists the generated data separately.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ HUNK_RE = re.compile(r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@(?: (.*))?$")
 
 def git(*args: str) -> str:
     return subprocess.check_output(
-        ["git", *args], cwd=ROOT, text=True, stderr=subprocess.DEVNULL
+        ["git", *args], cwd=ROOT, text=True, errors="replace", stderr=subprocess.DEVNULL
     ).strip()
 
 
@@ -90,12 +90,12 @@ def changed_files(before: str, after: str) -> list[dict]:
     pathspec = [".", ":(exclude)data/**", ":(exclude).git/**"]
 
     statuses = subprocess.check_output(
-        ["git", "diff", "--no-ext-diff", "--name-status", base, after, "--", *pathspec],
-        cwd=ROOT, text=True,
+        ["git", "diff", "--no-ext-diff", "--text", "--name-status", base, after, "--", *pathspec],
+        cwd=ROOT, text=True, errors="replace",
     )
     numstats = subprocess.check_output(
-        ["git", "diff", "--no-ext-diff", "--numstat", base, after, "--", *pathspec],
-        cwd=ROOT, text=True,
+        ["git", "diff", "--no-ext-diff", "--text", "--numstat", base, after, "--", *pathspec],
+        cwd=ROOT, text=True, errors="replace",
     )
 
     stats = {}
@@ -115,9 +115,9 @@ def changed_files(before: str, after: str) -> list[dict]:
 
         try:
             patch = subprocess.check_output(
-                ["git", "diff", "--no-ext-diff", "--unified=80",
+                ["git", "diff", "--no-ext-diff", "--text", "--unified=80",
                  base, after, "--", path],
-                cwd=ROOT, text=True, stderr=subprocess.DEVNULL,
+                cwd=ROOT, text=True, errors="replace", stderr=subprocess.DEVNULL,
             )
         except subprocess.CalledProcessError:
             patch = ""
@@ -236,8 +236,7 @@ def main() -> None:
         json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
 
-    # Keep any existing history that is present in the checked-out repository,
-    # but do not require future workflow runs to commit generated data.
+    # Keep any existing history that is present in the checked-out repository.
     index_path = DATA / "index.json"
     try:
         index = json.loads(index_path.read_text(encoding="utf-8"))
