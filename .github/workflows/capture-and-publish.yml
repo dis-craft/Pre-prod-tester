@@ -6,8 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-# The workflow only reads the repository and publishes a Pages artifact.
-# It intentionally does NOT commit generated scan data back to main.
 permissions:
   contents: read
   pages: write
@@ -15,7 +13,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   capture-and-publish:
@@ -41,13 +39,35 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: python3 scripts/capture-diff.py
 
+      - name: Build isolated Pages site
+        run: |
+          rm -rf .pages
+          mkdir -p .pages/data/scans
+          cp index.html .pages/index.html
+          cp data/latest.json .pages/data/latest.json
+          cp data/index.json .pages/data/index.json
+          cp -R data/scans/. .pages/data/scans/
+
+          cat > .pages/deployment.json <<EOF
+          {
+            "deployed_commit": "${{ github.sha }}",
+            "deployed_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "workflow_run": "${{ github.run_id }}"
+          }
+          EOF
+
+          echo "Pages payload:"
+          find .pages -type f -maxdepth 4 -print
+          echo "Latest scan:"
+          python3 -m json.tool .pages/data/latest.json | head -80
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: .pages
 
       - name: Deploy to GitHub Pages
         id: deployment
