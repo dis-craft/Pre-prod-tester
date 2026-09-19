@@ -1,0 +1,118 @@
+name: Pre-prod AI Remediation
+
+on:
+  workflow_dispatch:
+    inputs:
+      generate_remediation:
+        description: Generate an AI remediation branch and PR
+        required: true
+        default: false
+        type: boolean
+      finding_report:
+        description: Path to scanner findings JSON in the workspace
+        required: false
+        default: .preprod/findings.json
+        type: string
+  workflow_call:
+    inputs:
+      generate_remediation:
+        required: true
+        type: boolean
+      finding_report:
+        required: true
+        type: string
+    secrets:
+      ORCHESTRATOR_URL:
+        required: true
+      ORCHESTRATOR_TOKEN:
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  remediation:
+    if: ${{ inputs.generate_remediation || github.event.inputs.generate_remediation == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ github.token }}
+
+      - name: Build remediation request
+        env:
+          REPORT: ${{ inputs.finding_report || github.event.inputs.finding_report || '.preprod/findings.json' }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+        run: |
+          if [ ! -f "$REPORT" ]; then
+            echo "Finding report not found: $REPORT"
+            exit 1
+          fi
+          python3 scripts/remediation-payload.py --input "$REPORT" --generate
+
+      - name: Request AI remediation patch
+        id: orchestrator
+        env:
+          ORCHESTRATOR_URL: ${{ secrets.ORCHESTRATOR_URL }}
+          ORCHESTRATOR_TOKEN: ${{ secrets.ORCHESTRATOR_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ -z "${ORCHESTRATOR_URL:-}" ]; then
+            echo "ORCHESTRATOR_URL is not configured."
+            exit 1
+          fi
+          auth=()
+          if [ -n "${ORCHESTRATOR_TOKEN:-}" ]; then
+            auth=(-H "Authorization: Bearer ${ORCHESTRATOR_TOKEN}")
+          fi
+          curl --fail-with-body -sS -X POST \
+            "${ORCHESTRATOR_URL%/}/api/remediation/generate" \
+            -H 'Content-Type: application/json' \
+            "${auth[@]}" \
+            --data-binary @.preprod/remediation-request.json \
+            -o .preprod/remediation-result.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = json.loads(Path('.preprod/remediation-result.json').read_text())
+          patch = p.get('patch')
+          if not patch:
+              raise SystemExit('Orchestrator returned no patch')
+          Path('.preprod/remediation.patch').write_text(patch, encoding='utf-8')
+          print('Received candidate remediation patch')
+          PY
+
+      - name: Apply AI patch
+        run: |
+          git apply --check .preprod/remediation.patch
+          git apply .preprod/remediation.patch
+
+      - name: Run repository tests
+        run: |
+          if [ -f package.json ]; then npm test --if-present; fi
+          if [ -f pyproject.toml ] || [ -f pytest.ini ] || [ -d tests ]; then python -m pytest -q; fi
+
+      - name: Create remediation branch and PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch="security-remediation/${GITHUB_SHA::12}"
+          git checkout -b "$branch"
+          git config user.name 'pre-prod-tester[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix: apply AI security remediation'
+          git push --set-upstream origin "$branch"
+          gh pr create \
+            --base "${GITHUB_REF_NAME:-main}" \
+            --head "$branch" \
+            --title 'fix: AI-generated security remediation' \
+            --body-file .preprod/remediation-result.json
