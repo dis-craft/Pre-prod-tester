@@ -1,4 +1,17 @@
 {
   "schema_version": "1.0",
-  "scans": []
+  "scans": [
+    {
+      "scan_id": "scn_cee03ed1ab8d",
+      "commit": "cee03ed1ab8dee6ce5e861cc7d4995b801556fc1",
+      "parent": "706fee27ff4f836229e792ee42151aa06845cc60",
+      "branch": "main",
+      "message": "fix: make diff capture file-aware",
+      "captured_at": "2026-09-19T07:20:35.669470+00:00",
+      "files_changed": 1,
+      "additions": 87,
+      "deletions": 195,
+      "url": "scans/cee03ed1ab8dee6ce5e861cc7d4995b801556fc1.json"
+    }
+  ]
 }
