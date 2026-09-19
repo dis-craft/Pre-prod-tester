@@ -1,106 +1,78 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pre-prod Tester — Change Capture</title>
-  <style>
-    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
-    body { margin: 0; background: #0b0d10; color: #e8eaed; }
-    main { max-width: 1180px; margin: 0 auto; padding: 40px 22px 80px; }
-    h1 { margin: 0 0 8px; font-size: 30px; }
-    .muted { color: #9aa0a6; }
-    .card { background: #12161b; border: 1px solid #252b33; border-radius: 12px; padding: 18px; margin-top: 18px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px; }
-    .metric { background: #0e1115; border: 1px solid #20262e; border-radius: 10px; padding: 14px; }
-    .metric strong { display: block; font-size: 22px; margin-top: 5px; }
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-    a { color: #8ab4f8; }
-    pre { overflow: auto; background: #090b0e; padding: 16px; border-radius: 8px; border: 1px solid #20262e; font-size: 12px; line-height: 1.5; }
-    details { margin-top: 12px; border: 1px solid #252b33; border-radius: 8px; padding: 12px; }
-    summary { cursor: pointer; }
-    .status { display:inline-block; padding: 4px 8px; border-radius: 999px; background:#20262e; font-size:12px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-prod Tester — Diff Viewer</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:#0d1117;color:#e6edf3}
+main{max-width:1320px;margin:auto;padding:32px 20px 70px}
+h1{font-size:28px;margin:0 0 6px}.muted{color:#8b949e}.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:18px;margin-top:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.metric{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:13px}.metric span{color:#8b949e;font-size:12px}.metric strong{display:block;font-size:22px;margin-top:4px}
+.commit{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;word-break:break-all}
+a{color:#58a6ff;text-decoration:none}a:hover{text-decoration:underline}
+.file{border:1px solid #30363d;border-radius:7px;margin-top:16px;overflow:hidden}.file-head{padding:11px 14px;background:#161b22;display:flex;justify-content:space-between;gap:15px;align-items:center}.file-name{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600}.badge{font-size:12px;color:#8b949e}.diff{overflow:auto;background:#0d1117;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:20px}
+.line{display:grid;grid-template-columns:54px 54px 26px minmax(0,1fr);min-width:760px;white-space:pre}.line>span{padding:0 8px}.ln{color:#6e7681;text-align:right;user-select:none;border-right:1px solid #21262d}.mark{font-weight:700;text-align:center}.code{padding-left:10px!important}
+.added{background:rgba(46,160,67,.20)}.added .mark{color:#3fb950}.removed{background:rgba(248,81,73,.20)}.removed .mark{color:#f85149}.context .mark{color:#6e7681}
+.hunk{padding:5px 14px;background:#1f6feb22;color:#79c0ff;border-top:1px solid #21262d;border-bottom:1px solid #21262d}
+.empty{padding:20px;color:#8b949e}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}.button{border:1px solid #30363d;border-radius:6px;padding:7px 11px;background:#21262d}
+@media(max-width:700px){main{padding:20px 10px}.line{grid-template-columns:42px 42px 24px minmax(0,1fr)}}
+</style>
 </head>
 <body>
 <main>
   <h1>Pre-prod Tester</h1>
-  <div class="muted">CI/CD change capture — vulnerability detection will be added in a later phase.</div>
-
-  <div id="app" class="card">Loading latest scan…</div>
-
+  <div class="muted">CI/CD change capture · GitHub-style diff viewer · vulnerability detection is disabled in this phase.</div>
+  <div id="app" class="card">Loading latest push…</div>
   <div class="card">
-    <h2>Machine-readable data</h2>
-    <ul>
-      <li><a href="data/latest.json">Latest scan JSON</a></li>
-      <li><a href="data/index.json">Scan index JSON</a></li>
-    </ul>
+    <strong>Machine-readable</strong>
+    <div class="actions">
+      <a class="button" href="data/latest.json">Latest JSON</a>
+      <a class="button" href="data/index.json">Scan index</a>
+    </div>
   </div>
 </main>
-
 <script>
-async function load() {
-  const root = document.getElementById('app');
-  try {
-    const response = await fetch('data/latest.json', { cache: 'no-store' });
-    if (!response.ok) throw new Error('latest.json returned ' + response.status);
-    const scan = await response.json();
-
-    const summary = scan.change_summary || {};
-    const commit = scan.commit || {};
-    const files = scan.files || [];
-
-    root.replaceChildren();
-
-    const title = document.createElement('h2');
-    title.textContent = 'Latest captured push';
-    root.appendChild(title);
-
-    const meta = document.createElement('p');
-    meta.className = 'muted';
-    meta.textContent = (scan.repository?.full_name || 'repository') + ' · ' + (commit.after || 'unknown commit');
-    root.appendChild(meta);
-
-    const grid = document.createElement('div');
-    grid.className = 'grid';
-
-    for (const [label, value] of [
-      ['Files changed', summary.files_changed ?? files.length],
-      ['Additions', summary.additions ?? 0],
-      ['Deletions', summary.deletions ?? 0],
-      ['Trigger', scan.scan?.trigger ?? 'push']
-    ]) {
-      const metric = document.createElement('div');
-      metric.className = 'metric';
-      const small = document.createElement('span');
-      small.className = 'muted';
-      small.textContent = label;
-      const strong = document.createElement('strong');
-      strong.textContent = String(value);
-      metric.append(small, strong);
-      grid.appendChild(metric);
-    }
-
-    root.appendChild(grid);
-
-    const message = document.createElement('p');
-    message.textContent = commit.message || 'No commit message';
-    root.appendChild(message);
-
-    for (const file of files) {
-      const details = document.createElement('details');
-      const summaryEl = document.createElement('summary');
-      summaryEl.textContent = file.path + ' · ' + file.status + ' · +' + file.changes.additions + ' / -' + file.changes.deletions;
-      details.appendChild(summaryEl);
-
-      const pre = document.createElement('pre');
-      pre.textContent = file.diff || '(no textual diff; binary or unchanged content)';
-      details.appendChild(pre);
-      root.appendChild(details);
-    }
-  } catch (error) {
-    root.textContent = 'Unable to load scan data: ' + error.message;
+const esc = s => String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+function lineHtml(line){
+  const type=line.type;
+  const cls=type==='added'?'added':type==='removed'?'removed':'context';
+  const oldNo=line.old_line ?? '';
+  const newNo=line.new_line ?? '';
+  const mark=type==='added'?'+':type==='removed'?'-':' ';
+  return '<div class="line '+cls+'"><span class="ln">'+oldNo+'</span><span class="ln">'+newNo+'</span><span class="mark">'+mark+'</span><span class="code">'+esc(line.content)+'</span></div>';
+}
+function renderFile(file){
+  const hunks=file.hunks||[];
+  let body='';
+  for(const h of hunks){
+    body+='<div class="hunk">'+esc(h.header)+'</div>';
+    for(const line of h.lines||[]) body+=lineHtml(line);
   }
+  if(!body) body='<div class="empty">No textual diff available (binary file or file metadata-only change).</div>';
+  return '<section class="file"><div class="file-head"><div><div class="file-name">'+esc(file.path)+'</div><span class="badge">'+esc(file.status)+' · '+esc(file.language)+'</span></div><span class="badge">+'+file.changes.additions+' / -'+file.changes.deletions+'</span></div><div class="diff">'+body+'</div></section>';
+}
+async function load(){
+  const root=document.getElementById('app');
+  try{
+    const r=await fetch('data/latest.json?'+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('latest.json returned '+r.status);
+    const s=await r.json(), c=s.commit||{}, x=s.change_summary||{}, files=s.files||[];
+    root.innerHTML=
+      '<h2>Latest push</h2>'+
+      '<p class="muted">'+esc(s.repository?.full_name)+' · '+esc(c.branch)+' · '+esc(c.message)+'</p>'+
+      '<div class="grid">'+
+      '<div class="metric"><span>Files changed</span><strong>'+x.files_changed+'</strong></div>'+
+      '<div class="metric"><span>Additions</span><strong>+'+x.additions+'</strong></div>'+
+      '<div class="metric"><span>Deletions</span><strong>-'+x.deletions+'</strong></div>'+
+      '<div class="metric"><span>Net lines</span><strong>'+((x.net_lines>=0?'+':'')+x.net_lines)+'</strong></div>'+
+      '</div>'+
+      '<p class="commit">BASE '+esc(c.before||'(initial)')+'<br>TARGET '+esc(c.after)+'</p>'+
+      '<p><a href="'+esc(c.before?'https://github.com/'+s.repository.full_name+'/compare/'+c.before+'...'+c.after:'https://github.com/'+s.repository.full_name+'/commit/'+c.after)+'" target="_blank" rel="noreferrer">Open comparison on GitHub ↗</a></p>'+
+      files.map(renderFile).join('');
+  }catch(e){root.innerHTML='<strong>Unable to load scan data.</strong><p class="muted">'+esc(e.message)+'</p>'}
 }
 load();
 </script>
