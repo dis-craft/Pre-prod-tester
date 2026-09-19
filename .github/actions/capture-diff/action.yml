@@ -1,0 +1,29 @@
+name: Pre-prod Diff Capture
+description: Capture the exact Git push diff from the calling repository as structured JSON.
+inputs:
+  output:
+    description: Output JSON path relative to the calling repository workspace.
+    required: false
+    default: .preprod/scan.json
+outputs:
+  scan_file:
+    description: Path to the generated structured scan JSON.
+    value: ${{ steps.capture.outputs.scan_file }}
+runs:
+  using: composite
+  steps:
+    - id: capture
+      name: Capture Git diff
+      shell: bash
+      env:
+        PREPROD_OUTPUT: ${{ inputs.output }}
+        PREPROD_BEFORE: ${{ github.event.before }}
+        PREPROD_AFTER: ${{ github.sha }}
+        PREPROD_REPOSITORY: ${{ github.repository }}
+        PREPROD_SERVER: ${{ github.server_url }}
+        PREPROD_REF: ${{ github.ref_name }}
+        PREPROD_RUN_ID: ${{ github.run_id }}
+        PREPROD_ACTION_PATH: ${{ github.action_path }}
+      run: |
+        python3 "$PREPROD_ACTION_PATH/capture.py"
+        echo "scan_file=$PREPROD_OUTPUT" >> "$GITHUB_OUTPUT"
