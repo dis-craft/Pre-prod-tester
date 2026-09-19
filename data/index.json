@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_12bde837efa1",
+      "commit": "12bde837efa1dd3df3ad376922dff44d3277afc3",
+      "parent": "ce2882812c0589666913982927d0710b8468c7e6",
+      "branch": "main",
+      "message": "test: verify diff capture 10",
+      "captured_at": "2026-09-19T09:59:07.034858+00:00",
+      "files_changed": 1,
+      "additions": 2,
+      "deletions": 1,
+      "url": "scans/12bde837efa1dd3df3ad376922dff44d3277afc3.json"
+    },
+    {
       "scan_id": "scn_65d317037b54",
       "commit": "65d317037b545f6eae4341c122f6264d8460cb71",
       "parent": "713c594a4e3dba5a041c423661169d205b920381",
