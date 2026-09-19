@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pre-prod Tester — Change Capture</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+    body { margin: 0; background: #0b0d10; color: #e8eaed; }
+    main { max-width: 1180px; margin: 0 auto; padding: 40px 22px 80px; }
+    h1 { margin: 0 0 8px; font-size: 30px; }
+    .muted { color: #9aa0a6; }
+    .card { background: #12161b; border: 1px solid #252b33; border-radius: 12px; padding: 18px; margin-top: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px; }
+    .metric { background: #0e1115; border: 1px solid #20262e; border-radius: 10px; padding: 14px; }
+    .metric strong { display: block; font-size: 22px; margin-top: 5px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    a { color: #8ab4f8; }
+    pre { overflow: auto; background: #090b0e; padding: 16px; border-radius: 8px; border: 1px solid #20262e; font-size: 12px; line-height: 1.5; }
+    details { margin-top: 12px; border: 1px solid #252b33; border-radius: 8px; padding: 12px; }
+    summary { cursor: pointer; }
+    .status { display:inline-block; padding: 4px 8px; border-radius: 999px; background:#20262e; font-size:12px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Pre-prod Tester</h1>
+  <div class="muted">CI/CD change capture — vulnerability detection will be added in a later phase.</div>
+
+  <div id="app" class="card">Loading latest scan…</div>
+
+  <div class="card">
+    <h2>Machine-readable data</h2>
+    <ul>
+      <li><a href="data/latest.json">Latest scan JSON</a></li>
+      <li><a href="data/index.json">Scan index JSON</a></li>
+    </ul>
+  </div>
+</main>
+
+<script>
+async function load() {
+  const root = document.getElementById('app');
+  try {
+    const response = await fetch('data/latest.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('latest.json returned ' + response.status);
+    const scan = await response.json();
+
+    const summary = scan.change_summary || {};
+    const commit = scan.commit || {};
+    const files = scan.files || [];
+
+    root.replaceChildren();
+
+    const title = document.createElement('h2');
+    title.textContent = 'Latest captured push';
+    root.appendChild(title);
+
+    const meta = document.createElement('p');
+    meta.className = 'muted';
+    meta.textContent = (scan.repository?.full_name || 'repository') + ' · ' + (commit.after || 'unknown commit');
+    root.appendChild(meta);
+
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+
+    for (const [label, value] of [
+      ['Files changed', summary.files_changed ?? files.length],
+      ['Additions', summary.additions ?? 0],
+      ['Deletions', summary.deletions ?? 0],
+      ['Trigger', scan.scan?.trigger ?? 'push']
+    ]) {
+      const metric = document.createElement('div');
+      metric.className = 'metric';
+      const small = document.createElement('span');
+      small.className = 'muted';
+      small.textContent = label;
+      const strong = document.createElement('strong');
+      strong.textContent = String(value);
+      metric.append(small, strong);
+      grid.appendChild(metric);
+    }
+
+    root.appendChild(grid);
+
+    const message = document.createElement('p');
+    message.textContent = commit.message || 'No commit message';
+    root.appendChild(message);
+
+    for (const file of files) {
+      const details = document.createElement('details');
+      const summaryEl = document.createElement('summary');
+      summaryEl.textContent = file.path + ' · ' + file.status + ' · +' + file.changes.additions + ' / -' + file.changes.deletions;
+      details.appendChild(summaryEl);
+
+      const pre = document.createElement('pre');
+      pre.textContent = file.diff || '(no textual diff; binary or unchanged content)';
+      details.appendChild(pre);
+      root.appendChild(details);
+    }
+  } catch (error) {
+    root.textContent = 'Unable to load scan data: ' + error.message;
+  }
+}
+load();
+</script>
+</body>
+</html>
