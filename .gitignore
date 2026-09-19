@@ -1,0 +1,11 @@
+# Generated scan data is intentionally committed for the Phase 1 static API.
+# Keep local/editor noise out of the repository.
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
