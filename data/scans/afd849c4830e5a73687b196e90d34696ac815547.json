@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "scan": {
+    "id": "scn_afd849c4830e",
+    "trigger": "push",
+    "captured_at": "2026-09-19T07:23:28.736909+00:00",
+    "workflow_run_id": "35429186980",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35429186980"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "commit": {
+    "before": "c09acfcf6392de640efe27ee51f930e45c11ea2b",
+    "after": "afd849c4830e5a73687b196e90d34696ac815547",
+    "branch": "main",
+    "message": "test: verify diff capture",
+    "author": {
+      "name": "dis-craft",
+      "email": "mrsrikart@gmail.com"
+    },
+    "committed_at": "2026-09-19T12:52:33+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 0,
+    "deletions": 0
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "test.txt",
+      "status": "A",
+      "language": "txt",
+      "changes": {
+        "additions": 0,
+        "deletions": 0,
+        "total": 0
+      },
+      "diff": "diff --git a/test.txt b/test.txt\nnew file mode 100644\nindex 0000000..534e3f7\nBinary files /dev/null and b/test.txt differ\n"
+    }
+  ]
+}
