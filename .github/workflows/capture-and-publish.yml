@@ -6,14 +6,16 @@ on:
       - main
   workflow_dispatch:
 
+# The workflow only reads the repository and publishes a Pages artifact.
+# It intentionally does NOT commit generated scan data back to main.
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   capture-and-publish:
@@ -39,24 +41,11 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: python3 scripts/capture-diff.py
 
-      - name: Commit generated scan data
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add data/latest.json data/index.json data/scans
-          if git diff --cached --quiet; then
-            echo "No generated data changes to commit."
-          else
-            git commit -m "ci: capture push diff [skip ci]"
-            git push
-          fi
-
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .
 
