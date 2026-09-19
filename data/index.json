@@ -2,6 +2,18 @@
   "schema_version": "1.0",
   "scans": [
     {
+      "scan_id": "scn_c063371deb20",
+      "commit": "c063371deb201f32d346f91091aa680e6250a2d7",
+      "parent": "414f5898a5ce47cd4747ece966e94ec557de95bc",
+      "branch": "main",
+      "message": "fix: configure github-pages deployment environment",
+      "captured_at": "2026-09-19T07:26:45.161063+00:00",
+      "files_changed": 1,
+      "additions": 4,
+      "deletions": 2,
+      "url": "scans/c063371deb201f32d346f91091aa680e6250a2d7.json"
+    },
+    {
       "scan_id": "scn_afd849c4830e",
       "commit": "afd849c4830e5a73687b196e90d34696ac815547",
       "parent": "c09acfcf6392de640efe27ee51f930e45c11ea2b",
