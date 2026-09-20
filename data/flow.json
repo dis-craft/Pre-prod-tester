@@ -1,75 +1,85 @@
 {
-  "schema_version": "1.0",
-  "generated_at": "2026-09-20T15:48:01.239092+00:00",
-  "current_stage_label": "Security scan",
+  "schema_version": "1.1",
+  "generated_at": "2026-09-20T15:48:21.836385+00:00",
+  "current_stage_label": "4. AI remediation",
   "commit": {
-    "sha": "26ba91fd5dff5198ac471177750a17baf85bcf10",
+    "sha": "1db5e58d95bcf12be5f0ffaef122e1cfd90ae94b",
     "author": "dis-craft",
     "branch": "main",
-    "message": "fix: use Gemini-only remediation fallback",
-    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/26ba91fd5dff5198ac471177750a17baf85bcf10"
+    "message": "feat: publish live flow state from workflow events",
+    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/1db5e58d95bcf12be5f0ffaef122e1cfd90ae94b"
   },
   "pull_request": null,
   "stages": [
     {
       "label": "1. Commit received",
       "status": "pass",
-      "detail": "GitHub push event received for this commit.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "detail": "Commit received from dis-craft.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "2. Capture exact diff",
-      "status": "pass",
-      "detail": "Before/after commit and changed files were captured.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "status": "pending",
+      "detail": "Capture and publication workflow is pending.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "3. Security scan",
-      "status": "running",
-      "detail": "Security engine is scanning this commit.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "status": "pending",
+      "detail": "Initial capture/security workflow: pending",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "4. AI remediation",
-      "status": "waiting",
-      "detail": "Waiting for findings. Primary model retries, then fallback model if necessary.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "status": "running",
+      "detail": "Gemini primary model retries first; secondary Gemini model is used only after primary attempts are exhausted.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
       "status": "waiting",
-      "detail": "Waiting for an AI-generated change.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "detail": "AI changes are sandbox-validated before acceptance.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "6. Post-fix scan",
       "status": "waiting",
-      "detail": "Waiting for remediation validation.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "detail": "The remediation is re-scanned before a PR is created.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "7. Remediation PR",
       "status": "waiting",
       "detail": "Waiting for validated remediation.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "8. Full PR security re-scan",
       "status": "waiting",
-      "detail": "The PR is re-scanned against the full repository.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "detail": "Full repository PR security review is waiting.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "9. Human review",
       "status": "waiting",
       "detail": "Human approval is required before merge.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     },
     {
       "label": "10. Merge / completed",
       "status": "waiting",
-      "detail": "Final state is recorded after merge or closure.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520688860"
+      "detail": "Waiting for merge.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520718558",
+      "pr_url": null
     }
   ]
 }
