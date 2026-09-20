@@ -2,8 +2,7 @@ const mysql = require('mysql2');
 
 /* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */
 function getCustomer(db, username) {
-  const query = `SELECT * FROM customers WHERE username = '${username}'`;
-  return db.query(query);
+  return db.query('SELECT * FROM customers WHERE username = ?', [username]);
 }
 
 function getInvoice(db, invoiceId) {
