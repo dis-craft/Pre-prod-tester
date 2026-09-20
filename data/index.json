@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_bd7f44fddd78",
+      "commit": "bd7f44fddd789f94662d654b14361fa6e344cd86",
+      "parent": "313b2a79d39d0fedbccfee091ecc8b14ce71aa9e",
+      "branch": "main",
+      "message": "fix: publish live PR state into latest scan",
+      "captured_at": "2026-09-20T11:12:16.366150+00:00",
+      "files_changed": 1,
+      "additions": 49,
+      "deletions": 15,
+      "url": "scans/bd7f44fddd789f94662d654b14361fa6e344cd86.json"
+    },
+    {
       "scan_id": "scn_86219fd94f50",
       "commit": "86219fd94f50d12a00a86e270561df0a18cf9472",
       "parent": "686abfa1f0f676b5c8dc9665f3bc7125a5f82a98",
