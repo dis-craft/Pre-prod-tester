@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_3ea5a1094bbb",
+      "commit": "3ea5a1094bbbd695789f5344860bc276fe76b95b",
+      "parent": "94b0a38a41ab37f007ec7127370833e70911f9bf",
+      "branch": "main",
+      "message": "test: add isolated live remediation smoke workflow",
+      "captured_at": "2026-09-20T08:03:41.675628+00:00",
+      "files_changed": 1,
+      "additions": 18,
+      "deletions": 0,
+      "url": "scans/3ea5a1094bbbd695789f5344860bc276fe76b95b.json"
+    },
+    {
       "scan_id": "scn_b7df5dc0911c",
       "commit": "b7df5dc0911c6e927882e8a25bc31045611ce255",
       "parent": "408d3bf51ea6bafde2f8bc9562c0fb5a55ad06e5",
