@@ -74,13 +74,57 @@ function render(d){
     '</div>'
   ).join('');
 }
+async function api(path){
+ const r=await fetch('https://api.github.com/repos/dis-craft/Pre-prod-tester'+path,{headers:{'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},cache:'no-store'});
+ if(!r.ok) throw new Error('GitHub API '+r.status+' for '+path);
+ return r.json();
+}
+function liveFlow(commit,runs,prs){
+ const run=runs.workflow_runs?.find(x=>x.head_sha===commit.sha) || runs.workflow_runs?.[0];
+ const pr=prs.find(x=>x.head.sha===commit.sha) || prs.find(x=>x.head.ref.startsWith('security/ai-remediation/'));
+ let scan='waiting', rem='waiting', prscan='waiting', review='waiting', merge='waiting', detail='Waiting for the corresponding workflow.';
+ if(run){
+   if(run.name==='Capture Changes and Publish'){
+     scan=run.status==='completed'?(run.conclusion==='success'?'pass':'fail'):'running';
+     detail=run.status==='completed'?'Initial capture/security workflow '+run.conclusion+'.':'Initial capture/security workflow is running.';
+   }
+   if(run.name==='AI Security Remediation'){
+     scan='pass'; rem=run.status==='completed'?(run.conclusion==='success'?'pass':'fail'):'running';
+     detail='AI remediation workflow '+run.status+(run.conclusion?(' / '+run.conclusion):'')+'.';
+   }
+ }
+ if(pr){
+   prscan=pr.state==='open'?'running':(pr.merged?'pass':'fail');
+   review=pr.merged?'pass':(pr.state==='open'?'waiting':'fail');
+   merge=pr.merged?'pass':(pr.state==='open'?'waiting':'fail');
+ }
+ return {run,pr,scan,rem,prscan,review,merge,detail};
+}
 async function load(){
  try{
-  const r=await fetch('data/flow.json?t='+Date.now(),{cache:'no-store'});
-  if(!r.ok) throw new Error('flow.json returned '+r.status);
-  const d=await r.json(); render(d);
+  const d=await fetch('data/latest.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json());
+  const c=d.commit||{};
+  const runs=await api('/actions/runs?per_page=30&event=push');
+  const prs=await api('/pulls?state=all&per_page=30&sort=updated&direction=desc');
+  const live=liveFlow(c,runs,prs);
+  const labels=[
+   ['Commit received','pass','Push received from '+(c.author||'unknown')+'.'],
+   ['Capture exact diff','pass','Commit '+(c.sha||'').slice(0,12)+' captured.'],
+   ['Security scan',live.scan,live.detail],
+   ['AI remediation',live.rem,'Primary model retries, then fallback model when configured.'],
+   ['Sandbox validation',live.rem==='pass'?'pass':live.rem==='fail'?'fail':'waiting','AI changes are validated before acceptance.'],
+   ['Post-fix scan',live.rem==='pass'?'pass':live.rem==='fail'?'fail':'waiting','The remediation state is re-scanned before PR creation.'],
+   ['Remediation PR',live.pr?'pass':'waiting',live.pr?'PR #'+live.pr.number+' exists.':'Waiting for a remediation PR.'],
+   ['Full PR security re-scan',live.prscan,live.pr?'PR '+live.pr.state+'.':'Waiting for PR.'],
+   ['Human review',live.review,live.pr?(live.pr.merged?'PR merged after review.':'Waiting for human review/approval.'):'Waiting for PR.'],
+   ['Merge / completed',live.merge,live.pr?(live.pr.merged?'Merged.':'Not merged.'):'Waiting.']
+  ];
+  d.stages=labels.map((x,i)=>({label:(i+1)+'. '+x[0],status:x[1],detail:x[2],run_url:live.run?.html_url,pr_url:live.pr?.html_url}));
+  d.current_stage_label=labels.find(x=>x[1]==='running')?.[0] || labels.find(x=>x[1]==='fail')?.[0] || (live.pr?'Human review':'Security scan');
+  d.pull_request=live.pr?{number:live.pr.number,url:live.pr.html_url,state:live.pr.state,head:live.pr.head.ref,base:live.pr.base.ref}:null;
+  render(d);
  }catch(e){
-  document.getElementById('summary').innerHTML='<strong>Flow data unavailable.</strong><div class="small">'+esc(e.message)+'</div>';
+  document.getElementById('summary').innerHTML='<strong>Live flow data unavailable.</strong><div class="small">'+esc(e.message)+'</div><div class="small">The static flow snapshot remains available in data/flow.json.</div>';
  }
 }
 document.getElementById('refresh').addEventListener('click',e=>{e.preventDefault();load()});
