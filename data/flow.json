@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-20T15:42:07.119Z",
+  "current_stage_label": "Waiting for a new flow event",
+  "commit": {
+    "sha": "",
+    "author": "",
+    "branch": "",
+    "message": ""
+  },
+  "pull_request": null,
+  "stages": [
+    {
+      "label": "1. Commit received",
+      "status": "pending",
+      "detail": "A push to the monitored branch starts the flow.",
+      "if_case": "If push is valid → continue. If no relevant change → stop.",
+      "next": "Capture exact diff."
+    },
+    {
+      "label": "2. Capture exact diff",
+      "status": "pending",
+      "detail": "Record before/after commits, changed files, author and commit message.",
+      "if_case": "If capture succeeds → continue. If capture errors → stop and report the workflow run.",
+      "next": "Security scan."
+    },
+    {
+      "label": "3. Security scan",
+      "status": "pending",
+      "detail": "Run the security engine against the captured change.",
+      "if_case": "If no HIGH/CRITICAL findings → pass. If findings → send them to remediation.",
+      "next": "AI remediation when findings exist."
+    },
+    {
+      "label": "4. AI remediation",
+      "status": "pending",
+      "detail": "Try the primary model, retry on failure, then switch to the fallback model.",
+      "if_case": "If fix is generated → validate. If model/API errors exhaust retries → stop as ERROR.",
+      "next": "Sandbox + re-scan."
+    },
+    {
+      "label": "5. Sandbox validation",
+      "status": "pending",
+      "detail": "Validate AI-modified files in a disposable isolated environment.",
+      "if_case": "If sandbox passes → re-scan. If it fails → retry another remediation attempt.",
+      "next": "Post-fix scan."
+    },
+    {
+      "label": "6. Post-fix scan",
+      "status": "pending",
+      "detail": "Re-scan the changed repository state and compare against the original findings.",
+      "if_case": "If original findings are resolved and no new blocking findings appear → continue. Otherwise retry/fallback.",
+      "next": "Create remediation PR."
+    },
+    {
+      "label": "7. Remediation PR",
+      "status": "pending",
+      "detail": "Create the readable AI remediation branch and pull request.",
+      "if_case": "If PR creation succeeds → GitHub PR review flow starts. If GitHub API fails → ERROR with run details.",
+      "next": "Full PR security re-scan."
+    },
+    {
+      "label": "8. Full PR security re-scan",
+      "status": "pending",
+      "detail": "Run a full-repository security review against the PR head.",
+      "if_case": "If clean → pass to human review. If HIGH/CRITICAL remains → fail the PR.",
+      "next": "Human review."
+    },
+    {
+      "label": "9. Human review",
+      "status": "pending",
+      "detail": "A human reviews the AI-generated change before merge.",
+      "if_case": "If approved → merge. If changes requested → another PR commit triggers the flow again.",
+      "next": "Merge."
+    },
+    {
+      "label": "10. Merge / completed",
+      "status": "pending",
+      "detail": "The reviewed remediation is merged and the dashboard records the final state.",
+      "if_case": "If merged → completed. If closed without merge → closed.",
+      "next": "End."
+    }
+  ]
+}
