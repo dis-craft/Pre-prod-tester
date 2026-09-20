@@ -2,16 +2,28 @@
   "schema_version": "1.1",
   "scans": [
     {
-      "scan_id": "scn_f19d20aad25c",
-      "commit": "f19d20aad25cff6068a306d99fbda0fc9778eed8",
-      "parent": "3a61bc284c0f74d5a3d4fbfd0c9f50007ebd4e45",
+      "scan_id": "scn_ac7121e0095a",
+      "commit": "ac7121e0095a60a3e3200f7acab25ab038fc69b8",
+      "parent": "100f98913d12f20bad6efe17c3ce6d67957ad8a2",
       "branch": "main",
-      "message": "fix: preserve generated flow state during publish",
-      "captured_at": "2026-09-20T16:35:09.634029+00:00",
+      "message": "test: trigger end-to-end remediation after workflow fixes",
+      "captured_at": "2026-09-20T16:35:32.384767+00:00",
       "files_changed": 1,
-      "additions": 5,
+      "additions": 1,
+      "deletions": 1,
+      "url": "scans/ac7121e0095a60a3e3200f7acab25ab038fc69b8.json"
+    },
+    {
+      "scan_id": "scn_bc497a7d7c2c",
+      "commit": "bc497a7d7c2c6af601f95c677c47d09146053ec6",
+      "parent": "3d3a7507d7f03fef9e1616e18409e728d27336d1",
+      "branch": "main",
+      "message": "fix: align capture workflow permissions",
+      "captured_at": "2026-09-20T16:34:48.023597+00:00",
+      "files_changed": 1,
+      "additions": 2,
       "deletions": 2,
-      "url": "scans/f19d20aad25cff6068a306d99fbda0fc9778eed8.json"
+      "url": "scans/bc497a7d7c2c6af601f95c677c47d09146053ec6.json"
     },
     {
       "scan_id": "scn_70a48afa5691",
