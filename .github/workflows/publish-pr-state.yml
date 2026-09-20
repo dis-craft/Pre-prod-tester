@@ -105,6 +105,7 @@ jobs:
           rm -rf .pages
           mkdir -p .pages/data/scans
           cp index.html .pages/index.html
+          cp flow.html .pages/flow.html
           cp data/latest.json .pages/data/latest.json
           cp data/index.json .pages/data/index.json
           cp data/pull-requests.json .pages/data/pull-requests.json
