@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_11323c78a922",
+      "commit": "11323c78a922576042b43d3fa05d7799461e5a81",
+      "parent": "fa17bb7886b0f7f5a493dae049211c127767efc2",
+      "branch": "main",
+      "message": "test: add more controlled injection findings for E2E remediation",
+      "captured_at": "2026-09-20T11:07:13.112108+00:00",
+      "files_changed": 1,
+      "additions": 11,
+      "deletions": 1,
+      "url": "scans/11323c78a922576042b43d3fa05d7799461e5a81.json"
+    },
+    {
       "scan_id": "scn_8bd02f2e8ee4",
       "commit": "8bd02f2e8ee42ef2f9477635120e7327ebbecf7a",
       "parent": "8423e3e6b1ea4251d120952133e7bf3dd399da52",

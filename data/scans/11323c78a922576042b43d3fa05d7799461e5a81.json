@@ -142,7 +142,7 @@
                 "type": "context",
                 "old_line": 4,
                 "new_line": 4,
-                "content": " * INTENTIONAL SECURITY TEST \u2014 DO NOT USE IN PRODUCTION."
+                "content": " * INTENTIONAL SECURITY TEST — DO NOT USE IN PRODUCTION."
               },
               {
                 "type": "context",
@@ -323,7 +323,7 @@
         "deletions": 1,
         "total": 12
       },
-      "diff": "diff --git a/live-main-security-test.js b/live-main-security-test.js\nindex fd585f8..e061f2b 100644\n--- a/live-main-security-test.js\n+++ b/live-main-security-test.js\n@@ -1,21 +1,31 @@\n const mysql = require('mysql2');\n \n /*\n  * INTENTIONAL SECURITY TEST \u2014 DO NOT USE IN PRODUCTION.\n  * This commit exercises the main-branch security -> AI-fix -> PR flow.\n  */\n function findUser(db, username) {\n   const query = `SELECT * FROM users WHERE username = '${username}'`;\n   return db.query(query);\n }\n \n function findEmail(db, email) {\n   return db.query(\"SELECT * FROM users WHERE email = '\" + email + \"'\");\n }\n \n function findRole(db, role) {\n   const query = `SELECT * FROM roles WHERE name = '${role}'`;\n   return db.query(query);\n }\n \n-module.exports = { findUser, findEmail, findRole };\n+function findOrder(db, orderId) {\n+  const query = \"SELECT * FROM orders WHERE id = \" + orderId;\n+  return db.query(query);\n+}\n+\n+function findProduct(db, name) {\n+  const query = `SELECT * FROM products WHERE name = '${name}'`;\n+  return db.query(query);\n+}\n+\n+module.exports = { findUser, findEmail, findRole, findOrder, findProduct };\n",
+      "diff": "diff --git a/live-main-security-test.js b/live-main-security-test.js\nindex fd585f8..e061f2b 100644\n--- a/live-main-security-test.js\n+++ b/live-main-security-test.js\n@@ -1,21 +1,31 @@\n const mysql = require('mysql2');\n \n /*\n  * INTENTIONAL SECURITY TEST — DO NOT USE IN PRODUCTION.\n  * This commit exercises the main-branch security -> AI-fix -> PR flow.\n  */\n function findUser(db, username) {\n   const query = `SELECT * FROM users WHERE username = '${username}'`;\n   return db.query(query);\n }\n \n function findEmail(db, email) {\n   return db.query(\"SELECT * FROM users WHERE email = '\" + email + \"'\");\n }\n \n function findRole(db, role) {\n   const query = `SELECT * FROM roles WHERE name = '${role}'`;\n   return db.query(query);\n }\n \n-module.exports = { findUser, findEmail, findRole };\n+function findOrder(db, orderId) {\n+  const query = \"SELECT * FROM orders WHERE id = \" + orderId;\n+  return db.query(query);\n+}\n+\n+function findProduct(db, name) {\n+  const query = `SELECT * FROM products WHERE name = '${name}'`;\n+  return db.query(query);\n+}\n+\n+module.exports = { findUser, findEmail, findRole, findOrder, findProduct };\n",
       "hunks": [
         {
           "header": "@@ -1,21 +1,31 @@",
@@ -354,7 +354,7 @@
               "type": "context",
               "old_line": 4,
               "new_line": 4,
-              "content": " * INTENTIONAL SECURITY TEST \u2014 DO NOT USE IN PRODUCTION."
+              "content": " * INTENTIONAL SECURITY TEST — DO NOT USE IN PRODUCTION."
             },
             {
               "type": "context",
@@ -579,168 +579,6 @@
           "content": "module.exports = { findUser, findEmail, findRole };"
         }
       ]
-    }
-  ],
-  "security_engine": {
-    "status": "FAILED",
-    "scanner": "Pre-Prod-Orchestrator/rule_engine",
-    "findings": [
-      {
-        "id": "73865f18-ca28-4bce-8ec0-19f6231ed0a3",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "live-main-security-test.js",
-        "line": 8,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 8,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 8:\n  const query = `SELECT * FROM users WHERE username = '${username}'`;",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "live-main-security-test.js",
-            "line": 8
-          }
-        ]
-      },
-      {
-        "id": "65846e95-dd5f-40c4-b2ce-1d03eca0baae",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "live-main-security-test.js",
-        "line": 9,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 9,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 9:\n  return db.query(query);",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "live-main-security-test.js",
-            "line": 9
-          }
-        ]
-      },
-      {
-        "id": "559304b3-0612-41b9-b800-48fe1f5a9d97",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "live-main-security-test.js",
-        "line": 13,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 13,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 13:\n  return db.query(\"SELECT * FROM users WHERE email = '\" + email + \"'\");",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "live-main-security-test.js",
-            "line": 13
-          }
-        ]
-      },
-      {
-        "id": "d7cd5401-601b-48de-a7f2-9a86fffae122",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "live-main-security-test.js",
-        "line": 17,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 17,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 17:\n  const query = `SELECT * FROM roles WHERE name = '${role}'`;",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "live-main-security-test.js",
-            "line": 17
-          }
-        ]
-      },
-      {
-        "id": "d4b317dc-3a4c-45f1-b12b-4563f7485331",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "live-main-security-test.js",
-        "line": 27,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 27,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 27:\n  const query = `SELECT * FROM products WHERE name = '${name}'`;",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "live-main-security-test.js",
-            "line": 27
-          }
-        ]
-      }
-    ],
-    "scan_metadata": {
-      "timestamp": "2026-09-20T11:07:21.933175",
-      "total_findings": 5,
-      "by_severity": {
-        "CRITICAL": 5,
-        "HIGH": 0,
-        "MEDIUM": 0,
-        "LOW": 0,
-        "INFO": 0
-      },
-      "model_used": "none"
-    }
-  },
-  "pull_requests": [
-    {
-      "number": 4,
-      "title": "fix: AI-generated security remediation",
-      "state": "open",
-      "merged": false,
-      "head": "security-remediation/7a1fcb7cf94c",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/4",
-      "created_at": "2026-09-20T09:45:52Z",
-      "updated_at": "2026-09-20T09:45:52Z",
-      "merged_at": null
     }
   ]
 }
