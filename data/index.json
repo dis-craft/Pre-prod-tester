@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_b3975ab5b46e",
+      "commit": "b3975ab5b46ed228d40069c326e06c0cb1f0f28b",
+      "parent": "b093add514fe49e16f6f3fcbf19fea5af9777135",
+      "branch": "main",
+      "message": "fix: publish flow only after workflow completion",
+      "captured_at": "2026-09-20T17:06:08.215508+00:00",
+      "files_changed": 1,
+      "additions": 1,
+      "deletions": 1,
+      "url": "scans/b3975ab5b46ed228d40069c326e06c0cb1f0f28b.json"
+    },
+    {
       "scan_id": "scn_563ca4838c52",
       "commit": "563ca4838c52d56b10b44afc3c123fd83d0d6763",
       "parent": "62f6ba46921e58b4f06954e77c8c5e095175941a",
