@@ -1,0 +1,744 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_af38425cc354",
+    "trigger": "push",
+    "captured_at": "2026-09-20T16:44:55.738785+00:00",
+    "workflow_run_id": "35523670895",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523670895"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "1692b99da00dd1d65f5c41eb3ca3e7bcc2d74518",
+    "target_commit": "af38425cc3549cee51866b940f0504aadc0be9e7",
+    "range": "1692b99da00dd1d65f5c41eb3ca3e7bcc2d74518..af38425cc3549cee51866b940f0504aadc0be9e7",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "1692b99da00dd1d65f5c41eb3ca3e7bcc2d74518",
+    "after": "af38425cc3549cee51866b940f0504aadc0be9e7",
+    "branch": "main",
+    "message": "fix: start remediation from canonical capture",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T22:14:45+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 12,
+    "deletions": 8,
+    "net_lines": 4
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": ".github/workflows/ai-remediation.yml",
+        "status": "M",
+        "additions": 12,
+        "deletions": 8,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 4,
+            "content": "  workflow_run:"
+          },
+          {
+            "type": "added",
+            "new_line": 5,
+            "content": "    workflows:"
+          },
+          {
+            "type": "added",
+            "new_line": 6,
+            "content": "      - Capture Changes and Publish"
+          },
+          {
+            "type": "added",
+            "new_line": 7,
+            "content": "    types: [completed]"
+          },
+          {
+            "type": "added",
+            "new_line": 12,
+            "content": "  actions: read"
+          },
+          {
+            "type": "added",
+            "new_line": 15,
+            "content": "  group: ai-remediation-${{ github.event.workflow_run.head_sha }}"
+          },
+          {
+            "type": "added",
+            "new_line": 20,
+            "content": "    if: ${{ github.event.workflow_run.conclusion == 'success' }}"
+          },
+          {
+            "type": "added",
+            "new_line": 26,
+            "content": "      primary-attempts: \"1\""
+          },
+          {
+            "type": "added",
+            "new_line": 27,
+            "content": "      fallback-attempts: \"1\""
+          },
+          {
+            "type": "added",
+            "new_line": 28,
+            "content": "      full-repo-rescan: false"
+          },
+          {
+            "type": "added",
+            "new_line": 29,
+            "content": "      scan-input: data/scans/${{ github.event.workflow_run.head_sha }}.json"
+          },
+          {
+            "type": "added",
+            "new_line": 30,
+            "content": "      source-sha: ${{ github.event.workflow_run.head_sha }}"
+          }
+        ],
+        "removed_lines": [
+          {
+            "type": "removed",
+            "old_line": 4,
+            "content": "  push:"
+          },
+          {
+            "type": "removed",
+            "old_line": 5,
+            "content": "    branches: [main]"
+          },
+          {
+            "type": "removed",
+            "old_line": 6,
+            "content": "    paths-ignore:"
+          },
+          {
+            "type": "removed",
+            "old_line": 7,
+            "content": "      - 'data/**'"
+          },
+          {
+            "type": "removed",
+            "old_line": 8,
+            "content": "      - '.pages/**'"
+          },
+          {
+            "type": "removed",
+            "old_line": 15,
+            "content": "  group: ai-remediation-${{ github.ref }}"
+          },
+          {
+            "type": "removed",
+            "old_line": 25,
+            "content": "      primary-attempts: \"3\""
+          },
+          {
+            "type": "removed",
+            "old_line": 26,
+            "content": "      fallback-attempts: \"2\""
+          }
+        ],
+        "hunks": [
+          {
+            "header": "@@ -1,28 +1,32 @@",
+            "old_start": 1,
+            "old_count": 28,
+            "new_start": 1,
+            "new_count": 32,
+            "lines": [
+              {
+                "type": "context",
+                "old_line": 1,
+                "new_line": 1,
+                "content": "name: AI Security Remediation"
+              },
+              {
+                "type": "context",
+                "old_line": 2,
+                "new_line": 2,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 3,
+                "new_line": 3,
+                "content": "on:"
+              },
+              {
+                "type": "removed",
+                "old_line": 4,
+                "content": "  push:"
+              },
+              {
+                "type": "removed",
+                "old_line": 5,
+                "content": "    branches: [main]"
+              },
+              {
+                "type": "removed",
+                "old_line": 6,
+                "content": "    paths-ignore:"
+              },
+              {
+                "type": "removed",
+                "old_line": 7,
+                "content": "      - 'data/**'"
+              },
+              {
+                "type": "removed",
+                "old_line": 8,
+                "content": "      - '.pages/**'"
+              },
+              {
+                "type": "added",
+                "new_line": 4,
+                "content": "  workflow_run:"
+              },
+              {
+                "type": "added",
+                "new_line": 5,
+                "content": "    workflows:"
+              },
+              {
+                "type": "added",
+                "new_line": 6,
+                "content": "      - Capture Changes and Publish"
+              },
+              {
+                "type": "added",
+                "new_line": 7,
+                "content": "    types: [completed]"
+              },
+              {
+                "type": "context",
+                "old_line": 9,
+                "new_line": 8,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 10,
+                "new_line": 9,
+                "content": "permissions:"
+              },
+              {
+                "type": "context",
+                "old_line": 11,
+                "new_line": 10,
+                "content": "  contents: write"
+              },
+              {
+                "type": "context",
+                "old_line": 12,
+                "new_line": 11,
+                "content": "  pull-requests: write"
+              },
+              {
+                "type": "added",
+                "new_line": 12,
+                "content": "  actions: read"
+              },
+              {
+                "type": "context",
+                "old_line": 13,
+                "new_line": 13,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 14,
+                "new_line": 14,
+                "content": "concurrency:"
+              },
+              {
+                "type": "removed",
+                "old_line": 15,
+                "content": "  group: ai-remediation-${{ github.ref }}"
+              },
+              {
+                "type": "added",
+                "new_line": 15,
+                "content": "  group: ai-remediation-${{ github.event.workflow_run.head_sha }}"
+              },
+              {
+                "type": "context",
+                "old_line": 16,
+                "new_line": 16,
+                "content": "  cancel-in-progress: false"
+              },
+              {
+                "type": "context",
+                "old_line": 17,
+                "new_line": 17,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 18,
+                "new_line": 18,
+                "content": "jobs:"
+              },
+              {
+                "type": "context",
+                "old_line": 19,
+                "new_line": 19,
+                "content": "  remediation:"
+              },
+              {
+                "type": "added",
+                "new_line": 20,
+                "content": "    if: ${{ github.event.workflow_run.conclusion == 'success' }}"
+              },
+              {
+                "type": "context",
+                "old_line": 20,
+                "new_line": 21,
+                "content": "    uses: dis-craft/Pre-Prod-Orchestrator/.github/workflows/preprod-security.yml@main"
+              },
+              {
+                "type": "context",
+                "old_line": 21,
+                "new_line": 22,
+                "content": "    with:"
+              },
+              {
+                "type": "context",
+                "old_line": 22,
+                "new_line": 23,
+                "content": "      generate-remediation: true"
+              },
+              {
+                "type": "context",
+                "old_line": 23,
+                "new_line": 24,
+                "content": "      test-command: \"\""
+              },
+              {
+                "type": "context",
+                "old_line": 24,
+                "new_line": 25,
+                "content": "      fallback-model: gemini-2.5-flash"
+              },
+              {
+                "type": "removed",
+                "old_line": 25,
+                "content": "      primary-attempts: \"3\""
+              },
+              {
+                "type": "removed",
+                "old_line": 26,
+                "content": "      fallback-attempts: \"2\""
+              },
+              {
+                "type": "added",
+                "new_line": 26,
+                "content": "      primary-attempts: \"1\""
+              },
+              {
+                "type": "added",
+                "new_line": 27,
+                "content": "      fallback-attempts: \"1\""
+              },
+              {
+                "type": "added",
+                "new_line": 28,
+                "content": "      full-repo-rescan: false"
+              },
+              {
+                "type": "added",
+                "new_line": 29,
+                "content": "      scan-input: data/scans/${{ github.event.workflow_run.head_sha }}.json"
+              },
+              {
+                "type": "added",
+                "new_line": 30,
+                "content": "      source-sha: ${{ github.event.workflow_run.head_sha }}"
+              },
+              {
+                "type": "context",
+                "old_line": 27,
+                "new_line": 31,
+                "content": "    secrets:"
+              },
+              {
+                "type": "context",
+                "old_line": 28,
+                "new_line": 32,
+                "content": "      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": ".github/workflows/ai-remediation.yml",
+      "status": "M",
+      "language": "yml",
+      "changes": {
+        "additions": 12,
+        "deletions": 8,
+        "total": 20
+      },
+      "diff": "diff --git a/.github/workflows/ai-remediation.yml b/.github/workflows/ai-remediation.yml\nindex 125e089..d7cd686 100644\n--- a/.github/workflows/ai-remediation.yml\n+++ b/.github/workflows/ai-remediation.yml\n@@ -1,28 +1,32 @@\n name: AI Security Remediation\n \n on:\n-  push:\n-    branches: [main]\n-    paths-ignore:\n-      - 'data/**'\n-      - '.pages/**'\n+  workflow_run:\n+    workflows:\n+      - Capture Changes and Publish\n+    types: [completed]\n \n permissions:\n   contents: write\n   pull-requests: write\n+  actions: read\n \n concurrency:\n-  group: ai-remediation-${{ github.ref }}\n+  group: ai-remediation-${{ github.event.workflow_run.head_sha }}\n   cancel-in-progress: false\n \n jobs:\n   remediation:\n+    if: ${{ github.event.workflow_run.conclusion == 'success' }}\n     uses: dis-craft/Pre-Prod-Orchestrator/.github/workflows/preprod-security.yml@main\n     with:\n       generate-remediation: true\n       test-command: \"\"\n       fallback-model: gemini-2.5-flash\n-      primary-attempts: \"3\"\n-      fallback-attempts: \"2\"\n+      primary-attempts: \"1\"\n+      fallback-attempts: \"1\"\n+      full-repo-rescan: false\n+      scan-input: data/scans/${{ github.event.workflow_run.head_sha }}.json\n+      source-sha: ${{ github.event.workflow_run.head_sha }}\n     secrets:\n       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}\n",
+      "hunks": [
+        {
+          "header": "@@ -1,28 +1,32 @@",
+          "old_start": 1,
+          "old_count": 28,
+          "new_start": 1,
+          "new_count": 32,
+          "lines": [
+            {
+              "type": "context",
+              "old_line": 1,
+              "new_line": 1,
+              "content": "name: AI Security Remediation"
+            },
+            {
+              "type": "context",
+              "old_line": 2,
+              "new_line": 2,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 3,
+              "new_line": 3,
+              "content": "on:"
+            },
+            {
+              "type": "removed",
+              "old_line": 4,
+              "content": "  push:"
+            },
+            {
+              "type": "removed",
+              "old_line": 5,
+              "content": "    branches: [main]"
+            },
+            {
+              "type": "removed",
+              "old_line": 6,
+              "content": "    paths-ignore:"
+            },
+            {
+              "type": "removed",
+              "old_line": 7,
+              "content": "      - 'data/**'"
+            },
+            {
+              "type": "removed",
+              "old_line": 8,
+              "content": "      - '.pages/**'"
+            },
+            {
+              "type": "added",
+              "new_line": 4,
+              "content": "  workflow_run:"
+            },
+            {
+              "type": "added",
+              "new_line": 5,
+              "content": "    workflows:"
+            },
+            {
+              "type": "added",
+              "new_line": 6,
+              "content": "      - Capture Changes and Publish"
+            },
+            {
+              "type": "added",
+              "new_line": 7,
+              "content": "    types: [completed]"
+            },
+            {
+              "type": "context",
+              "old_line": 9,
+              "new_line": 8,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 10,
+              "new_line": 9,
+              "content": "permissions:"
+            },
+            {
+              "type": "context",
+              "old_line": 11,
+              "new_line": 10,
+              "content": "  contents: write"
+            },
+            {
+              "type": "context",
+              "old_line": 12,
+              "new_line": 11,
+              "content": "  pull-requests: write"
+            },
+            {
+              "type": "added",
+              "new_line": 12,
+              "content": "  actions: read"
+            },
+            {
+              "type": "context",
+              "old_line": 13,
+              "new_line": 13,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 14,
+              "new_line": 14,
+              "content": "concurrency:"
+            },
+            {
+              "type": "removed",
+              "old_line": 15,
+              "content": "  group: ai-remediation-${{ github.ref }}"
+            },
+            {
+              "type": "added",
+              "new_line": 15,
+              "content": "  group: ai-remediation-${{ github.event.workflow_run.head_sha }}"
+            },
+            {
+              "type": "context",
+              "old_line": 16,
+              "new_line": 16,
+              "content": "  cancel-in-progress: false"
+            },
+            {
+              "type": "context",
+              "old_line": 17,
+              "new_line": 17,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 18,
+              "new_line": 18,
+              "content": "jobs:"
+            },
+            {
+              "type": "context",
+              "old_line": 19,
+              "new_line": 19,
+              "content": "  remediation:"
+            },
+            {
+              "type": "added",
+              "new_line": 20,
+              "content": "    if: ${{ github.event.workflow_run.conclusion == 'success' }}"
+            },
+            {
+              "type": "context",
+              "old_line": 20,
+              "new_line": 21,
+              "content": "    uses: dis-craft/Pre-Prod-Orchestrator/.github/workflows/preprod-security.yml@main"
+            },
+            {
+              "type": "context",
+              "old_line": 21,
+              "new_line": 22,
+              "content": "    with:"
+            },
+            {
+              "type": "context",
+              "old_line": 22,
+              "new_line": 23,
+              "content": "      generate-remediation: true"
+            },
+            {
+              "type": "context",
+              "old_line": 23,
+              "new_line": 24,
+              "content": "      test-command: \"\""
+            },
+            {
+              "type": "context",
+              "old_line": 24,
+              "new_line": 25,
+              "content": "      fallback-model: gemini-2.5-flash"
+            },
+            {
+              "type": "removed",
+              "old_line": 25,
+              "content": "      primary-attempts: \"3\""
+            },
+            {
+              "type": "removed",
+              "old_line": 26,
+              "content": "      fallback-attempts: \"2\""
+            },
+            {
+              "type": "added",
+              "new_line": 26,
+              "content": "      primary-attempts: \"1\""
+            },
+            {
+              "type": "added",
+              "new_line": 27,
+              "content": "      fallback-attempts: \"1\""
+            },
+            {
+              "type": "added",
+              "new_line": 28,
+              "content": "      full-repo-rescan: false"
+            },
+            {
+              "type": "added",
+              "new_line": 29,
+              "content": "      scan-input: data/scans/${{ github.event.workflow_run.head_sha }}.json"
+            },
+            {
+              "type": "added",
+              "new_line": 30,
+              "content": "      source-sha: ${{ github.event.workflow_run.head_sha }}"
+            },
+            {
+              "type": "context",
+              "old_line": 27,
+              "new_line": 31,
+              "content": "    secrets:"
+            },
+            {
+              "type": "context",
+              "old_line": 28,
+              "new_line": 32,
+              "content": "      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 4,
+          "content": "  workflow_run:"
+        },
+        {
+          "type": "added",
+          "new_line": 5,
+          "content": "    workflows:"
+        },
+        {
+          "type": "added",
+          "new_line": 6,
+          "content": "      - Capture Changes and Publish"
+        },
+        {
+          "type": "added",
+          "new_line": 7,
+          "content": "    types: [completed]"
+        },
+        {
+          "type": "added",
+          "new_line": 12,
+          "content": "  actions: read"
+        },
+        {
+          "type": "added",
+          "new_line": 15,
+          "content": "  group: ai-remediation-${{ github.event.workflow_run.head_sha }}"
+        },
+        {
+          "type": "added",
+          "new_line": 20,
+          "content": "    if: ${{ github.event.workflow_run.conclusion == 'success' }}"
+        },
+        {
+          "type": "added",
+          "new_line": 26,
+          "content": "      primary-attempts: \"1\""
+        },
+        {
+          "type": "added",
+          "new_line": 27,
+          "content": "      fallback-attempts: \"1\""
+        },
+        {
+          "type": "added",
+          "new_line": 28,
+          "content": "      full-repo-rescan: false"
+        },
+        {
+          "type": "added",
+          "new_line": 29,
+          "content": "      scan-input: data/scans/${{ github.event.workflow_run.head_sha }}.json"
+        },
+        {
+          "type": "added",
+          "new_line": 30,
+          "content": "      source-sha: ${{ github.event.workflow_run.head_sha }}"
+        }
+      ],
+      "removed_lines": [
+        {
+          "type": "removed",
+          "old_line": 4,
+          "content": "  push:"
+        },
+        {
+          "type": "removed",
+          "old_line": 5,
+          "content": "    branches: [main]"
+        },
+        {
+          "type": "removed",
+          "old_line": 6,
+          "content": "    paths-ignore:"
+        },
+        {
+          "type": "removed",
+          "old_line": 7,
+          "content": "      - 'data/**'"
+        },
+        {
+          "type": "removed",
+          "old_line": 8,
+          "content": "      - '.pages/**'"
+        },
+        {
+          "type": "removed",
+          "old_line": 15,
+          "content": "  group: ai-remediation-${{ github.ref }}"
+        },
+        {
+          "type": "removed",
+          "old_line": 25,
+          "content": "      primary-attempts: \"3\""
+        },
+        {
+          "type": "removed",
+          "old_line": 26,
+          "content": "      fallback-attempts: \"2\""
+        }
+      ]
+    }
+  ]
+}

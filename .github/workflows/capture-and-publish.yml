@@ -8,7 +8,7 @@ on:
 
 permissions:
   contents: write
-  pull-requests: read
+  pull-requests: write
   pages: write
   id-token: write
   actions: read
@@ -53,7 +53,7 @@ jobs:
           test -n "$FINDINGS"
           python3 scripts/attach-security-findings.py --scan data/latest.json --findings "$FINDINGS"
 
-      - name: Build live flow state
+      - name: Build live flow state before remediation
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -107,3 +107,36 @@ jobs:
             echo "::error::Could not publish scan data after 3 atomic retries."
             exit 1
           fi
+
+      - name: Remove legacy test branches
+        if: contains(github.event.head_commit.message, 'fresh canonical security pipeline')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          git fetch origin --prune
+          for branch in security-e2e-test security-pipeline-test feature/full-security-pipeline; do
+            git push origin --delete "$branch"
+          done
+          git ls-remote --heads origin 'refs/heads/security-remediation/*' |
+            awk '{sub("refs/heads/","",$2); print $2}' |
+            while read -r branch; do
+              [ -z "$branch" ] || git push origin --delete "$branch"
+            done
+          true
+
+  remediation:
+    needs: capture-and-publish
+    uses: dis-craft/Pre-Prod-Orchestrator/.github/workflows/preprod-security.yml@main
+    with:
+      generate-remediation: true
+      test-command: ""
+      fallback-model: gemini-2.5-flash
+      primary-attempts: "1"
+      fallback-attempts: "1"
+      full-repo-rescan: false
+      reuse-findings: true
+      scan-input: data/scans/${{ github.sha }}.json
+      source-sha: ${{ github.sha }}
+    secrets:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

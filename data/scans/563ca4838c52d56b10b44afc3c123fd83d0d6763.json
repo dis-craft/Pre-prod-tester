@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_563ca4838c52",
+    "trigger": "push",
+    "captured_at": "2026-09-20T17:05:17.843927+00:00",
+    "workflow_run_id": "35524735294",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "62f6ba46921e58b4f06954e77c8c5e095175941a",
+    "target_commit": "563ca4838c52d56b10b44afc3c123fd83d0d6763",
+    "range": "62f6ba46921e58b4f06954e77c8c5e095175941a..563ca4838c52d56b10b44afc3c123fd83d0d6763",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "62f6ba46921e58b4f06954e77c8c5e095175941a",
+    "after": "563ca4838c52d56b10b44afc3c123fd83d0d6763",
+    "branch": "main",
+    "message": "test: verify flow and website sync",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T22:35:09+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 2,
+    "deletions": 0,
+    "net_lines": 2
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "e2e-website-sync-test-20260920.txt",
+        "status": "A",
+        "additions": 2,
+        "deletions": 0,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 1,
+            "content": "FLOW_SYNC_TEST"
+          },
+          {
+            "type": "added",
+            "new_line": 2,
+            "content": "Verify canonical capture, published flow.json, and GitHub Pages website synchronization."
+          }
+        ],
+        "removed_lines": [],
+        "hunks": [
+          {
+            "header": "@@ -0,0 +1,2 @@",
+            "old_start": 0,
+            "old_count": 0,
+            "new_start": 1,
+            "new_count": 2,
+            "lines": [
+              {
+                "type": "added",
+                "new_line": 1,
+                "content": "FLOW_SYNC_TEST"
+              },
+              {
+                "type": "added",
+                "new_line": 2,
+                "content": "Verify canonical capture, published flow.json, and GitHub Pages website synchronization."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "e2e-website-sync-test-20260920.txt",
+      "status": "A",
+      "language": "txt",
+      "changes": {
+        "additions": 2,
+        "deletions": 0,
+        "total": 2
+      },
+      "diff": "diff --git a/e2e-website-sync-test-20260920.txt b/e2e-website-sync-test-20260920.txt\nnew file mode 100644\nindex 0000000..8d8a9c3\n--- /dev/null\n+++ b/e2e-website-sync-test-20260920.txt\n@@ -0,0 +1,2 @@\n+FLOW_SYNC_TEST\n+Verify canonical capture, published flow.json, and GitHub Pages website synchronization.\n",
+      "hunks": [
+        {
+          "header": "@@ -0,0 +1,2 @@",
+          "old_start": 0,
+          "old_count": 0,
+          "new_start": 1,
+          "new_count": 2,
+          "lines": [
+            {
+              "type": "added",
+              "new_line": 1,
+              "content": "FLOW_SYNC_TEST"
+            },
+            {
+              "type": "added",
+              "new_line": 2,
+              "content": "Verify canonical capture, published flow.json, and GitHub Pages website synchronization."
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 1,
+          "content": "FLOW_SYNC_TEST"
+        },
+        {
+          "type": "added",
+          "new_line": 2,
+          "content": "Verify canonical capture, published flow.json, and GitHub Pages website synchronization."
+        }
+      ],
+      "removed_lines": []
+    }
+  ],
+  "security_engine": {
+    "status": "PASSED",
+    "scanner": "Pre-Prod-Orchestrator/rule_engine",
+    "findings": [],
+    "scan_metadata": {
+      "timestamp": "2026-09-20T17:05:24.640674",
+      "total_findings": 0,
+      "by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "INFO": 0
+      },
+      "model_used": "none"
+    }
+  }
+}

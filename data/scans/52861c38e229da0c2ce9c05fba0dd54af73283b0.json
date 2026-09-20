@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_52861c38e229",
+    "trigger": "push",
+    "captured_at": "2026-09-20T16:57:47.559834+00:00",
+    "workflow_run_id": "35524333881",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524333881"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "626f40e20dfcae2c931a1ec97524069d4c95603d",
+    "target_commit": "52861c38e229da0c2ce9c05fba0dd54af73283b0",
+    "range": "626f40e20dfcae2c931a1ec97524069d4c95603d..52861c38e229da0c2ce9c05fba0dd54af73283b0",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "626f40e20dfcae2c931a1ec97524069d4c95603d",
+    "after": "52861c38e229da0c2ce9c05fba0dd54af73283b0",
+    "branch": "main",
+    "message": "test: rerun Gemini remediation after fix",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T22:27:38+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 6,
+    "deletions": 0,
+    "net_lines": 6
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "e2e-live-trigger-20260920-2.js",
+        "status": "A",
+        "additions": 6,
+        "deletions": 0,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 1,
+            "content": "// Fresh E2E security fixture: intentionally vulnerable SQL construction."
+          },
+          {
+            "type": "added",
+            "new_line": 2,
+            "content": "function lookupUser(db, username) {"
+          },
+          {
+            "type": "added",
+            "new_line": 3,
+            "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+          },
+          {
+            "type": "added",
+            "new_line": 4,
+            "content": "  return db.query(query);"
+          },
+          {
+            "type": "added",
+            "new_line": 5,
+            "content": "}"
+          },
+          {
+            "type": "added",
+            "new_line": 6,
+            "content": "module.exports = { lookupUser };"
+          }
+        ],
+        "removed_lines": [],
+        "hunks": [
+          {
+            "header": "@@ -0,0 +1,6 @@",
+            "old_start": 0,
+            "old_count": 0,
+            "new_start": 1,
+            "new_count": 6,
+            "lines": [
+              {
+                "type": "added",
+                "new_line": 1,
+                "content": "// Fresh E2E security fixture: intentionally vulnerable SQL construction."
+              },
+              {
+                "type": "added",
+                "new_line": 2,
+                "content": "function lookupUser(db, username) {"
+              },
+              {
+                "type": "added",
+                "new_line": 3,
+                "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+              },
+              {
+                "type": "added",
+                "new_line": 4,
+                "content": "  return db.query(query);"
+              },
+              {
+                "type": "added",
+                "new_line": 5,
+                "content": "}"
+              },
+              {
+                "type": "added",
+                "new_line": 6,
+                "content": "module.exports = { lookupUser };"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "e2e-live-trigger-20260920-2.js",
+      "status": "A",
+      "language": "js",
+      "changes": {
+        "additions": 6,
+        "deletions": 0,
+        "total": 6
+      },
+      "diff": "diff --git a/e2e-live-trigger-20260920-2.js b/e2e-live-trigger-20260920-2.js\nnew file mode 100644\nindex 0000000..330c851\n--- /dev/null\n+++ b/e2e-live-trigger-20260920-2.js\n@@ -0,0 +1,6 @@\n+// Fresh E2E security fixture: intentionally vulnerable SQL construction.\n+function lookupUser(db, username) {\n+  const query = `SELECT * FROM users WHERE username = '${username}'`;\n+  return db.query(query);\n+}\n+module.exports = { lookupUser };\n",
+      "hunks": [
+        {
+          "header": "@@ -0,0 +1,6 @@",
+          "old_start": 0,
+          "old_count": 0,
+          "new_start": 1,
+          "new_count": 6,
+          "lines": [
+            {
+              "type": "added",
+              "new_line": 1,
+              "content": "// Fresh E2E security fixture: intentionally vulnerable SQL construction."
+            },
+            {
+              "type": "added",
+              "new_line": 2,
+              "content": "function lookupUser(db, username) {"
+            },
+            {
+              "type": "added",
+              "new_line": 3,
+              "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+            },
+            {
+              "type": "added",
+              "new_line": 4,
+              "content": "  return db.query(query);"
+            },
+            {
+              "type": "added",
+              "new_line": 5,
+              "content": "}"
+            },
+            {
+              "type": "added",
+              "new_line": 6,
+              "content": "module.exports = { lookupUser };"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 1,
+          "content": "// Fresh E2E security fixture: intentionally vulnerable SQL construction."
+        },
+        {
+          "type": "added",
+          "new_line": 2,
+          "content": "function lookupUser(db, username) {"
+        },
+        {
+          "type": "added",
+          "new_line": 3,
+          "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+        },
+        {
+          "type": "added",
+          "new_line": 4,
+          "content": "  return db.query(query);"
+        },
+        {
+          "type": "added",
+          "new_line": 5,
+          "content": "}"
+        },
+        {
+          "type": "added",
+          "new_line": 6,
+          "content": "module.exports = { lookupUser };"
+        }
+      ],
+      "removed_lines": []
+    }
+  ],
+  "security_engine": {
+    "status": "FAILED",
+    "scanner": "Pre-Prod-Orchestrator/rule_engine",
+    "findings": [
+      {
+        "id": "83eda096-dd71-4786-a8b8-0d7b0f5c3a60",
+        "tool": "rule_engine",
+        "rule": "INJ-SQL-JS",
+        "severity": "CRITICAL",
+        "file": "e2e-live-trigger-20260920-2.js",
+        "line": 3,
+        "message": "Unsafe string formatting or template literals in SQL execution.",
+        "confidence": 0.5,
+        "fixability": "UNKNOWN",
+        "metadata": {},
+        "end_line": 3,
+        "cwe": "89",
+        "category": "Injection",
+        "what_and_why": "Attacker can execute arbitrary SQL queries.",
+        "location_detail": "Line 3:\n  const query = `SELECT * FROM users WHERE username = '${username}'`;",
+        "how_to_fix": "Use parameterized queries.",
+        "why_fix_helps": "Mitigates vulnerability",
+        "llm_confirmed": true,
+        "occurrences": [
+          {
+            "file": "e2e-live-trigger-20260920-2.js",
+            "line": 3
+          }
+        ]
+      },
+      {
+        "id": "7f45988e-1a7b-4791-b87d-e4e8c6e9bb16",
+        "tool": "rule_engine",
+        "rule": "INJ-SQL-JS",
+        "severity": "CRITICAL",
+        "file": "e2e-live-trigger-20260920-2.js",
+        "line": 4,
+        "message": "Unsafe string formatting or template literals in SQL execution.",
+        "confidence": 0.5,
+        "fixability": "UNKNOWN",
+        "metadata": {},
+        "end_line": 4,
+        "cwe": "89",
+        "category": "Injection",
+        "what_and_why": "Attacker can execute arbitrary SQL queries.",
+        "location_detail": "Line 4:\n  return db.query(query);",
+        "how_to_fix": "Use parameterized queries.",
+        "why_fix_helps": "Mitigates vulnerability",
+        "llm_confirmed": true,
+        "occurrences": [
+          {
+            "file": "e2e-live-trigger-20260920-2.js",
+            "line": 4
+          }
+        ]
+      }
+    ],
+    "scan_metadata": {
+      "timestamp": "2026-09-20T16:57:58.590084",
+      "total_findings": 2,
+      "by_severity": {
+        "CRITICAL": 2,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "INFO": 0
+      },
+      "model_used": "none"
+    }
+  }
+}

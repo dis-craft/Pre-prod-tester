@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_41d2a136cccb",
+    "trigger": "push",
+    "captured_at": "2026-09-20T17:00:14.537613+00:00",
+    "workflow_run_id": "35524454590",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524454590"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "f9ab624d8ef01affe90932191342235e20a5bd59",
+    "target_commit": "41d2a136cccb362d7835be3a595d8194d73d9e29",
+    "range": "f9ab624d8ef01affe90932191342235e20a5bd59..41d2a136cccb362d7835be3a595d8194d73d9e29",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "f9ab624d8ef01affe90932191342235e20a5bd59",
+    "after": "41d2a136cccb362d7835be3a595d8194d73d9e29",
+    "branch": "main",
+    "message": "test: verify canonical scan and Gemini remediation",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T22:30:06+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 6,
+    "deletions": 0,
+    "net_lines": 6
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "e2e-live-trigger-20260920-3.js",
+        "status": "A",
+        "additions": 6,
+        "deletions": 0,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 1,
+            "content": "// Fresh SQL injection fixture for the canonical pre-prod pipeline."
+          },
+          {
+            "type": "added",
+            "new_line": 2,
+            "content": "function getAccount(db, username) {"
+          },
+          {
+            "type": "added",
+            "new_line": 3,
+            "content": "  const query = `SELECT * FROM accounts WHERE username = '${username}'`;"
+          },
+          {
+            "type": "added",
+            "new_line": 4,
+            "content": "  return db.query(query);"
+          },
+          {
+            "type": "added",
+            "new_line": 5,
+            "content": "}"
+          },
+          {
+            "type": "added",
+            "new_line": 6,
+            "content": "module.exports = { getAccount };"
+          }
+        ],
+        "removed_lines": [],
+        "hunks": [
+          {
+            "header": "@@ -0,0 +1,6 @@",
+            "old_start": 0,
+            "old_count": 0,
+            "new_start": 1,
+            "new_count": 6,
+            "lines": [
+              {
+                "type": "added",
+                "new_line": 1,
+                "content": "// Fresh SQL injection fixture for the canonical pre-prod pipeline."
+              },
+              {
+                "type": "added",
+                "new_line": 2,
+                "content": "function getAccount(db, username) {"
+              },
+              {
+                "type": "added",
+                "new_line": 3,
+                "content": "  const query = `SELECT * FROM accounts WHERE username = '${username}'`;"
+              },
+              {
+                "type": "added",
+                "new_line": 4,
+                "content": "  return db.query(query);"
+              },
+              {
+                "type": "added",
+                "new_line": 5,
+                "content": "}"
+              },
+              {
+                "type": "added",
+                "new_line": 6,
+                "content": "module.exports = { getAccount };"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "e2e-live-trigger-20260920-3.js",
+      "status": "A",
+      "language": "js",
+      "changes": {
+        "additions": 6,
+        "deletions": 0,
+        "total": 6
+      },
+      "diff": "diff --git a/e2e-live-trigger-20260920-3.js b/e2e-live-trigger-20260920-3.js\nnew file mode 100644\nindex 0000000..d7b74ab\n--- /dev/null\n+++ b/e2e-live-trigger-20260920-3.js\n@@ -0,0 +1,6 @@\n+// Fresh SQL injection fixture for the canonical pre-prod pipeline.\n+function getAccount(db, username) {\n+  const query = `SELECT * FROM accounts WHERE username = '${username}'`;\n+  return db.query(query);\n+}\n+module.exports = { getAccount };\n",
+      "hunks": [
+        {
+          "header": "@@ -0,0 +1,6 @@",
+          "old_start": 0,
+          "old_count": 0,
+          "new_start": 1,
+          "new_count": 6,
+          "lines": [
+            {
+              "type": "added",
+              "new_line": 1,
+              "content": "// Fresh SQL injection fixture for the canonical pre-prod pipeline."
+            },
+            {
+              "type": "added",
+              "new_line": 2,
+              "content": "function getAccount(db, username) {"
+            },
+            {
+              "type": "added",
+              "new_line": 3,
+              "content": "  const query = `SELECT * FROM accounts WHERE username = '${username}'`;"
+            },
+            {
+              "type": "added",
+              "new_line": 4,
+              "content": "  return db.query(query);"
+            },
+            {
+              "type": "added",
+              "new_line": 5,
+              "content": "}"
+            },
+            {
+              "type": "added",
+              "new_line": 6,
+              "content": "module.exports = { getAccount };"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 1,
+          "content": "// Fresh SQL injection fixture for the canonical pre-prod pipeline."
+        },
+        {
+          "type": "added",
+          "new_line": 2,
+          "content": "function getAccount(db, username) {"
+        },
+        {
+          "type": "added",
+          "new_line": 3,
+          "content": "  const query = `SELECT * FROM accounts WHERE username = '${username}'`;"
+        },
+        {
+          "type": "added",
+          "new_line": 4,
+          "content": "  return db.query(query);"
+        },
+        {
+          "type": "added",
+          "new_line": 5,
+          "content": "}"
+        },
+        {
+          "type": "added",
+          "new_line": 6,
+          "content": "module.exports = { getAccount };"
+        }
+      ],
+      "removed_lines": []
+    }
+  ],
+  "security_engine": {
+    "status": "FAILED",
+    "scanner": "Pre-Prod-Orchestrator/rule_engine",
+    "findings": [
+      {
+        "id": "a50982e8-1361-4bad-8ec6-459e6e1575f3",
+        "tool": "rule_engine",
+        "rule": "INJ-SQL-JS",
+        "severity": "CRITICAL",
+        "file": "e2e-live-trigger-20260920-3.js",
+        "line": 3,
+        "message": "Unsafe string formatting or template literals in SQL execution.",
+        "confidence": 0.5,
+        "fixability": "UNKNOWN",
+        "metadata": {},
+        "end_line": 3,
+        "cwe": "89",
+        "category": "Injection",
+        "what_and_why": "Attacker can execute arbitrary SQL queries.",
+        "location_detail": "Line 3:\n  const query = `SELECT * FROM accounts WHERE username = '${username}'`;",
+        "how_to_fix": "Use parameterized queries.",
+        "why_fix_helps": "Mitigates vulnerability",
+        "llm_confirmed": true,
+        "occurrences": [
+          {
+            "file": "e2e-live-trigger-20260920-3.js",
+            "line": 3
+          }
+        ]
+      },
+      {
+        "id": "9877877f-9919-4b3c-9826-1c7678477822",
+        "tool": "rule_engine",
+        "rule": "INJ-SQL-JS",
+        "severity": "CRITICAL",
+        "file": "e2e-live-trigger-20260920-3.js",
+        "line": 4,
+        "message": "Unsafe string formatting or template literals in SQL execution.",
+        "confidence": 0.5,
+        "fixability": "UNKNOWN",
+        "metadata": {},
+        "end_line": 4,
+        "cwe": "89",
+        "category": "Injection",
+        "what_and_why": "Attacker can execute arbitrary SQL queries.",
+        "location_detail": "Line 4:\n  return db.query(query);",
+        "how_to_fix": "Use parameterized queries.",
+        "why_fix_helps": "Mitigates vulnerability",
+        "llm_confirmed": true,
+        "occurrences": [
+          {
+            "file": "e2e-live-trigger-20260920-3.js",
+            "line": 4
+          }
+        ]
+      }
+    ],
+    "scan_metadata": {
+      "timestamp": "2026-09-20T17:00:22.086150",
+      "total_findings": 2,
+      "by_severity": {
+        "CRITICAL": 2,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "INFO": 0
+      },
+      "model_used": "none"
+    }
+  }
+}

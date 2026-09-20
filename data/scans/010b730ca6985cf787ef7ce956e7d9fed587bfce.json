@@ -1,0 +1,352 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_010b730ca698",
+    "trigger": "push",
+    "captured_at": "2026-09-20T16:54:12.036901+00:00",
+    "workflow_run_id": "35524155554",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524155554"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "8ee965d0e4c1065964698a0035ca8a78503cbae5",
+    "target_commit": "010b730ca6985cf787ef7ce956e7d9fed587bfce",
+    "range": "8ee965d0e4c1065964698a0035ca8a78503cbae5..010b730ca6985cf787ef7ce956e7d9fed587bfce",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "8ee965d0e4c1065964698a0035ca8a78503cbae5",
+    "after": "010b730ca6985cf787ef7ce956e7d9fed587bfce",
+    "branch": "main",
+    "message": "test: trigger live security pipeline",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T22:24:02+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 9,
+    "deletions": 0,
+    "net_lines": 9
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "e2e-live-trigger-20260920.js",
+        "status": "A",
+        "additions": 9,
+        "deletions": 0,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 1,
+            "content": "// Live end-to-end security test fixture."
+          },
+          {
+            "type": "added",
+            "new_line": 2,
+            "content": "// This file intentionally contains a SQL-injection pattern so the main-branch"
+          },
+          {
+            "type": "added",
+            "new_line": 3,
+            "content": "// capture -> scan -> Gemini remediation pipeline is exercised."
+          },
+          {
+            "type": "added",
+            "new_line": 4,
+            "content": "function lookupLiveUser(db, username) {"
+          },
+          {
+            "type": "added",
+            "new_line": 5,
+            "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+          },
+          {
+            "type": "added",
+            "new_line": 6,
+            "content": "  return db.query(query);"
+          },
+          {
+            "type": "added",
+            "new_line": 7,
+            "content": "}"
+          },
+          {
+            "type": "added",
+            "new_line": 8,
+            "content": ""
+          },
+          {
+            "type": "added",
+            "new_line": 9,
+            "content": "module.exports = { lookupLiveUser };"
+          }
+        ],
+        "removed_lines": [],
+        "hunks": [
+          {
+            "header": "@@ -0,0 +1,9 @@",
+            "old_start": 0,
+            "old_count": 0,
+            "new_start": 1,
+            "new_count": 9,
+            "lines": [
+              {
+                "type": "added",
+                "new_line": 1,
+                "content": "// Live end-to-end security test fixture."
+              },
+              {
+                "type": "added",
+                "new_line": 2,
+                "content": "// This file intentionally contains a SQL-injection pattern so the main-branch"
+              },
+              {
+                "type": "added",
+                "new_line": 3,
+                "content": "// capture -> scan -> Gemini remediation pipeline is exercised."
+              },
+              {
+                "type": "added",
+                "new_line": 4,
+                "content": "function lookupLiveUser(db, username) {"
+              },
+              {
+                "type": "added",
+                "new_line": 5,
+                "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+              },
+              {
+                "type": "added",
+                "new_line": 6,
+                "content": "  return db.query(query);"
+              },
+              {
+                "type": "added",
+                "new_line": 7,
+                "content": "}"
+              },
+              {
+                "type": "added",
+                "new_line": 8,
+                "content": ""
+              },
+              {
+                "type": "added",
+                "new_line": 9,
+                "content": "module.exports = { lookupLiveUser };"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "e2e-live-trigger-20260920.js",
+      "status": "A",
+      "language": "js",
+      "changes": {
+        "additions": 9,
+        "deletions": 0,
+        "total": 9
+      },
+      "diff": "diff --git a/e2e-live-trigger-20260920.js b/e2e-live-trigger-20260920.js\nnew file mode 100644\nindex 0000000..1775208\n--- /dev/null\n+++ b/e2e-live-trigger-20260920.js\n@@ -0,0 +1,9 @@\n+// Live end-to-end security test fixture.\n+// This file intentionally contains a SQL-injection pattern so the main-branch\n+// capture -> scan -> Gemini remediation pipeline is exercised.\n+function lookupLiveUser(db, username) {\n+  const query = `SELECT * FROM users WHERE username = '${username}'`;\n+  return db.query(query);\n+}\n+\n+module.exports = { lookupLiveUser };\n",
+      "hunks": [
+        {
+          "header": "@@ -0,0 +1,9 @@",
+          "old_start": 0,
+          "old_count": 0,
+          "new_start": 1,
+          "new_count": 9,
+          "lines": [
+            {
+              "type": "added",
+              "new_line": 1,
+              "content": "// Live end-to-end security test fixture."
+            },
+            {
+              "type": "added",
+              "new_line": 2,
+              "content": "// This file intentionally contains a SQL-injection pattern so the main-branch"
+            },
+            {
+              "type": "added",
+              "new_line": 3,
+              "content": "// capture -> scan -> Gemini remediation pipeline is exercised."
+            },
+            {
+              "type": "added",
+              "new_line": 4,
+              "content": "function lookupLiveUser(db, username) {"
+            },
+            {
+              "type": "added",
+              "new_line": 5,
+              "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+            },
+            {
+              "type": "added",
+              "new_line": 6,
+              "content": "  return db.query(query);"
+            },
+            {
+              "type": "added",
+              "new_line": 7,
+              "content": "}"
+            },
+            {
+              "type": "added",
+              "new_line": 8,
+              "content": ""
+            },
+            {
+              "type": "added",
+              "new_line": 9,
+              "content": "module.exports = { lookupLiveUser };"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 1,
+          "content": "// Live end-to-end security test fixture."
+        },
+        {
+          "type": "added",
+          "new_line": 2,
+          "content": "// This file intentionally contains a SQL-injection pattern so the main-branch"
+        },
+        {
+          "type": "added",
+          "new_line": 3,
+          "content": "// capture -> scan -> Gemini remediation pipeline is exercised."
+        },
+        {
+          "type": "added",
+          "new_line": 4,
+          "content": "function lookupLiveUser(db, username) {"
+        },
+        {
+          "type": "added",
+          "new_line": 5,
+          "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+        },
+        {
+          "type": "added",
+          "new_line": 6,
+          "content": "  return db.query(query);"
+        },
+        {
+          "type": "added",
+          "new_line": 7,
+          "content": "}"
+        },
+        {
+          "type": "added",
+          "new_line": 8,
+          "content": ""
+        },
+        {
+          "type": "added",
+          "new_line": 9,
+          "content": "module.exports = { lookupLiveUser };"
+        }
+      ],
+      "removed_lines": []
+    }
+  ],
+  "security_engine": {
+    "status": "FAILED",
+    "scanner": "Pre-Prod-Orchestrator/rule_engine",
+    "findings": [
+      {
+        "id": "d16d88be-3ae0-4db4-828e-0cebdcdfe712",
+        "tool": "rule_engine",
+        "rule": "INJ-SQL-JS",
+        "severity": "CRITICAL",
+        "file": "e2e-live-trigger-20260920.js",
+        "line": 5,
+        "message": "Unsafe string formatting or template literals in SQL execution.",
+        "confidence": 0.5,
+        "fixability": "UNKNOWN",
+        "metadata": {},
+        "end_line": 5,
+        "cwe": "89",
+        "category": "Injection",
+        "what_and_why": "Attacker can execute arbitrary SQL queries.",
+        "location_detail": "Line 5:\n  const query = `SELECT * FROM users WHERE username = '${username}'`;",
+        "how_to_fix": "Use parameterized queries.",
+        "why_fix_helps": "Mitigates vulnerability",
+        "llm_confirmed": true,
+        "occurrences": [
+          {
+            "file": "e2e-live-trigger-20260920.js",
+            "line": 5
+          }
+        ]
+      },
+      {
+        "id": "7da01c72-eece-4f0a-a0cb-d252927a4b2e",
+        "tool": "rule_engine",
+        "rule": "INJ-SQL-JS",
+        "severity": "CRITICAL",
+        "file": "e2e-live-trigger-20260920.js",
+        "line": 6,
+        "message": "Unsafe string formatting or template literals in SQL execution.",
+        "confidence": 0.5,
+        "fixability": "UNKNOWN",
+        "metadata": {},
+        "end_line": 6,
+        "cwe": "89",
+        "category": "Injection",
+        "what_and_why": "Attacker can execute arbitrary SQL queries.",
+        "location_detail": "Line 6:\n  return db.query(query);",
+        "how_to_fix": "Use parameterized queries.",
+        "why_fix_helps": "Mitigates vulnerability",
+        "llm_confirmed": true,
+        "occurrences": [
+          {
+            "file": "e2e-live-trigger-20260920.js",
+            "line": 6
+          }
+        ]
+      }
+    ],
+    "scan_metadata": {
+      "timestamp": "2026-09-20T16:54:22.233610",
+      "total_findings": 2,
+      "by_severity": {
+        "CRITICAL": 2,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "INFO": 0
+      },
+      "model_used": "none"
+    }
+  }
+}

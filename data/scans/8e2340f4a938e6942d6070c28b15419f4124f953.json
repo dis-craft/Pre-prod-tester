@@ -1,0 +1,286 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_8e2340f4a938",
+    "trigger": "push",
+    "captured_at": "2026-09-20T17:06:52.095278+00:00",
+    "workflow_run_id": "35524783555",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524783555"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "0dd56f3297c7f4c59268b11588049be8f2167ac6",
+    "target_commit": "8e2340f4a938e6942d6070c28b15419f4124f953",
+    "range": "0dd56f3297c7f4c59268b11588049be8f2167ac6..8e2340f4a938e6942d6070c28b15419f4124f953",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "0dd56f3297c7f4c59268b11588049be8f2167ac6",
+    "after": "8e2340f4a938e6942d6070c28b15419f4124f953",
+    "branch": "main",
+    "message": "test: verify security flow and GitHub Pages sync",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T22:36:04+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 7,
+    "deletions": 0,
+    "net_lines": 7
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "e2e-website-sync-security-20260920.js",
+        "status": "A",
+        "additions": 7,
+        "deletions": 0,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 1,
+            "content": "// E2E website-sync security fixture."
+          },
+          {
+            "type": "added",
+            "new_line": 2,
+            "content": "// Intentionally vulnerable SQL construction."
+          },
+          {
+            "type": "added",
+            "new_line": 3,
+            "content": "function findOrder(db, orderId) {"
+          },
+          {
+            "type": "added",
+            "new_line": 4,
+            "content": "  const sql = `SELECT * FROM orders WHERE id = '${orderId}'`;"
+          },
+          {
+            "type": "added",
+            "new_line": 5,
+            "content": "  return db.query(sql);"
+          },
+          {
+            "type": "added",
+            "new_line": 6,
+            "content": "}"
+          },
+          {
+            "type": "added",
+            "new_line": 7,
+            "content": "module.exports = { findOrder };"
+          }
+        ],
+        "removed_lines": [],
+        "hunks": [
+          {
+            "header": "@@ -0,0 +1,7 @@",
+            "old_start": 0,
+            "old_count": 0,
+            "new_start": 1,
+            "new_count": 7,
+            "lines": [
+              {
+                "type": "added",
+                "new_line": 1,
+                "content": "// E2E website-sync security fixture."
+              },
+              {
+                "type": "added",
+                "new_line": 2,
+                "content": "// Intentionally vulnerable SQL construction."
+              },
+              {
+                "type": "added",
+                "new_line": 3,
+                "content": "function findOrder(db, orderId) {"
+              },
+              {
+                "type": "added",
+                "new_line": 4,
+                "content": "  const sql = `SELECT * FROM orders WHERE id = '${orderId}'`;"
+              },
+              {
+                "type": "added",
+                "new_line": 5,
+                "content": "  return db.query(sql);"
+              },
+              {
+                "type": "added",
+                "new_line": 6,
+                "content": "}"
+              },
+              {
+                "type": "added",
+                "new_line": 7,
+                "content": "module.exports = { findOrder };"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "e2e-website-sync-security-20260920.js",
+      "status": "A",
+      "language": "js",
+      "changes": {
+        "additions": 7,
+        "deletions": 0,
+        "total": 7
+      },
+      "diff": "diff --git a/e2e-website-sync-security-20260920.js b/e2e-website-sync-security-20260920.js\nnew file mode 100644\nindex 0000000..e5f9abe\n--- /dev/null\n+++ b/e2e-website-sync-security-20260920.js\n@@ -0,0 +1,7 @@\n+// E2E website-sync security fixture.\n+// Intentionally vulnerable SQL construction.\n+function findOrder(db, orderId) {\n+  const sql = `SELECT * FROM orders WHERE id = '${orderId}'`;\n+  return db.query(sql);\n+}\n+module.exports = { findOrder };\n",
+      "hunks": [
+        {
+          "header": "@@ -0,0 +1,7 @@",
+          "old_start": 0,
+          "old_count": 0,
+          "new_start": 1,
+          "new_count": 7,
+          "lines": [
+            {
+              "type": "added",
+              "new_line": 1,
+              "content": "// E2E website-sync security fixture."
+            },
+            {
+              "type": "added",
+              "new_line": 2,
+              "content": "// Intentionally vulnerable SQL construction."
+            },
+            {
+              "type": "added",
+              "new_line": 3,
+              "content": "function findOrder(db, orderId) {"
+            },
+            {
+              "type": "added",
+              "new_line": 4,
+              "content": "  const sql = `SELECT * FROM orders WHERE id = '${orderId}'`;"
+            },
+            {
+              "type": "added",
+              "new_line": 5,
+              "content": "  return db.query(sql);"
+            },
+            {
+              "type": "added",
+              "new_line": 6,
+              "content": "}"
+            },
+            {
+              "type": "added",
+              "new_line": 7,
+              "content": "module.exports = { findOrder };"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 1,
+          "content": "// E2E website-sync security fixture."
+        },
+        {
+          "type": "added",
+          "new_line": 2,
+          "content": "// Intentionally vulnerable SQL construction."
+        },
+        {
+          "type": "added",
+          "new_line": 3,
+          "content": "function findOrder(db, orderId) {"
+        },
+        {
+          "type": "added",
+          "new_line": 4,
+          "content": "  const sql = `SELECT * FROM orders WHERE id = '${orderId}'`;"
+        },
+        {
+          "type": "added",
+          "new_line": 5,
+          "content": "  return db.query(sql);"
+        },
+        {
+          "type": "added",
+          "new_line": 6,
+          "content": "}"
+        },
+        {
+          "type": "added",
+          "new_line": 7,
+          "content": "module.exports = { findOrder };"
+        }
+      ],
+      "removed_lines": []
+    }
+  ],
+  "security_engine": {
+    "status": "FAILED",
+    "scanner": "Pre-Prod-Orchestrator/rule_engine",
+    "findings": [
+      {
+        "id": "402693ff-6148-4087-8e90-916610088f19",
+        "tool": "rule_engine",
+        "rule": "INJ-SQL-JS",
+        "severity": "CRITICAL",
+        "file": "e2e-website-sync-security-20260920.js",
+        "line": 4,
+        "message": "Unsafe string formatting or template literals in SQL execution.",
+        "confidence": 0.5,
+        "fixability": "UNKNOWN",
+        "metadata": {},
+        "end_line": 4,
+        "cwe": "89",
+        "category": "Injection",
+        "what_and_why": "Attacker can execute arbitrary SQL queries.",
+        "location_detail": "Line 4:\n  const sql = `SELECT * FROM orders WHERE id = '${orderId}'`;",
+        "how_to_fix": "Use parameterized queries.",
+        "why_fix_helps": "Mitigates vulnerability",
+        "llm_confirmed": true,
+        "occurrences": [
+          {
+            "file": "e2e-website-sync-security-20260920.js",
+            "line": 4
+          }
+        ]
+      }
+    ],
+    "scan_metadata": {
+      "timestamp": "2026-09-20T17:06:59.813461",
+      "total_findings": 1,
+      "by_severity": {
+        "CRITICAL": 1,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "INFO": 0
+      },
+      "model_used": "none"
+    }
+  }
+}

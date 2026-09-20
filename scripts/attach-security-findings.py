@@ -33,7 +33,22 @@ def main() -> int:
         "scan_metadata": metadata,
     }
 
-    scan_path.write_text(json.dumps(scan, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    rendered = json.dumps(scan, indent=2, ensure_ascii=False) + "\n"
+    scan_path.write_text(rendered, encoding="utf-8")
+
+    # Keep the immutable per-commit scan and the convenience latest.json identical
+    # with respect to security findings. The remediation job consumes the per-commit
+    # canonical artifact instead of rescanning the diff.
+    commit_sha = scan.get("commit", {}).get("after")
+    if commit_sha:
+        history_path = scan_path.parent / "scans" / f"{commit_sha}.json"
+        if history_path.exists():
+            history = json.loads(history_path.read_text(encoding="utf-8"))
+            history["security_engine"] = scan["security_engine"]
+            history_path.write_text(
+                json.dumps(history, indent=2, ensure_ascii=False) + "\n",
+                encoding="utf-8",
+            )
 
 
 if __name__ == "__main__":

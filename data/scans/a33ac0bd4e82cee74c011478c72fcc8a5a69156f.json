@@ -1,0 +1,929 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_a33ac0bd4e82",
+    "trigger": "push",
+    "captured_at": "2026-09-20T16:48:16.620911+00:00",
+    "workflow_run_id": "35523835020",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523835020"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "a98c83bdc59bc580fb8921d4f1ee06117e4b4ef5",
+    "target_commit": "a33ac0bd4e82cee74c011478c72fcc8a5a69156f",
+    "range": "a98c83bdc59bc580fb8921d4f1ee06117e4b4ef5..a33ac0bd4e82cee74c011478c72fcc8a5a69156f",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "a98c83bdc59bc580fb8921d4f1ee06117e4b4ef5",
+    "after": "a33ac0bd4e82cee74c011478c72fcc8a5a69156f",
+    "branch": "main",
+    "message": "fix: persist findings in per-commit scan artifact",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T22:17:53+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 16,
+    "deletions": 1,
+    "net_lines": 15
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "scripts/attach-security-findings.py",
+        "status": "M",
+        "additions": 16,
+        "deletions": 1,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 36,
+            "content": "    rendered = json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\""
+          },
+          {
+            "type": "added",
+            "new_line": 37,
+            "content": "    scan_path.write_text(rendered, encoding=\"utf-8\")"
+          },
+          {
+            "type": "added",
+            "new_line": 38,
+            "content": ""
+          },
+          {
+            "type": "added",
+            "new_line": 39,
+            "content": "    # Keep the immutable per-commit scan and the convenience latest.json identical"
+          },
+          {
+            "type": "added",
+            "new_line": 40,
+            "content": "    # with respect to security findings. The remediation job consumes the per-commit"
+          },
+          {
+            "type": "added",
+            "new_line": 41,
+            "content": "    # canonical artifact instead of rescanning the diff."
+          },
+          {
+            "type": "added",
+            "new_line": 42,
+            "content": "    commit_sha = scan.get(\"commit\", {}).get(\"after\")"
+          },
+          {
+            "type": "added",
+            "new_line": 43,
+            "content": "    if commit_sha:"
+          },
+          {
+            "type": "added",
+            "new_line": 44,
+            "content": "        history_path = scan_path.parent / \"scans\" / f\"{commit_sha}.json\""
+          },
+          {
+            "type": "added",
+            "new_line": 45,
+            "content": "        if history_path.exists():"
+          },
+          {
+            "type": "added",
+            "new_line": 46,
+            "content": "            history = json.loads(history_path.read_text(encoding=\"utf-8\"))"
+          },
+          {
+            "type": "added",
+            "new_line": 47,
+            "content": "            history[\"security_engine\"] = scan[\"security_engine\"]"
+          },
+          {
+            "type": "added",
+            "new_line": 48,
+            "content": "            history_path.write_text("
+          },
+          {
+            "type": "added",
+            "new_line": 49,
+            "content": "                json.dumps(history, indent=2, ensure_ascii=False) + \"\\n\","
+          },
+          {
+            "type": "added",
+            "new_line": 50,
+            "content": "                encoding=\"utf-8\","
+          },
+          {
+            "type": "added",
+            "new_line": 51,
+            "content": "            )"
+          }
+        ],
+        "removed_lines": [
+          {
+            "type": "removed",
+            "old_line": 36,
+            "content": "    scan_path.write_text(json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\", encoding=\"utf-8\")"
+          }
+        ],
+        "hunks": [
+          {
+            "header": "@@ -1,40 +1,55 @@",
+            "old_start": 1,
+            "old_count": 40,
+            "new_start": 1,
+            "new_count": 55,
+            "lines": [
+              {
+                "type": "context",
+                "old_line": 1,
+                "new_line": 1,
+                "content": "#!/usr/bin/env python3"
+              },
+              {
+                "type": "context",
+                "old_line": 2,
+                "new_line": 2,
+                "content": "\"\"\"Attach normalized security findings to the published Pre-Prod scan payload.\"\"\""
+              },
+              {
+                "type": "context",
+                "old_line": 3,
+                "new_line": 3,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 4,
+                "new_line": 4,
+                "content": "from __future__ import annotations"
+              },
+              {
+                "type": "context",
+                "old_line": 5,
+                "new_line": 5,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 6,
+                "new_line": 6,
+                "content": "import argparse"
+              },
+              {
+                "type": "context",
+                "old_line": 7,
+                "new_line": 7,
+                "content": "import json"
+              },
+              {
+                "type": "context",
+                "old_line": 8,
+                "new_line": 8,
+                "content": "from pathlib import Path"
+              },
+              {
+                "type": "context",
+                "old_line": 9,
+                "new_line": 9,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 10,
+                "new_line": 10,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 11,
+                "new_line": 11,
+                "content": "def main() -> int:"
+              },
+              {
+                "type": "context",
+                "old_line": 12,
+                "new_line": 12,
+                "content": "    parser = argparse.ArgumentParser()"
+              },
+              {
+                "type": "context",
+                "old_line": 13,
+                "new_line": 13,
+                "content": "    parser.add_argument(\"--scan\", required=True)"
+              },
+              {
+                "type": "context",
+                "old_line": 14,
+                "new_line": 14,
+                "content": "    parser.add_argument(\"--findings\", required=True)"
+              },
+              {
+                "type": "context",
+                "old_line": 15,
+                "new_line": 15,
+                "content": "    args = parser.parse_args()"
+              },
+              {
+                "type": "context",
+                "old_line": 16,
+                "new_line": 16,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 17,
+                "new_line": 17,
+                "content": "    scan_path = Path(args.scan)"
+              },
+              {
+                "type": "context",
+                "old_line": 18,
+                "new_line": 18,
+                "content": "    findings_path = Path(args.findings)"
+              },
+              {
+                "type": "context",
+                "old_line": 19,
+                "new_line": 19,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 20,
+                "new_line": 20,
+                "content": "    scan = json.loads(scan_path.read_text(encoding=\"utf-8\"))"
+              },
+              {
+                "type": "context",
+                "old_line": 21,
+                "new_line": 21,
+                "content": "    findings_report = json.loads(findings_path.read_text(encoding=\"utf-8\"))"
+              },
+              {
+                "type": "context",
+                "old_line": 22,
+                "new_line": 22,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 23,
+                "new_line": 23,
+                "content": "    findings = findings_report.get(\"findings\", [])"
+              },
+              {
+                "type": "context",
+                "old_line": 24,
+                "new_line": 24,
+                "content": "    metadata = findings_report.get(\"scan_metadata\", {})"
+              },
+              {
+                "type": "context",
+                "old_line": 25,
+                "new_line": 25,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 26,
+                "new_line": 26,
+                "content": "    scan[\"security_engine\"] = {"
+              },
+              {
+                "type": "context",
+                "old_line": 27,
+                "new_line": 27,
+                "content": "        \"status\": \"FAILED\" if any("
+              },
+              {
+                "type": "context",
+                "old_line": 28,
+                "new_line": 28,
+                "content": "            str(f.get(\"severity\", \"\")).upper() in {\"HIGH\", \"CRITICAL\"}"
+              },
+              {
+                "type": "context",
+                "old_line": 29,
+                "new_line": 29,
+                "content": "            for f in findings"
+              },
+              {
+                "type": "context",
+                "old_line": 30,
+                "new_line": 30,
+                "content": "        ) else \"PASSED\","
+              },
+              {
+                "type": "context",
+                "old_line": 31,
+                "new_line": 31,
+                "content": "        \"scanner\": \"Pre-Prod-Orchestrator/rule_engine\","
+              },
+              {
+                "type": "context",
+                "old_line": 32,
+                "new_line": 32,
+                "content": "        \"findings\": findings,"
+              },
+              {
+                "type": "context",
+                "old_line": 33,
+                "new_line": 33,
+                "content": "        \"scan_metadata\": metadata,"
+              },
+              {
+                "type": "context",
+                "old_line": 34,
+                "new_line": 34,
+                "content": "    }"
+              },
+              {
+                "type": "context",
+                "old_line": 35,
+                "new_line": 35,
+                "content": ""
+              },
+              {
+                "type": "removed",
+                "old_line": 36,
+                "content": "    scan_path.write_text(json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\", encoding=\"utf-8\")"
+              },
+              {
+                "type": "added",
+                "new_line": 36,
+                "content": "    rendered = json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\""
+              },
+              {
+                "type": "added",
+                "new_line": 37,
+                "content": "    scan_path.write_text(rendered, encoding=\"utf-8\")"
+              },
+              {
+                "type": "added",
+                "new_line": 38,
+                "content": ""
+              },
+              {
+                "type": "added",
+                "new_line": 39,
+                "content": "    # Keep the immutable per-commit scan and the convenience latest.json identical"
+              },
+              {
+                "type": "added",
+                "new_line": 40,
+                "content": "    # with respect to security findings. The remediation job consumes the per-commit"
+              },
+              {
+                "type": "added",
+                "new_line": 41,
+                "content": "    # canonical artifact instead of rescanning the diff."
+              },
+              {
+                "type": "added",
+                "new_line": 42,
+                "content": "    commit_sha = scan.get(\"commit\", {}).get(\"after\")"
+              },
+              {
+                "type": "added",
+                "new_line": 43,
+                "content": "    if commit_sha:"
+              },
+              {
+                "type": "added",
+                "new_line": 44,
+                "content": "        history_path = scan_path.parent / \"scans\" / f\"{commit_sha}.json\""
+              },
+              {
+                "type": "added",
+                "new_line": 45,
+                "content": "        if history_path.exists():"
+              },
+              {
+                "type": "added",
+                "new_line": 46,
+                "content": "            history = json.loads(history_path.read_text(encoding=\"utf-8\"))"
+              },
+              {
+                "type": "added",
+                "new_line": 47,
+                "content": "            history[\"security_engine\"] = scan[\"security_engine\"]"
+              },
+              {
+                "type": "added",
+                "new_line": 48,
+                "content": "            history_path.write_text("
+              },
+              {
+                "type": "added",
+                "new_line": 49,
+                "content": "                json.dumps(history, indent=2, ensure_ascii=False) + \"\\n\","
+              },
+              {
+                "type": "added",
+                "new_line": 50,
+                "content": "                encoding=\"utf-8\","
+              },
+              {
+                "type": "added",
+                "new_line": 51,
+                "content": "            )"
+              },
+              {
+                "type": "context",
+                "old_line": 37,
+                "new_line": 52,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 38,
+                "new_line": 53,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 39,
+                "new_line": 54,
+                "content": "if __name__ == \"__main__\":"
+              },
+              {
+                "type": "context",
+                "old_line": 40,
+                "new_line": 55,
+                "content": "    raise SystemExit(main())"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "scripts/attach-security-findings.py",
+      "status": "M",
+      "language": "py",
+      "changes": {
+        "additions": 16,
+        "deletions": 1,
+        "total": 17
+      },
+      "diff": "diff --git a/scripts/attach-security-findings.py b/scripts/attach-security-findings.py\nindex c784fed..3480b2e 100644\n--- a/scripts/attach-security-findings.py\n+++ b/scripts/attach-security-findings.py\n@@ -1,40 +1,55 @@\n #!/usr/bin/env python3\n \"\"\"Attach normalized security findings to the published Pre-Prod scan payload.\"\"\"\n \n from __future__ import annotations\n \n import argparse\n import json\n from pathlib import Path\n \n \n def main() -> int:\n     parser = argparse.ArgumentParser()\n     parser.add_argument(\"--scan\", required=True)\n     parser.add_argument(\"--findings\", required=True)\n     args = parser.parse_args()\n \n     scan_path = Path(args.scan)\n     findings_path = Path(args.findings)\n \n     scan = json.loads(scan_path.read_text(encoding=\"utf-8\"))\n     findings_report = json.loads(findings_path.read_text(encoding=\"utf-8\"))\n \n     findings = findings_report.get(\"findings\", [])\n     metadata = findings_report.get(\"scan_metadata\", {})\n \n     scan[\"security_engine\"] = {\n         \"status\": \"FAILED\" if any(\n             str(f.get(\"severity\", \"\")).upper() in {\"HIGH\", \"CRITICAL\"}\n             for f in findings\n         ) else \"PASSED\",\n         \"scanner\": \"Pre-Prod-Orchestrator/rule_engine\",\n         \"findings\": findings,\n         \"scan_metadata\": metadata,\n     }\n \n-    scan_path.write_text(json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\", encoding=\"utf-8\")\n+    rendered = json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\"\n+    scan_path.write_text(rendered, encoding=\"utf-8\")\n+\n+    # Keep the immutable per-commit scan and the convenience latest.json identical\n+    # with respect to security findings. The remediation job consumes the per-commit\n+    # canonical artifact instead of rescanning the diff.\n+    commit_sha = scan.get(\"commit\", {}).get(\"after\")\n+    if commit_sha:\n+        history_path = scan_path.parent / \"scans\" / f\"{commit_sha}.json\"\n+        if history_path.exists():\n+            history = json.loads(history_path.read_text(encoding=\"utf-8\"))\n+            history[\"security_engine\"] = scan[\"security_engine\"]\n+            history_path.write_text(\n+                json.dumps(history, indent=2, ensure_ascii=False) + \"\\n\",\n+                encoding=\"utf-8\",\n+            )\n \n \n if __name__ == \"__main__\":\n     raise SystemExit(main())\n",
+      "hunks": [
+        {
+          "header": "@@ -1,40 +1,55 @@",
+          "old_start": 1,
+          "old_count": 40,
+          "new_start": 1,
+          "new_count": 55,
+          "lines": [
+            {
+              "type": "context",
+              "old_line": 1,
+              "new_line": 1,
+              "content": "#!/usr/bin/env python3"
+            },
+            {
+              "type": "context",
+              "old_line": 2,
+              "new_line": 2,
+              "content": "\"\"\"Attach normalized security findings to the published Pre-Prod scan payload.\"\"\""
+            },
+            {
+              "type": "context",
+              "old_line": 3,
+              "new_line": 3,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 4,
+              "new_line": 4,
+              "content": "from __future__ import annotations"
+            },
+            {
+              "type": "context",
+              "old_line": 5,
+              "new_line": 5,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 6,
+              "new_line": 6,
+              "content": "import argparse"
+            },
+            {
+              "type": "context",
+              "old_line": 7,
+              "new_line": 7,
+              "content": "import json"
+            },
+            {
+              "type": "context",
+              "old_line": 8,
+              "new_line": 8,
+              "content": "from pathlib import Path"
+            },
+            {
+              "type": "context",
+              "old_line": 9,
+              "new_line": 9,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 10,
+              "new_line": 10,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 11,
+              "new_line": 11,
+              "content": "def main() -> int:"
+            },
+            {
+              "type": "context",
+              "old_line": 12,
+              "new_line": 12,
+              "content": "    parser = argparse.ArgumentParser()"
+            },
+            {
+              "type": "context",
+              "old_line": 13,
+              "new_line": 13,
+              "content": "    parser.add_argument(\"--scan\", required=True)"
+            },
+            {
+              "type": "context",
+              "old_line": 14,
+              "new_line": 14,
+              "content": "    parser.add_argument(\"--findings\", required=True)"
+            },
+            {
+              "type": "context",
+              "old_line": 15,
+              "new_line": 15,
+              "content": "    args = parser.parse_args()"
+            },
+            {
+              "type": "context",
+              "old_line": 16,
+              "new_line": 16,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 17,
+              "new_line": 17,
+              "content": "    scan_path = Path(args.scan)"
+            },
+            {
+              "type": "context",
+              "old_line": 18,
+              "new_line": 18,
+              "content": "    findings_path = Path(args.findings)"
+            },
+            {
+              "type": "context",
+              "old_line": 19,
+              "new_line": 19,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 20,
+              "new_line": 20,
+              "content": "    scan = json.loads(scan_path.read_text(encoding=\"utf-8\"))"
+            },
+            {
+              "type": "context",
+              "old_line": 21,
+              "new_line": 21,
+              "content": "    findings_report = json.loads(findings_path.read_text(encoding=\"utf-8\"))"
+            },
+            {
+              "type": "context",
+              "old_line": 22,
+              "new_line": 22,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 23,
+              "new_line": 23,
+              "content": "    findings = findings_report.get(\"findings\", [])"
+            },
+            {
+              "type": "context",
+              "old_line": 24,
+              "new_line": 24,
+              "content": "    metadata = findings_report.get(\"scan_metadata\", {})"
+            },
+            {
+              "type": "context",
+              "old_line": 25,
+              "new_line": 25,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 26,
+              "new_line": 26,
+              "content": "    scan[\"security_engine\"] = {"
+            },
+            {
+              "type": "context",
+              "old_line": 27,
+              "new_line": 27,
+              "content": "        \"status\": \"FAILED\" if any("
+            },
+            {
+              "type": "context",
+              "old_line": 28,
+              "new_line": 28,
+              "content": "            str(f.get(\"severity\", \"\")).upper() in {\"HIGH\", \"CRITICAL\"}"
+            },
+            {
+              "type": "context",
+              "old_line": 29,
+              "new_line": 29,
+              "content": "            for f in findings"
+            },
+            {
+              "type": "context",
+              "old_line": 30,
+              "new_line": 30,
+              "content": "        ) else \"PASSED\","
+            },
+            {
+              "type": "context",
+              "old_line": 31,
+              "new_line": 31,
+              "content": "        \"scanner\": \"Pre-Prod-Orchestrator/rule_engine\","
+            },
+            {
+              "type": "context",
+              "old_line": 32,
+              "new_line": 32,
+              "content": "        \"findings\": findings,"
+            },
+            {
+              "type": "context",
+              "old_line": 33,
+              "new_line": 33,
+              "content": "        \"scan_metadata\": metadata,"
+            },
+            {
+              "type": "context",
+              "old_line": 34,
+              "new_line": 34,
+              "content": "    }"
+            },
+            {
+              "type": "context",
+              "old_line": 35,
+              "new_line": 35,
+              "content": ""
+            },
+            {
+              "type": "removed",
+              "old_line": 36,
+              "content": "    scan_path.write_text(json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\", encoding=\"utf-8\")"
+            },
+            {
+              "type": "added",
+              "new_line": 36,
+              "content": "    rendered = json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\""
+            },
+            {
+              "type": "added",
+              "new_line": 37,
+              "content": "    scan_path.write_text(rendered, encoding=\"utf-8\")"
+            },
+            {
+              "type": "added",
+              "new_line": 38,
+              "content": ""
+            },
+            {
+              "type": "added",
+              "new_line": 39,
+              "content": "    # Keep the immutable per-commit scan and the convenience latest.json identical"
+            },
+            {
+              "type": "added",
+              "new_line": 40,
+              "content": "    # with respect to security findings. The remediation job consumes the per-commit"
+            },
+            {
+              "type": "added",
+              "new_line": 41,
+              "content": "    # canonical artifact instead of rescanning the diff."
+            },
+            {
+              "type": "added",
+              "new_line": 42,
+              "content": "    commit_sha = scan.get(\"commit\", {}).get(\"after\")"
+            },
+            {
+              "type": "added",
+              "new_line": 43,
+              "content": "    if commit_sha:"
+            },
+            {
+              "type": "added",
+              "new_line": 44,
+              "content": "        history_path = scan_path.parent / \"scans\" / f\"{commit_sha}.json\""
+            },
+            {
+              "type": "added",
+              "new_line": 45,
+              "content": "        if history_path.exists():"
+            },
+            {
+              "type": "added",
+              "new_line": 46,
+              "content": "            history = json.loads(history_path.read_text(encoding=\"utf-8\"))"
+            },
+            {
+              "type": "added",
+              "new_line": 47,
+              "content": "            history[\"security_engine\"] = scan[\"security_engine\"]"
+            },
+            {
+              "type": "added",
+              "new_line": 48,
+              "content": "            history_path.write_text("
+            },
+            {
+              "type": "added",
+              "new_line": 49,
+              "content": "                json.dumps(history, indent=2, ensure_ascii=False) + \"\\n\","
+            },
+            {
+              "type": "added",
+              "new_line": 50,
+              "content": "                encoding=\"utf-8\","
+            },
+            {
+              "type": "added",
+              "new_line": 51,
+              "content": "            )"
+            },
+            {
+              "type": "context",
+              "old_line": 37,
+              "new_line": 52,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 38,
+              "new_line": 53,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 39,
+              "new_line": 54,
+              "content": "if __name__ == \"__main__\":"
+            },
+            {
+              "type": "context",
+              "old_line": 40,
+              "new_line": 55,
+              "content": "    raise SystemExit(main())"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 36,
+          "content": "    rendered = json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\""
+        },
+        {
+          "type": "added",
+          "new_line": 37,
+          "content": "    scan_path.write_text(rendered, encoding=\"utf-8\")"
+        },
+        {
+          "type": "added",
+          "new_line": 38,
+          "content": ""
+        },
+        {
+          "type": "added",
+          "new_line": 39,
+          "content": "    # Keep the immutable per-commit scan and the convenience latest.json identical"
+        },
+        {
+          "type": "added",
+          "new_line": 40,
+          "content": "    # with respect to security findings. The remediation job consumes the per-commit"
+        },
+        {
+          "type": "added",
+          "new_line": 41,
+          "content": "    # canonical artifact instead of rescanning the diff."
+        },
+        {
+          "type": "added",
+          "new_line": 42,
+          "content": "    commit_sha = scan.get(\"commit\", {}).get(\"after\")"
+        },
+        {
+          "type": "added",
+          "new_line": 43,
+          "content": "    if commit_sha:"
+        },
+        {
+          "type": "added",
+          "new_line": 44,
+          "content": "        history_path = scan_path.parent / \"scans\" / f\"{commit_sha}.json\""
+        },
+        {
+          "type": "added",
+          "new_line": 45,
+          "content": "        if history_path.exists():"
+        },
+        {
+          "type": "added",
+          "new_line": 46,
+          "content": "            history = json.loads(history_path.read_text(encoding=\"utf-8\"))"
+        },
+        {
+          "type": "added",
+          "new_line": 47,
+          "content": "            history[\"security_engine\"] = scan[\"security_engine\"]"
+        },
+        {
+          "type": "added",
+          "new_line": 48,
+          "content": "            history_path.write_text("
+        },
+        {
+          "type": "added",
+          "new_line": 49,
+          "content": "                json.dumps(history, indent=2, ensure_ascii=False) + \"\\n\","
+        },
+        {
+          "type": "added",
+          "new_line": 50,
+          "content": "                encoding=\"utf-8\","
+        },
+        {
+          "type": "added",
+          "new_line": 51,
+          "content": "            )"
+        }
+      ],
+      "removed_lines": [
+        {
+          "type": "removed",
+          "old_line": 36,
+          "content": "    scan_path.write_text(json.dumps(scan, indent=2, ensure_ascii=False) + \"\\n\", encoding=\"utf-8\")"
+        }
+      ]
+    }
+  ],
+  "security_engine": {
+    "status": "PASSED",
+    "scanner": "Pre-Prod-Orchestrator/rule_engine",
+    "findings": [],
+    "scan_metadata": {
+      "timestamp": "2026-09-20T16:48:26.645264",
+      "total_findings": 0,
+      "by_severity": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0,
+        "INFO": 0
+      },
+      "model_used": "none"
+    }
+  }
+}

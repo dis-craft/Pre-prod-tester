@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_0ed52ef5bb34",
+    "trigger": "push",
+    "captured_at": "2026-09-20T16:45:40.459097+00:00",
+    "workflow_run_id": "35523712915",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523712915"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "d6a6f512d7e02473d8dc722af194a39fb815a14d",
+    "target_commit": "0ed52ef5bb34814fe35952ee1497ff74ff6dc02b",
+    "range": "d6a6f512d7e02473d8dc722af194a39fb815a14d..0ed52ef5bb34814fe35952ee1497ff74ff6dc02b",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "d6a6f512d7e02473d8dc722af194a39fb815a14d",
+    "after": "0ed52ef5bb34814fe35952ee1497ff74ff6dc02b",
+    "branch": "main",
+    "message": "test: fresh end-to-end SQL injection remediation",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T22:15:32+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 1,
+    "deletions": 1,
+    "net_lines": 0
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "e2e-security-fixture.js",
+        "status": "M",
+        "additions": 1,
+        "deletions": 1,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 4,
+            "content": "  const query = `SELECT * FROM users WHERE userName = '${userName}'`;"
+          }
+        ],
+        "removed_lines": [
+          {
+            "type": "removed",
+            "old_line": 4,
+            "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+          }
+        ],
+        "hunks": [
+          {
+            "header": "@@ -1,8 +1,8 @@",
+            "old_start": 1,
+            "old_count": 8,
+            "new_start": 1,
+            "new_count": 8,
+            "lines": [
+              {
+                "type": "context",
+                "old_line": 1,
+                "new_line": 1,
+                "content": "// Temporary E2E security fixture: intentional SQL injection."
+              },
+              {
+                "type": "context",
+                "old_line": 2,
+                "new_line": 2,
+                "content": "// The remediation pipeline should detect and fix this before creating a PR."
+              },
+              {
+                "type": "context",
+                "old_line": 3,
+                "new_line": 3,
+                "content": "function lookupUser(db, username) {"
+              },
+              {
+                "type": "removed",
+                "old_line": 4,
+                "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+              },
+              {
+                "type": "added",
+                "new_line": 4,
+                "content": "  const query = `SELECT * FROM users WHERE userName = '${userName}'`;"
+              },
+              {
+                "type": "context",
+                "old_line": 5,
+                "new_line": 5,
+                "content": "  return db.query(query);"
+              },
+              {
+                "type": "context",
+                "old_line": 6,
+                "new_line": 6,
+                "content": "}"
+              },
+              {
+                "type": "context",
+                "old_line": 7,
+                "new_line": 7,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 8,
+                "new_line": 8,
+                "content": "module.exports = { lookupUser };"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "e2e-security-fixture.js",
+      "status": "M",
+      "language": "js",
+      "changes": {
+        "additions": 1,
+        "deletions": 1,
+        "total": 2
+      },
+      "diff": "diff --git a/e2e-security-fixture.js b/e2e-security-fixture.js\nindex 65c6095..063d916 100644\n--- a/e2e-security-fixture.js\n+++ b/e2e-security-fixture.js\n@@ -1,8 +1,8 @@\n // Temporary E2E security fixture: intentional SQL injection.\n // The remediation pipeline should detect and fix this before creating a PR.\n function lookupUser(db, username) {\n-  const query = `SELECT * FROM users WHERE username = '${username}'`;\n+  const query = `SELECT * FROM users WHERE userName = '${userName}'`;\n   return db.query(query);\n }\n \n module.exports = { lookupUser };\n",
+      "hunks": [
+        {
+          "header": "@@ -1,8 +1,8 @@",
+          "old_start": 1,
+          "old_count": 8,
+          "new_start": 1,
+          "new_count": 8,
+          "lines": [
+            {
+              "type": "context",
+              "old_line": 1,
+              "new_line": 1,
+              "content": "// Temporary E2E security fixture: intentional SQL injection."
+            },
+            {
+              "type": "context",
+              "old_line": 2,
+              "new_line": 2,
+              "content": "// The remediation pipeline should detect and fix this before creating a PR."
+            },
+            {
+              "type": "context",
+              "old_line": 3,
+              "new_line": 3,
+              "content": "function lookupUser(db, username) {"
+            },
+            {
+              "type": "removed",
+              "old_line": 4,
+              "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+            },
+            {
+              "type": "added",
+              "new_line": 4,
+              "content": "  const query = `SELECT * FROM users WHERE userName = '${userName}'`;"
+            },
+            {
+              "type": "context",
+              "old_line": 5,
+              "new_line": 5,
+              "content": "  return db.query(query);"
+            },
+            {
+              "type": "context",
+              "old_line": 6,
+              "new_line": 6,
+              "content": "}"
+            },
+            {
+              "type": "context",
+              "old_line": 7,
+              "new_line": 7,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 8,
+              "new_line": 8,
+              "content": "module.exports = { lookupUser };"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 4,
+          "content": "  const query = `SELECT * FROM users WHERE userName = '${userName}'`;"
+        }
+      ],
+      "removed_lines": [
+        {
+          "type": "removed",
+          "old_line": 4,
+          "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+        }
+      ]
+    }
+  ]
+}
