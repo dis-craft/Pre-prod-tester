@@ -79,7 +79,6 @@ jobs:
           latest_path.write_text(
               json.dumps(latest, indent=2) + "\n", encoding="utf-8"
           )
-          Path("data/flow.json").write_text(json.dumps(latest.get("flow", {}), indent=2) + "\n", encoding="utf-8")
           Path("data/pull-requests.json").write_text(
               json.dumps(current, indent=2) + "\n", encoding="utf-8"
           )
