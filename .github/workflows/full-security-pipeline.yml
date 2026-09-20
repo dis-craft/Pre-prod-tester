@@ -1,0 +1,30 @@
+name: Pre-Prod Full Security Pipeline
+
+on:
+  push:
+    branches: [feature/full-security-pipeline]
+  workflow_dispatch:
+    inputs:
+      generate_remediation:
+        description: Generate AI fix, validate it, create a remediation branch and PR
+        required: true
+        type: boolean
+        default: false
+      test_command:
+        description: Optional test command
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  security:
+    uses: dis-craft/Pre-Prod-Orchestrator/.github/workflows/preprod-security.yml@Adi-initial
+    with:
+      generate-remediation: ${{ inputs.generate_remediation || false }}
+      test-command: ${{ inputs.test_command || '' }}
+    secrets:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
