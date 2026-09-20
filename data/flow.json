@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-09-20T16:45:51.426346+00:00",
-  "current_stage_label": "2. Capture exact diff",
+  "generated_at": "2026-09-20T16:46:05.307354+00:00",
+  "current_stage_label": "4. AI remediation",
   "source_of_truth": {
     "capture": "data/latest.json or data/scans/<commit>.json",
     "security": "security_engine embedded in canonical scan data",
@@ -10,13 +10,13 @@
     "merge": "GitHub PR state"
   },
   "scan": {
-    "id": null,
-    "captured_at": null,
-    "files_changed": null,
-    "additions": null,
-    "deletions": null,
-    "findings": 0,
-    "critical": 0,
+    "id": "scn_0ed52ef5bb34",
+    "captured_at": "2026-09-20T16:45:40.459097+00:00",
+    "files_changed": 1,
+    "additions": 1,
+    "deletions": 1,
+    "findings": 2,
+    "critical": 2,
     "high": 0
   },
   "commit": {
@@ -37,43 +37,43 @@
     },
     {
       "label": "2. Capture exact diff",
-      "status": "running",
-      "detail": "Waiting for the canonical capture workflow to finish.",
+      "status": "pass",
+      "detail": "Canonical diff captured: 1 file(s), +1/-1.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523712915",
       "pr_url": null
     },
     {
       "label": "3. Security scan",
-      "status": "waiting",
-      "detail": "Waiting for the canonical security scan results.",
+      "status": "pass",
+      "detail": "Security scan completed; 2 finding(s): 2 critical, 0 high. Merge remains blocked until remediation is verified.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523712915",
       "pr_url": null
     },
     {
       "label": "4. AI remediation",
-      "status": "pass",
-      "detail": "No blocking findings were detected; AI remediation is not required.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523712915",
+      "status": "waiting",
+      "detail": "Waiting for AI remediation workflow to start from the canonical scan.",
+      "run_url": null,
       "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
-      "status": "pass",
-      "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523712915",
+      "status": "waiting",
+      "detail": "Waiting for AI remediation before validation can run.",
+      "run_url": null,
       "pr_url": null
     },
     {
       "label": "6. Post-fix verification",
-      "status": "pass",
-      "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523712915",
+      "status": "waiting",
+      "detail": "Waiting for AI remediation before validation can run.",
+      "run_url": null,
       "pr_url": null
     },
     {
       "label": "7. Remediation PR",
-      "status": "pass",
-      "detail": "No remediation PR required.",
+      "status": "waiting",
+      "detail": "No remediation PR has been created for this commit.",
       "run_url": null,
       "pr_url": null
     },
@@ -86,8 +86,8 @@
     },
     {
       "label": "9. Human review",
-      "status": "pass",
-      "detail": "No human review is required because there was no blocking finding.",
+      "status": "waiting",
+      "detail": "Waiting for a remediation PR requiring human review.",
       "run_url": null,
       "pr_url": null
     },
