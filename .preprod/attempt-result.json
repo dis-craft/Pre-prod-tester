@@ -1,0 +1,26 @@
+{
+  "status": "APPLIED",
+  "findings": 1,
+  "fixed": 1,
+  "written_files": [
+    "e2e-website-sync-security-20260920.js"
+  ],
+  "results": [
+    {
+      "finding_id": "402693ff-6148-4087-8e90-916610088f19",
+      "status": "APPLIED",
+      "edits": [
+        {
+          "file": "e2e-website-sync-security-20260920.js",
+          "start_line": 4,
+          "end_line": 5,
+          "original": "  const sql = `SELECT * FROM orders WHERE id = '${orderId}'`;\n  return db.query(sql);",
+          "replacement": "  return db.query('SELECT * FROM orders WHERE id = ?', [orderId]);",
+          "explanation": "Use parameterized queries to prevent SQL injection instead of string interpolation."
+        }
+      ],
+      "error": null
+    }
+  ],
+  "model": "gemini-3.5-flash"
+}

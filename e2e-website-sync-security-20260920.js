@@ -1,7 +1,6 @@
 // E2E website-sync security fixture.
 // Intentionally vulnerable SQL construction.
 function findOrder(db, orderId) {
-  const sql = `SELECT * FROM orders WHERE id = '${orderId}'`;
-  return db.query(sql);
+  return db.query('SELECT * FROM orders WHERE id = ?', [orderId]);
 }
 module.exports = { findOrder };
