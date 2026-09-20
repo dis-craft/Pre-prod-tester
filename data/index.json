@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_0d7c5172a249",
+      "commit": "0d7c5172a24937dc4e47650065123513d5c95148",
+      "parent": "fc8c5495fb76610e71903729a2ddca9e6a0b7330",
+      "branch": "main",
+      "message": "fix: run remediation from the canonical capture job",
+      "captured_at": "2026-09-20T16:46:34.755635+00:00",
+      "files_changed": 1,
+      "additions": 15,
+      "deletions": 0,
+      "url": "scans/0d7c5172a24937dc4e47650065123513d5c95148.json"
+    },
+    {
       "scan_id": "scn_0ed52ef5bb34",
       "commit": "0ed52ef5bb34814fe35952ee1497ff74ff6dc02b",
       "parent": "d6a6f512d7e02473d8dc722af194a39fb815a14d",
