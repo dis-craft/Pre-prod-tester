@@ -2,7 +2,7 @@ name: Live Remediation Smoke Test
 
 on:
   push:
-    branches: [security-pipeline-test]
+    branches: [security-pipeline-test, security-e2e-test]
 
 permissions:
   contents: write
