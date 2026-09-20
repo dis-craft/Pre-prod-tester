@@ -1,63 +1,80 @@
 {
-  "schema_version": "1.3",
-  "generated_at": "2026-09-20T16:37:44.169209+00:00",
-  "current_stage_label": "4. AI remediation",
+  "schema_version": "2.0",
+  "generated_at": "2026-09-20T16:44:01.088549+00:00",
+  "current_stage_label": "2. Capture exact diff",
+  "source_of_truth": {
+    "capture": "data/latest.json or data/scans/<commit>.json",
+    "security": "security_engine embedded in canonical scan data",
+    "remediation": "GitHub Actions workflow status",
+    "review": "GitHub PR Security Review workflow status",
+    "merge": "GitHub PR state"
+  },
+  "scan": {
+    "id": null,
+    "captured_at": null,
+    "files_changed": null,
+    "additions": null,
+    "deletions": null,
+    "findings": 0,
+    "critical": 0,
+    "high": 0
+  },
   "commit": {
-    "sha": "ac7121e0095a60a3e3200f7acab25ab038fc69b8",
+    "sha": "3ed48da1dee0acecd4123fcbd41ccbd292e9a2d7",
     "author": "dis-craft",
     "branch": "main",
-    "message": "test: trigger end-to-end remediation after workflow fixes",
-    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/ac7121e0095a60a3e3200f7acab25ab038fc69b8"
+    "message": "fix: make flow consume canonical scan state",
+    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/3ed48da1dee0acecd4123fcbd41ccbd292e9a2d7"
   },
   "pull_request": null,
   "stages": [
     {
       "label": "1. Commit received",
       "status": "pass",
-      "detail": "Commit ac7121e0095a.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/commit/ac7121e0095a60a3e3200f7acab25ab038fc69b8",
+      "detail": "Commit 3ed48da1dee0 received.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/commit/3ed48da1dee0acecd4123fcbd41ccbd292e9a2d7",
       "pr_url": null
     },
     {
       "label": "2. Capture exact diff",
-      "status": "pass",
-      "detail": "Capture exact push diff completed successfully.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171508/job/106110726808",
+      "status": "running",
+      "detail": "Waiting for the canonical capture workflow to finish.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523623465",
       "pr_url": null
     },
     {
       "label": "3. Security scan",
-      "status": "pass",
-      "detail": "Run live security detection completed successfully.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171508/job/106110726808",
+      "status": "waiting",
+      "detail": "Waiting for the canonical security scan results.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523623465",
       "pr_url": null
     },
     {
       "label": "4. AI remediation",
-      "status": "fail",
-      "detail": "Run scanner and AI remediation ended as failure.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171808/job/106110890734",
+      "status": "pass",
+      "detail": "No blocking findings were detected; AI remediation is not required.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523623465",
       "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
-      "status": "fail",
-      "detail": "Validation is performed inside the remediation stage.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171808/job/106110890734",
+      "status": "pass",
+      "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523623465",
       "pr_url": null
     },
     {
-      "label": "6. Post-fix scan",
-      "status": "fail",
-      "detail": "The modified repository is rescanned before a PR is created.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171808/job/106110890734",
+      "label": "6. Post-fix verification",
+      "status": "pass",
+      "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523623465",
       "pr_url": null
     },
     {
       "label": "7. Remediation PR",
-      "status": "fail",
-      "detail": "No remediation PR has been created for this commit.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171808",
+      "status": "pass",
+      "detail": "No remediation PR required.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523623914",
       "pr_url": null
     },
     {
@@ -69,8 +86,8 @@
     },
     {
       "label": "9. Human review",
-      "status": "waiting",
-      "detail": "No remediation PR requiring human review.",
+      "status": "pass",
+      "detail": "No human review is required because there was no blocking finding.",
       "run_url": null,
       "pr_url": null
     },
