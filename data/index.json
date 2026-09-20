@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_7b62b2b2605a",
+      "commit": "7b62b2b2605a3c8f37daa3d7a4addbc870830ba9",
+      "parent": "afbcef7f50ebca3f1e623010df93425ab8a0d06d",
+      "branch": "main",
+      "message": "test: trigger verified main-branch AI remediation flow",
+      "captured_at": "2026-09-20T11:18:14.824459+00:00",
+      "files_changed": 1,
+      "additions": 9,
+      "deletions": 0,
+      "url": "scans/7b62b2b2605a3c8f37daa3d7a4addbc870830ba9.json"
+    },
+    {
       "scan_id": "scn_425d0b096011",
       "commit": "425d0b09601180ce699e05e0d0ad3aa3fc602754",
       "parent": "b1846e67d8ccb65cf5211f76faae65e8c76ba873",
