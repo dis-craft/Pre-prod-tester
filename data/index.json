@@ -2,16 +2,16 @@
   "schema_version": "1.1",
   "scans": [
     {
-      "scan_id": "scn_9cac1efc90ca",
-      "commit": "9cac1efc90cacc13727a1900388d93221b3ba069",
-      "parent": "c1ca7b70a9c79d69abd38fe0a5aa376eafaca122",
+      "scan_id": "scn_70a48afa5691",
+      "commit": "70a48afa5691d92a6eeb93ae5f29cf1bac1366d3",
+      "parent": "9cac1efc90cacc13727a1900388d93221b3ba069",
       "branch": "main",
-      "message": "fix: handle GitHub pull request API list response",
-      "captured_at": "2026-09-20T16:11:04.519050+00:00",
+      "message": "test: rerun end-to-end security flow",
+      "captured_at": "2026-09-20T16:11:25.952926+00:00",
       "files_changed": 1,
       "additions": 1,
       "deletions": 1,
-      "url": "scans/9cac1efc90cacc13727a1900388d93221b3ba069.json"
+      "url": "scans/70a48afa5691d92a6eeb93ae5f29cf1bac1366d3.json"
     },
     {
       "scan_id": "scn_237cfb03f6d2",
