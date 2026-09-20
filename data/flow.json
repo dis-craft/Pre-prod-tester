@@ -1,7 +1,7 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-09-20T15:49:40.784969+00:00",
-  "current_stage_label": "2. Capture exact diff",
+  "generated_at": "2026-09-20T15:49:54.181898+00:00",
+  "current_stage_label": "3. Security scan",
   "commit": {
     "sha": "5a2d58e5c0418ca92eeaca7d49d541de5757c66a",
     "author": "dis-craft",
@@ -20,15 +20,15 @@
     },
     {
       "label": "2. Capture exact diff",
-      "status": "running",
-      "detail": "Capture and publication workflow is in_progress.",
+      "status": "pass",
+      "detail": "Capture and publication workflow is completed.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520758999",
       "pr_url": null
     },
     {
       "label": "3. Security scan",
-      "status": "running",
-      "detail": "Initial capture/security workflow: in_progress",
+      "status": "pass",
+      "detail": "Initial capture/security workflow: completed / success.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520758999",
       "pr_url": null
     },
