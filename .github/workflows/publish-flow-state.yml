@@ -1,0 +1,66 @@
+name: Publish Live Flow State
+
+on:
+  workflow_run:
+    workflows:
+      - Capture Changes and Publish
+      - AI Security Remediation
+      - Security Review
+    types: [requested, in_progress, completed]
+
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+
+concurrency:
+  group: live-flow-state
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Build live flow state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+        run: python3 scripts/build-dashboard-flow.py
+
+      - name: Publish flow state atomically
+        run: |
+          set -euo pipefail
+          test -f .runtime-flow.json
+          test -f .runtime-prs.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp .runtime-flow.json data/flow.json
+            cp .runtime-prs.json data/pull-requests.json
+            git add data/flow.json data/pull-requests.json
+            if git diff --cached --quiet; then
+              echo "No flow-state changes to publish."
+              exit 0
+            fi
+            git commit -m "chore: publish live flow state [skip ci]"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Flow publish attempt $attempt lost a race; retrying on latest main."
+          done
+
+          echo "::error::Could not publish flow state after 3 retries."
+          exit 1
