@@ -144,7 +144,17 @@ jobs:
             echo "No generated data changes to commit."
           else
             git commit -m "chore: publish scan data [skip ci]"
-            git push origin HEAD:"$GITHUB_REF_NAME"
+            for attempt in 1 2 3; do
+              if git push origin HEAD:"$GITHUB_REF_NAME"; then
+                break
+              fi
+              if [ "$attempt" -eq 3 ]; then
+                echo "::error::Unable to publish scan data after 3 push attempts. Another workflow changed main concurrently."
+                exit 1
+              fi
+              git fetch origin "$GITHUB_REF_NAME"
+              git rebase "origin/$GITHUB_REF_NAME"
+            done
           fi
 
       - name: Build isolated Pages site
