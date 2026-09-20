@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_8048a812254f",
+      "commit": "8048a812254f4ef217098a14395ead02a0f5bdbd",
+      "parent": "05dde39c8227a4dfd0010c3e5fce1f4b0c2e4ecf",
+      "branch": "main",
+      "message": "test",
+      "captured_at": "2026-09-20T13:58:51.031238+00:00",
+      "files_changed": 2,
+      "additions": 25,
+      "deletions": 1,
+      "url": "scans/8048a812254f4ef217098a14395ead02a0f5bdbd.json"
+    },
+    {
       "scan_id": "scn_483a9977a8cf",
       "commit": "483a9977a8cf51613033b3a6c7174e8fc2b11d6f",
       "parent": "a93b31ad1bbdb10422eda20fb30ccfac27e4f3ac",
