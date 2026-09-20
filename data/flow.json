@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-09-20T16:44:57.350259+00:00",
+  "generated_at": "2026-09-20T16:45:07.739727+00:00",
   "current_stage_label": "2. Capture exact diff",
   "source_of_truth": {
     "capture": "data/latest.json or data/scans/<commit>.json",
