@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_cfe65d5c9f5d",
+      "commit": "cfe65d5c9f5d59608bf318f6ffad4294884ed953",
+      "parent": "26dc822333ebec14996a2cc156d789429cd5dbb2",
+      "branch": "main",
+      "message": "Merge pull request #2 from dis-craft/security-pipeline-test",
+      "captured_at": "2026-09-20T08:33:06.525431+00:00",
+      "files_changed": 1,
+      "additions": 8,
+      "deletions": 0,
+      "url": "scans/cfe65d5c9f5d59608bf318f6ffad4294884ed953.json"
+    },
+    {
       "scan_id": "scn_89d103fdeed4",
       "commit": "89d103fdeed4f4a5523ad40e8d8271d971b19eba",
       "parent": "fa3fdce80598689077782df8c599923b966fe5f2",
