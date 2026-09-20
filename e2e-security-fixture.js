@@ -1,7 +1,7 @@
 // Temporary E2E security fixture: intentional SQL injection.
 // The remediation pipeline should detect and fix this before creating a PR.
 function lookupUser(db, username) {
-  const query = `SELECT * FROM users WHERE user_name = '${user_name}'`;
+  const query = `SELECT * FROM users WHERE username2 = '${username2}'`;
   return db.query(query);
 }
 
