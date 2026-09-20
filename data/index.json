@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_0ed52ef5bb34",
+      "commit": "0ed52ef5bb34814fe35952ee1497ff74ff6dc02b",
+      "parent": "d6a6f512d7e02473d8dc722af194a39fb815a14d",
+      "branch": "main",
+      "message": "test: fresh end-to-end SQL injection remediation",
+      "captured_at": "2026-09-20T16:45:40.459097+00:00",
+      "files_changed": 1,
+      "additions": 1,
+      "deletions": 1,
+      "url": "scans/0ed52ef5bb34814fe35952ee1497ff74ff6dc02b.json"
+    },
+    {
       "scan_id": "scn_af38425cc354",
       "commit": "af38425cc3549cee51866b940f0504aadc0be9e7",
       "parent": "1692b99da00dd1d65f5c41eb3ca3e7bcc2d74518",
