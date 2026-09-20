@@ -43,7 +43,7 @@ jobs:
 
       - name: Run live security detection
         id: security
-        uses: dis-craft/Pre-Prod-Orchestrator/.github/actions/security-engine@Adi-initial
+        uses: dis-craft/Pre-Prod-Orchestrator/.github/actions/security-engine@main
         with:
           scan-input: data/latest.json
           scan-output: .preprod/baseline-scan
