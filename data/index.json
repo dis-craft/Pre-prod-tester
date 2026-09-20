@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_26ba91fd5dff",
+      "commit": "26ba91fd5dff5198ac471177750a17baf85bcf10",
+      "parent": "17da2d3eee2678752035222580747ba0b37334d6",
+      "branch": "main",
+      "message": "fix: use Gemini-only remediation fallback",
+      "captured_at": "2026-09-20T15:47:50.539567+00:00",
+      "files_changed": 1,
+      "additions": 1,
+      "deletions": 2,
+      "url": "scans/26ba91fd5dff5198ac471177750a17baf85bcf10.json"
+    },
+    {
       "scan_id": "scn_3b3b35329e62",
       "commit": "3b3b35329e62e5cfff906e8b64eca03faa0846b5",
       "parent": "0fd520bd3c632323f8c2364c437b26989c695490",
