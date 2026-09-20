@@ -6,7 +6,7 @@ on:
       - Capture Changes and Publish
       - AI Security Remediation
       - Security Review
-    types: [requested, in_progress, completed]
+    types: [completed]
 
 permissions:
   contents: write
