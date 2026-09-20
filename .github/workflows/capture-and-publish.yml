@@ -8,6 +8,10 @@ on:
 
 permissions:
   contents: write
+  pull-requests: read
+  pages: write
+  id-token: write
+  actions: read
 
 concurrency:
   group: scan-data-publish
@@ -48,6 +52,16 @@ jobs:
           set -euo pipefail
           test -n "$FINDINGS"
           python3 scripts/attach-security-findings.py --scan data/latest.json --findings "$FINDINGS"
+
+      - name: Build live flow state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+        run: python3 scripts/build-dashboard-flow.py
 
       - name: Snapshot generated scan data
         run: |
