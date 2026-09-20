@@ -14,3 +14,5 @@ jobs:
     with:
       generate-remediation: false
       test-command: ""
+      full-repo-rescan: true
+    secrets: inherit
