@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_86219fd94f50",
+      "commit": "86219fd94f50d12a00a86e270561df0a18cf9472",
+      "parent": "686abfa1f0f676b5c8dc9665f3bc7125a5f82a98",
+      "branch": "main",
+      "message": "test: add two controlled vulnerabilities for main remediation flow",
+      "captured_at": "2026-09-20T11:09:08.359572+00:00",
+      "files_changed": 1,
+      "additions": 14,
+      "deletions": 0,
+      "url": "scans/86219fd94f50d12a00a86e270561df0a18cf9472.json"
+    },
+    {
       "scan_id": "scn_11323c78a922",
       "commit": "11323c78a922576042b43d3fa05d7799461e5a81",
       "parent": "fa17bb7886b0f7f5a493dae049211c127767efc2",

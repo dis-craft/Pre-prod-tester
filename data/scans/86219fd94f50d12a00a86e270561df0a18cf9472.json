@@ -62,7 +62,7 @@
           {
             "type": "added",
             "new_line": 3,
-            "content": "/* INTENTIONAL E2E SECURITY TEST \u2014 workflow must detect and remediate both findings. */"
+            "content": "/* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */"
           },
           {
             "type": "added",
@@ -142,7 +142,7 @@
               {
                 "type": "added",
                 "new_line": 3,
-                "content": "/* INTENTIONAL E2E SECURITY TEST \u2014 workflow must detect and remediate both findings. */"
+                "content": "/* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */"
               },
               {
                 "type": "added",
@@ -222,7 +222,7 @@
         "deletions": 0,
         "total": 14
       },
-      "diff": "diff --git a/e2e-ai-remediation.js b/e2e-ai-remediation.js\nnew file mode 100644\nindex 0000000..2c1ddcf\n--- /dev/null\n+++ b/e2e-ai-remediation.js\n@@ -0,0 +1,14 @@\n+const mysql = require('mysql2');\n+\n+/* INTENTIONAL E2E SECURITY TEST \u2014 workflow must detect and remediate both findings. */\n+function getCustomer(db, username) {\n+  const query = `SELECT * FROM customers WHERE username = '${username}'`;\n+  return db.query(query);\n+}\n+\n+function getInvoice(db, invoiceId) {\n+  const query = \"SELECT * FROM invoices WHERE id = \" + invoiceId;\n+  return db.query(query);\n+}\n+\n+module.exports = { getCustomer, getInvoice };\n",
+      "diff": "diff --git a/e2e-ai-remediation.js b/e2e-ai-remediation.js\nnew file mode 100644\nindex 0000000..2c1ddcf\n--- /dev/null\n+++ b/e2e-ai-remediation.js\n@@ -0,0 +1,14 @@\n+const mysql = require('mysql2');\n+\n+/* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */\n+function getCustomer(db, username) {\n+  const query = `SELECT * FROM customers WHERE username = '${username}'`;\n+  return db.query(query);\n+}\n+\n+function getInvoice(db, invoiceId) {\n+  const query = \"SELECT * FROM invoices WHERE id = \" + invoiceId;\n+  return db.query(query);\n+}\n+\n+module.exports = { getCustomer, getInvoice };\n",
       "hunks": [
         {
           "header": "@@ -0,0 +1,14 @@",
@@ -244,7 +244,7 @@
             {
               "type": "added",
               "new_line": 3,
-              "content": "/* INTENTIONAL E2E SECURITY TEST \u2014 workflow must detect and remediate both findings. */"
+              "content": "/* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */"
             },
             {
               "type": "added",
@@ -318,7 +318,7 @@
         {
           "type": "added",
           "new_line": 3,
-          "content": "/* INTENTIONAL E2E SECURITY TEST \u2014 workflow must detect and remediate both findings. */"
+          "content": "/* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */"
         },
         {
           "type": "added",
@@ -377,102 +377,6 @@
         }
       ],
       "removed_lines": []
-    }
-  ],
-  "security_engine": {
-    "status": "FAILED",
-    "scanner": "Pre-Prod-Orchestrator/rule_engine",
-    "findings": [
-      {
-        "id": "903364c7-c4d1-4ef3-98a7-bb78bf8b793c",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "e2e-ai-remediation.js",
-        "line": 5,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 5,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 5:\n  const query = `SELECT * FROM customers WHERE username = '${username}'`;",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "e2e-ai-remediation.js",
-            "line": 5
-          }
-        ]
-      },
-      {
-        "id": "5609e610-1556-4beb-90fa-04180b4d62c9",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "e2e-ai-remediation.js",
-        "line": 6,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 6,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 6:\n  return db.query(query);",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "e2e-ai-remediation.js",
-            "line": 6
-          }
-        ]
-      }
-    ],
-    "scan_metadata": {
-      "timestamp": "2026-09-20T11:09:17.069276",
-      "total_findings": 2,
-      "by_severity": {
-        "CRITICAL": 2,
-        "HIGH": 0,
-        "MEDIUM": 0,
-        "LOW": 0,
-        "INFO": 0
-      },
-      "model_used": "none"
-    }
-  },
-  "pull_requests": [
-    {
-      "number": 6,
-      "title": "fix: AI-generated security remediation",
-      "state": "open",
-      "merged": false,
-      "head": "security-remediation/11323c78a922",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/6",
-      "created_at": "2026-09-20T11:08:02Z",
-      "updated_at": "2026-09-20T11:08:02Z",
-      "merged_at": null
-    },
-    {
-      "number": 4,
-      "title": "fix: AI-generated security remediation",
-      "state": "open",
-      "merged": false,
-      "head": "security-remediation/7a1fcb7cf94c",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/4",
-      "created_at": "2026-09-20T09:45:52Z",
-      "updated_at": "2026-09-20T09:45:52Z",
-      "merged_at": null
     }
   ]
 }
