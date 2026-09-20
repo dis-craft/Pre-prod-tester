@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_5abb0c7c4a82",
+      "commit": "5abb0c7c4a82363da505fab944fa1ebea0a0b625",
+      "parent": "8bfeea823c99be267c49a66765722b117b232a7d",
+      "branch": "main",
+      "message": "docs: document complete pre-prod architecture and flow",
+      "captured_at": "2026-09-20T17:24:17.776744+00:00",
+      "files_changed": 1,
+      "additions": 1383,
+      "deletions": 27,
+      "url": "scans/5abb0c7c4a82363da505fab944fa1ebea0a0b625.json"
+    },
+    {
       "scan_id": "scn_8e2340f4a938",
       "commit": "8e2340f4a938e6942d6070c28b15419f4124f953",
       "parent": "0dd56f3297c7f4c59268b11588049be8f2167ac6",
