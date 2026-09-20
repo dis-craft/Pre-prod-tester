@@ -1,0 +1,1164 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_89d103fdeed4",
+    "trigger": "push",
+    "captured_at": "2026-09-20T08:21:56.852941+00:00",
+    "workflow_run_id": "35499334180",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35499334180"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "fa3fdce80598689077782df8c599923b966fe5f2",
+    "target_commit": "89d103fdeed4f4a5523ad40e8d8271d971b19eba",
+    "range": "fa3fdce80598689077782df8c599923b966fe5f2..89d103fdeed4f4a5523ad40e8d8271d971b19eba",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "fa3fdce80598689077782df8c599923b966fe5f2",
+    "after": "89d103fdeed4f4a5523ad40e8d8271d971b19eba",
+    "branch": "main",
+    "message": "chore: use orchestrator main branch",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T13:51:29+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 1,
+    "deletions": 1,
+    "net_lines": 0
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "Jenkinsfile",
+        "status": "M",
+        "additions": 1,
+        "deletions": 1,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 6,
+            "content": "        string(name: 'ORCHESTRATOR_REF', defaultValue: 'main', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')"
+          }
+        ],
+        "removed_lines": [
+          {
+            "type": "removed",
+            "old_line": 6,
+            "content": "        string(name: 'ORCHESTRATOR_REF', defaultValue: 'Adi-initial', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')"
+          }
+        ],
+        "hunks": [
+          {
+            "header": "@@ -1,86 +1,86 @@",
+            "old_start": 1,
+            "old_count": 86,
+            "new_start": 1,
+            "new_count": 86,
+            "lines": [
+              {
+                "type": "context",
+                "old_line": 1,
+                "new_line": 1,
+                "content": "pipeline {"
+              },
+              {
+                "type": "context",
+                "old_line": 2,
+                "new_line": 2,
+                "content": "    agent any"
+              },
+              {
+                "type": "context",
+                "old_line": 3,
+                "new_line": 3,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 4,
+                "new_line": 4,
+                "content": "    parameters {"
+              },
+              {
+                "type": "context",
+                "old_line": 5,
+                "new_line": 5,
+                "content": "        booleanParam(name: 'GENERATE_REMEDIATION', defaultValue: false, description: 'Generate/apply AI remediation and create a remediation PR')"
+              },
+              {
+                "type": "removed",
+                "old_line": 6,
+                "content": "        string(name: 'ORCHESTRATOR_REF', defaultValue: 'Adi-initial', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')"
+              },
+              {
+                "type": "added",
+                "new_line": 6,
+                "content": "        string(name: 'ORCHESTRATOR_REF', defaultValue: 'main', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')"
+              },
+              {
+                "type": "context",
+                "old_line": 7,
+                "new_line": 7,
+                "content": "        string(name: 'BASE_BRANCH', defaultValue: 'main', description: 'Target branch for the remediation PR')"
+              },
+              {
+                "type": "context",
+                "old_line": 8,
+                "new_line": 8,
+                "content": "    }"
+              },
+              {
+                "type": "context",
+                "old_line": 9,
+                "new_line": 9,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 10,
+                "new_line": 10,
+                "content": "    environment {"
+              },
+              {
+                "type": "context",
+                "old_line": 11,
+                "new_line": 11,
+                "content": "        GEMINI_API_KEY = credentials('preprod-gemini-api-key')"
+              },
+              {
+                "type": "context",
+                "old_line": 12,
+                "new_line": 12,
+                "content": "    }"
+              },
+              {
+                "type": "context",
+                "old_line": 13,
+                "new_line": 13,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 14,
+                "new_line": 14,
+                "content": "    stages {"
+              },
+              {
+                "type": "context",
+                "old_line": 15,
+                "new_line": 15,
+                "content": "        stage('Checkout target repository') {"
+              },
+              {
+                "type": "context",
+                "old_line": 16,
+                "new_line": 16,
+                "content": "            steps {"
+              },
+              {
+                "type": "context",
+                "old_line": 17,
+                "new_line": 17,
+                "content": "                checkout scm"
+              },
+              {
+                "type": "context",
+                "old_line": 18,
+                "new_line": 18,
+                "content": "                sh 'git fetch --all --prune'"
+              },
+              {
+                "type": "context",
+                "old_line": 19,
+                "new_line": 19,
+                "content": "            }"
+              },
+              {
+                "type": "context",
+                "old_line": 20,
+                "new_line": 20,
+                "content": "        }"
+              },
+              {
+                "type": "context",
+                "old_line": 21,
+                "new_line": 21,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 22,
+                "new_line": 22,
+                "content": "        stage('Capture exact change') {"
+              },
+              {
+                "type": "context",
+                "old_line": 23,
+                "new_line": 23,
+                "content": "            steps {"
+              },
+              {
+                "type": "context",
+                "old_line": 24,
+                "new_line": 24,
+                "content": "                sh '''"
+              },
+              {
+                "type": "context",
+                "old_line": 25,
+                "new_line": 25,
+                "content": "                    set -eu"
+              },
+              {
+                "type": "context",
+                "old_line": 26,
+                "new_line": 26,
+                "content": "                    BASE=\"${GIT_PREVIOUS_SUCCESSFUL_COMMIT:-${GIT_PREVIOUS_COMMIT:-HEAD~1}}\""
+              },
+              {
+                "type": "context",
+                "old_line": 27,
+                "new_line": 27,
+                "content": "                    git diff --text --unified=80 \"$BASE\" \"$GIT_COMMIT\" > \"$WORKSPACE/.preprod-diff.patch\""
+              },
+              {
+                "type": "context",
+                "old_line": 28,
+                "new_line": 28,
+                "content": "                    mkdir -p \"$WORKSPACE/.preprod\""
+              },
+              {
+                "type": "context",
+                "old_line": 29,
+                "new_line": 29,
+                "content": "                    cp \"$WORKSPACE/.preprod-diff.patch\" \"$WORKSPACE/.preprod/scan.patch\""
+              },
+              {
+                "type": "context",
+                "old_line": 30,
+                "new_line": 30,
+                "content": "                '''"
+              },
+              {
+                "type": "context",
+                "old_line": 31,
+                "new_line": 31,
+                "content": "            }"
+              },
+              {
+                "type": "context",
+                "old_line": 32,
+                "new_line": 32,
+                "content": "        }"
+              },
+              {
+                "type": "context",
+                "old_line": 33,
+                "new_line": 33,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 34,
+                "new_line": 34,
+                "content": "        stage('Checkout security engine') {"
+              },
+              {
+                "type": "context",
+                "old_line": 35,
+                "new_line": 35,
+                "content": "            steps {"
+              },
+              {
+                "type": "context",
+                "old_line": 36,
+                "new_line": 36,
+                "content": "                dir('.preprod-engine') {"
+              },
+              {
+                "type": "context",
+                "old_line": 37,
+                "new_line": 37,
+                "content": "                    git branch: params.ORCHESTRATOR_REF, credentialsId: 'github-token', url: 'https://github.com/dis-craft/Pre-Prod-Orchestrator.git'"
+              },
+              {
+                "type": "context",
+                "old_line": 38,
+                "new_line": 38,
+                "content": "                }"
+              },
+              {
+                "type": "context",
+                "old_line": 39,
+                "new_line": 39,
+                "content": "            }"
+              },
+              {
+                "type": "context",
+                "old_line": 40,
+                "new_line": 40,
+                "content": "        }"
+              },
+              {
+                "type": "context",
+                "old_line": 41,
+                "new_line": 41,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 42,
+                "new_line": 42,
+                "content": "        stage('Initial scan') {"
+              },
+              {
+                "type": "context",
+                "old_line": 43,
+                "new_line": 43,
+                "content": "            steps {"
+              },
+              {
+                "type": "context",
+                "old_line": 44,
+                "new_line": 44,
+                "content": "                sh '''"
+              },
+              {
+                "type": "context",
+                "old_line": 45,
+                "new_line": 45,
+                "content": "                    set +e"
+              },
+              {
+                "type": "context",
+                "old_line": 46,
+                "new_line": 46,
+                "content": "                    PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 -m scanner --repo \"$WORKSPACE\" --diff \"$WORKSPACE/.preprod-diff.patch\" --model none --format all --output \"$WORKSPACE/.preprod/baseline-scan\" --quiet"
+              },
+              {
+                "type": "context",
+                "old_line": 47,
+                "new_line": 47,
+                "content": "                    rc=$?"
+              },
+              {
+                "type": "context",
+                "old_line": 48,
+                "new_line": 48,
+                "content": "                    set -e"
+              },
+              {
+                "type": "context",
+                "old_line": 49,
+                "new_line": 49,
+                "content": "                    if [ \"$rc\" -gt 1 ]; then exit \"$rc\"; fi"
+              },
+              {
+                "type": "context",
+                "old_line": 50,
+                "new_line": 50,
+                "content": "                    test -f \"$WORKSPACE/.preprod/baseline-scan/findings.json\""
+              },
+              {
+                "type": "context",
+                "old_line": 51,
+                "new_line": 51,
+                "content": "                '''"
+              },
+              {
+                "type": "context",
+                "old_line": 52,
+                "new_line": 52,
+                "content": "                archiveArtifacts artifacts: '.preprod/baseline-scan/**/*', allowEmptyArchive: false"
+              },
+              {
+                "type": "context",
+                "old_line": 53,
+                "new_line": 53,
+                "content": "            }"
+              },
+              {
+                "type": "context",
+                "old_line": 54,
+                "new_line": 54,
+                "content": "        }"
+              },
+              {
+                "type": "context",
+                "old_line": 55,
+                "new_line": 55,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 56,
+                "new_line": 56,
+                "content": "        stage('AI remediation') {"
+              },
+              {
+                "type": "context",
+                "old_line": 57,
+                "new_line": 57,
+                "content": "            when { expression { return params.GENERATE_REMEDIATION } }"
+              },
+              {
+                "type": "context",
+                "old_line": 58,
+                "new_line": 58,
+                "content": "            steps {"
+              },
+              {
+                "type": "context",
+                "old_line": 59,
+                "new_line": 59,
+                "content": "                sh '''"
+              },
+              {
+                "type": "context",
+                "old_line": 60,
+                "new_line": 60,
+                "content": "                    set -euo pipefail"
+              },
+              {
+                "type": "context",
+                "old_line": 61,
+                "new_line": 61,
+                "content": "                    PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 \"$WORKSPACE/.preprod-engine/remediation/ci_entrypoint.py\" --repo \"$WORKSPACE\" --findings \"$WORKSPACE/.preprod/baseline-scan/findings.json\" --output \"$WORKSPACE/.preprod/remediation-result.json\" --model \"${GEMINI_MODEL:-gemini-3.6-flash}\""
+              },
+              {
+                "type": "context",
+                "old_line": 62,
+                "new_line": 62,
+                "content": "                '''"
+              },
+              {
+                "type": "context",
+                "old_line": 63,
+                "new_line": 63,
+                "content": "            }"
+              },
+              {
+                "type": "context",
+                "old_line": 64,
+                "new_line": 64,
+                "content": "        }"
+              },
+              {
+                "type": "context",
+                "old_line": 65,
+                "new_line": 65,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 66,
+                "new_line": 66,
+                "content": "        stage('Tests') {"
+              },
+              {
+                "type": "context",
+                "old_line": 67,
+                "new_line": 67,
+                "content": "            when { expression { return params.GENERATE_REMEDIATION } }"
+              },
+              {
+                "type": "context",
+                "old_line": 68,
+                "new_line": 68,
+                "content": "            steps {"
+              },
+              {
+                "type": "context",
+                "old_line": 69,
+                "new_line": 69,
+                "content": "                sh '''"
+              },
+              {
+                "type": "context",
+                "old_line": 70,
+                "new_line": 70,
+                "content": "                    set -e"
+              },
+              {
+                "type": "context",
+                "old_line": 71,
+                "new_line": 71,
+                "content": "                    if [ -f package-lock.json ]; then npm ci; npm test --if-present"
+              },
+              {
+                "type": "context",
+                "old_line": 72,
+                "new_line": 72,
+                "content": "                    elif [ -f pyproject.toml ] || [ -f pytest.ini ] || [ -d tests ]; then python3 -m pytest -q"
+              },
+              {
+                "type": "context",
+                "old_line": 73,
+                "new_line": 73,
+                "content": "                    else echo \"No generic test suite detected.\"; fi"
+              },
+              {
+                "type": "context",
+                "old_line": 74,
+                "new_line": 74,
+                "content": "                '''"
+              },
+              {
+                "type": "context",
+                "old_line": 75,
+                "new_line": 75,
+                "content": "            }"
+              },
+              {
+                "type": "context",
+                "old_line": 76,
+                "new_line": 76,
+                "content": "        }"
+              },
+              {
+                "type": "context",
+                "old_line": 77,
+                "new_line": 77,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 78,
+                "new_line": 78,
+                "content": "        stage('Post-fix security scan') {"
+              },
+              {
+                "type": "context",
+                "old_line": 79,
+                "new_line": 79,
+                "content": "            when { expression { return params.GENERATE_REMEDIATION } }"
+              },
+              {
+                "type": "context",
+                "old_line": 80,
+                "new_line": 80,
+                "content": "            steps {"
+              },
+              {
+                "type": "context",
+                "old_line": 81,
+                "new_line": 81,
+                "content": "                sh '''"
+              },
+              {
+                "type": "context",
+                "old_line": 82,
+                "new_line": 82,
+                "content": "                    set +e"
+              },
+              {
+                "type": "context",
+                "old_line": 83,
+                "new_line": 83,
+                "content": "                    git diff --no-ext-diff --unified=80 HEAD -- . > \"$WORKSPACE/.preprod/post-remediation.diff\""
+              },
+              {
+                "type": "context",
+                "old_line": 84,
+                "new_line": 84,
+                "content": "                    PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 -m scanner --repo \"$WORKSPACE\" --diff \"$WORKSPACE/.preprod/post-remediation.diff\" --model none --format all --output \"$WORKSPACE/.preprod/post-remediation-scan\" --quiet"
+              },
+              {
+                "type": "context",
+                "old_line": 85,
+                "new_line": 85,
+                "content": "                    rc=$?"
+              },
+              {
+                "type": "context",
+                "old_line": 86,
+                "new_line": 86,
+                "content": "                    set -e"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "Jenkinsfile",
+      "status": "M",
+      "language": "unknown",
+      "changes": {
+        "additions": 1,
+        "deletions": 1,
+        "total": 2
+      },
+      "diff": "diff --git a/Jenkinsfile b/Jenkinsfile\nindex 1dfd9ed..6d39621 100644\n--- a/Jenkinsfile\n+++ b/Jenkinsfile\n@@ -1,86 +1,86 @@\n pipeline {\n     agent any\n \n     parameters {\n         booleanParam(name: 'GENERATE_REMEDIATION', defaultValue: false, description: 'Generate/apply AI remediation and create a remediation PR')\n-        string(name: 'ORCHESTRATOR_REF', defaultValue: 'Adi-initial', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')\n+        string(name: 'ORCHESTRATOR_REF', defaultValue: 'main', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')\n         string(name: 'BASE_BRANCH', defaultValue: 'main', description: 'Target branch for the remediation PR')\n     }\n \n     environment {\n         GEMINI_API_KEY = credentials('preprod-gemini-api-key')\n     }\n \n     stages {\n         stage('Checkout target repository') {\n             steps {\n                 checkout scm\n                 sh 'git fetch --all --prune'\n             }\n         }\n \n         stage('Capture exact change') {\n             steps {\n                 sh '''\n                     set -eu\n                     BASE=\"${GIT_PREVIOUS_SUCCESSFUL_COMMIT:-${GIT_PREVIOUS_COMMIT:-HEAD~1}}\"\n                     git diff --text --unified=80 \"$BASE\" \"$GIT_COMMIT\" > \"$WORKSPACE/.preprod-diff.patch\"\n                     mkdir -p \"$WORKSPACE/.preprod\"\n                     cp \"$WORKSPACE/.preprod-diff.patch\" \"$WORKSPACE/.preprod/scan.patch\"\n                 '''\n             }\n         }\n \n         stage('Checkout security engine') {\n             steps {\n                 dir('.preprod-engine') {\n                     git branch: params.ORCHESTRATOR_REF, credentialsId: 'github-token', url: 'https://github.com/dis-craft/Pre-Prod-Orchestrator.git'\n                 }\n             }\n         }\n \n         stage('Initial scan') {\n             steps {\n                 sh '''\n                     set +e\n                     PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 -m scanner --repo \"$WORKSPACE\" --diff \"$WORKSPACE/.preprod-diff.patch\" --model none --format all --output \"$WORKSPACE/.preprod/baseline-scan\" --quiet\n                     rc=$?\n                     set -e\n                     if [ \"$rc\" -gt 1 ]; then exit \"$rc\"; fi\n                     test -f \"$WORKSPACE/.preprod/baseline-scan/findings.json\"\n                 '''\n                 archiveArtifacts artifacts: '.preprod/baseline-scan/**/*', allowEmptyArchive: false\n             }\n         }\n \n         stage('AI remediation') {\n             when { expression { return params.GENERATE_REMEDIATION } }\n             steps {\n                 sh '''\n                     set -euo pipefail\n                     PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 \"$WORKSPACE/.preprod-engine/remediation/ci_entrypoint.py\" --repo \"$WORKSPACE\" --findings \"$WORKSPACE/.preprod/baseline-scan/findings.json\" --output \"$WORKSPACE/.preprod/remediation-result.json\" --model \"${GEMINI_MODEL:-gemini-3.6-flash}\"\n                 '''\n             }\n         }\n \n         stage('Tests') {\n             when { expression { return params.GENERATE_REMEDIATION } }\n             steps {\n                 sh '''\n                     set -e\n                     if [ -f package-lock.json ]; then npm ci; npm test --if-present\n                     elif [ -f pyproject.toml ] || [ -f pytest.ini ] || [ -d tests ]; then python3 -m pytest -q\n                     else echo \"No generic test suite detected.\"; fi\n                 '''\n             }\n         }\n \n         stage('Post-fix security scan') {\n             when { expression { return params.GENERATE_REMEDIATION } }\n             steps {\n                 sh '''\n                     set +e\n                     git diff --no-ext-diff --unified=80 HEAD -- . > \"$WORKSPACE/.preprod/post-remediation.diff\"\n                     PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 -m scanner --repo \"$WORKSPACE\" --diff \"$WORKSPACE/.preprod/post-remediation.diff\" --model none --format all --output \"$WORKSPACE/.preprod/post-remediation-scan\" --quiet\n                     rc=$?\n                     set -e\n",
+      "hunks": [
+        {
+          "header": "@@ -1,86 +1,86 @@",
+          "old_start": 1,
+          "old_count": 86,
+          "new_start": 1,
+          "new_count": 86,
+          "lines": [
+            {
+              "type": "context",
+              "old_line": 1,
+              "new_line": 1,
+              "content": "pipeline {"
+            },
+            {
+              "type": "context",
+              "old_line": 2,
+              "new_line": 2,
+              "content": "    agent any"
+            },
+            {
+              "type": "context",
+              "old_line": 3,
+              "new_line": 3,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 4,
+              "new_line": 4,
+              "content": "    parameters {"
+            },
+            {
+              "type": "context",
+              "old_line": 5,
+              "new_line": 5,
+              "content": "        booleanParam(name: 'GENERATE_REMEDIATION', defaultValue: false, description: 'Generate/apply AI remediation and create a remediation PR')"
+            },
+            {
+              "type": "removed",
+              "old_line": 6,
+              "content": "        string(name: 'ORCHESTRATOR_REF', defaultValue: 'Adi-initial', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')"
+            },
+            {
+              "type": "added",
+              "new_line": 6,
+              "content": "        string(name: 'ORCHESTRATOR_REF', defaultValue: 'main', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')"
+            },
+            {
+              "type": "context",
+              "old_line": 7,
+              "new_line": 7,
+              "content": "        string(name: 'BASE_BRANCH', defaultValue: 'main', description: 'Target branch for the remediation PR')"
+            },
+            {
+              "type": "context",
+              "old_line": 8,
+              "new_line": 8,
+              "content": "    }"
+            },
+            {
+              "type": "context",
+              "old_line": 9,
+              "new_line": 9,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 10,
+              "new_line": 10,
+              "content": "    environment {"
+            },
+            {
+              "type": "context",
+              "old_line": 11,
+              "new_line": 11,
+              "content": "        GEMINI_API_KEY = credentials('preprod-gemini-api-key')"
+            },
+            {
+              "type": "context",
+              "old_line": 12,
+              "new_line": 12,
+              "content": "    }"
+            },
+            {
+              "type": "context",
+              "old_line": 13,
+              "new_line": 13,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 14,
+              "new_line": 14,
+              "content": "    stages {"
+            },
+            {
+              "type": "context",
+              "old_line": 15,
+              "new_line": 15,
+              "content": "        stage('Checkout target repository') {"
+            },
+            {
+              "type": "context",
+              "old_line": 16,
+              "new_line": 16,
+              "content": "            steps {"
+            },
+            {
+              "type": "context",
+              "old_line": 17,
+              "new_line": 17,
+              "content": "                checkout scm"
+            },
+            {
+              "type": "context",
+              "old_line": 18,
+              "new_line": 18,
+              "content": "                sh 'git fetch --all --prune'"
+            },
+            {
+              "type": "context",
+              "old_line": 19,
+              "new_line": 19,
+              "content": "            }"
+            },
+            {
+              "type": "context",
+              "old_line": 20,
+              "new_line": 20,
+              "content": "        }"
+            },
+            {
+              "type": "context",
+              "old_line": 21,
+              "new_line": 21,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 22,
+              "new_line": 22,
+              "content": "        stage('Capture exact change') {"
+            },
+            {
+              "type": "context",
+              "old_line": 23,
+              "new_line": 23,
+              "content": "            steps {"
+            },
+            {
+              "type": "context",
+              "old_line": 24,
+              "new_line": 24,
+              "content": "                sh '''"
+            },
+            {
+              "type": "context",
+              "old_line": 25,
+              "new_line": 25,
+              "content": "                    set -eu"
+            },
+            {
+              "type": "context",
+              "old_line": 26,
+              "new_line": 26,
+              "content": "                    BASE=\"${GIT_PREVIOUS_SUCCESSFUL_COMMIT:-${GIT_PREVIOUS_COMMIT:-HEAD~1}}\""
+            },
+            {
+              "type": "context",
+              "old_line": 27,
+              "new_line": 27,
+              "content": "                    git diff --text --unified=80 \"$BASE\" \"$GIT_COMMIT\" > \"$WORKSPACE/.preprod-diff.patch\""
+            },
+            {
+              "type": "context",
+              "old_line": 28,
+              "new_line": 28,
+              "content": "                    mkdir -p \"$WORKSPACE/.preprod\""
+            },
+            {
+              "type": "context",
+              "old_line": 29,
+              "new_line": 29,
+              "content": "                    cp \"$WORKSPACE/.preprod-diff.patch\" \"$WORKSPACE/.preprod/scan.patch\""
+            },
+            {
+              "type": "context",
+              "old_line": 30,
+              "new_line": 30,
+              "content": "                '''"
+            },
+            {
+              "type": "context",
+              "old_line": 31,
+              "new_line": 31,
+              "content": "            }"
+            },
+            {
+              "type": "context",
+              "old_line": 32,
+              "new_line": 32,
+              "content": "        }"
+            },
+            {
+              "type": "context",
+              "old_line": 33,
+              "new_line": 33,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 34,
+              "new_line": 34,
+              "content": "        stage('Checkout security engine') {"
+            },
+            {
+              "type": "context",
+              "old_line": 35,
+              "new_line": 35,
+              "content": "            steps {"
+            },
+            {
+              "type": "context",
+              "old_line": 36,
+              "new_line": 36,
+              "content": "                dir('.preprod-engine') {"
+            },
+            {
+              "type": "context",
+              "old_line": 37,
+              "new_line": 37,
+              "content": "                    git branch: params.ORCHESTRATOR_REF, credentialsId: 'github-token', url: 'https://github.com/dis-craft/Pre-Prod-Orchestrator.git'"
+            },
+            {
+              "type": "context",
+              "old_line": 38,
+              "new_line": 38,
+              "content": "                }"
+            },
+            {
+              "type": "context",
+              "old_line": 39,
+              "new_line": 39,
+              "content": "            }"
+            },
+            {
+              "type": "context",
+              "old_line": 40,
+              "new_line": 40,
+              "content": "        }"
+            },
+            {
+              "type": "context",
+              "old_line": 41,
+              "new_line": 41,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 42,
+              "new_line": 42,
+              "content": "        stage('Initial scan') {"
+            },
+            {
+              "type": "context",
+              "old_line": 43,
+              "new_line": 43,
+              "content": "            steps {"
+            },
+            {
+              "type": "context",
+              "old_line": 44,
+              "new_line": 44,
+              "content": "                sh '''"
+            },
+            {
+              "type": "context",
+              "old_line": 45,
+              "new_line": 45,
+              "content": "                    set +e"
+            },
+            {
+              "type": "context",
+              "old_line": 46,
+              "new_line": 46,
+              "content": "                    PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 -m scanner --repo \"$WORKSPACE\" --diff \"$WORKSPACE/.preprod-diff.patch\" --model none --format all --output \"$WORKSPACE/.preprod/baseline-scan\" --quiet"
+            },
+            {
+              "type": "context",
+              "old_line": 47,
+              "new_line": 47,
+              "content": "                    rc=$?"
+            },
+            {
+              "type": "context",
+              "old_line": 48,
+              "new_line": 48,
+              "content": "                    set -e"
+            },
+            {
+              "type": "context",
+              "old_line": 49,
+              "new_line": 49,
+              "content": "                    if [ \"$rc\" -gt 1 ]; then exit \"$rc\"; fi"
+            },
+            {
+              "type": "context",
+              "old_line": 50,
+              "new_line": 50,
+              "content": "                    test -f \"$WORKSPACE/.preprod/baseline-scan/findings.json\""
+            },
+            {
+              "type": "context",
+              "old_line": 51,
+              "new_line": 51,
+              "content": "                '''"
+            },
+            {
+              "type": "context",
+              "old_line": 52,
+              "new_line": 52,
+              "content": "                archiveArtifacts artifacts: '.preprod/baseline-scan/**/*', allowEmptyArchive: false"
+            },
+            {
+              "type": "context",
+              "old_line": 53,
+              "new_line": 53,
+              "content": "            }"
+            },
+            {
+              "type": "context",
+              "old_line": 54,
+              "new_line": 54,
+              "content": "        }"
+            },
+            {
+              "type": "context",
+              "old_line": 55,
+              "new_line": 55,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 56,
+              "new_line": 56,
+              "content": "        stage('AI remediation') {"
+            },
+            {
+              "type": "context",
+              "old_line": 57,
+              "new_line": 57,
+              "content": "            when { expression { return params.GENERATE_REMEDIATION } }"
+            },
+            {
+              "type": "context",
+              "old_line": 58,
+              "new_line": 58,
+              "content": "            steps {"
+            },
+            {
+              "type": "context",
+              "old_line": 59,
+              "new_line": 59,
+              "content": "                sh '''"
+            },
+            {
+              "type": "context",
+              "old_line": 60,
+              "new_line": 60,
+              "content": "                    set -euo pipefail"
+            },
+            {
+              "type": "context",
+              "old_line": 61,
+              "new_line": 61,
+              "content": "                    PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 \"$WORKSPACE/.preprod-engine/remediation/ci_entrypoint.py\" --repo \"$WORKSPACE\" --findings \"$WORKSPACE/.preprod/baseline-scan/findings.json\" --output \"$WORKSPACE/.preprod/remediation-result.json\" --model \"${GEMINI_MODEL:-gemini-3.6-flash}\""
+            },
+            {
+              "type": "context",
+              "old_line": 62,
+              "new_line": 62,
+              "content": "                '''"
+            },
+            {
+              "type": "context",
+              "old_line": 63,
+              "new_line": 63,
+              "content": "            }"
+            },
+            {
+              "type": "context",
+              "old_line": 64,
+              "new_line": 64,
+              "content": "        }"
+            },
+            {
+              "type": "context",
+              "old_line": 65,
+              "new_line": 65,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 66,
+              "new_line": 66,
+              "content": "        stage('Tests') {"
+            },
+            {
+              "type": "context",
+              "old_line": 67,
+              "new_line": 67,
+              "content": "            when { expression { return params.GENERATE_REMEDIATION } }"
+            },
+            {
+              "type": "context",
+              "old_line": 68,
+              "new_line": 68,
+              "content": "            steps {"
+            },
+            {
+              "type": "context",
+              "old_line": 69,
+              "new_line": 69,
+              "content": "                sh '''"
+            },
+            {
+              "type": "context",
+              "old_line": 70,
+              "new_line": 70,
+              "content": "                    set -e"
+            },
+            {
+              "type": "context",
+              "old_line": 71,
+              "new_line": 71,
+              "content": "                    if [ -f package-lock.json ]; then npm ci; npm test --if-present"
+            },
+            {
+              "type": "context",
+              "old_line": 72,
+              "new_line": 72,
+              "content": "                    elif [ -f pyproject.toml ] || [ -f pytest.ini ] || [ -d tests ]; then python3 -m pytest -q"
+            },
+            {
+              "type": "context",
+              "old_line": 73,
+              "new_line": 73,
+              "content": "                    else echo \"No generic test suite detected.\"; fi"
+            },
+            {
+              "type": "context",
+              "old_line": 74,
+              "new_line": 74,
+              "content": "                '''"
+            },
+            {
+              "type": "context",
+              "old_line": 75,
+              "new_line": 75,
+              "content": "            }"
+            },
+            {
+              "type": "context",
+              "old_line": 76,
+              "new_line": 76,
+              "content": "        }"
+            },
+            {
+              "type": "context",
+              "old_line": 77,
+              "new_line": 77,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 78,
+              "new_line": 78,
+              "content": "        stage('Post-fix security scan') {"
+            },
+            {
+              "type": "context",
+              "old_line": 79,
+              "new_line": 79,
+              "content": "            when { expression { return params.GENERATE_REMEDIATION } }"
+            },
+            {
+              "type": "context",
+              "old_line": 80,
+              "new_line": 80,
+              "content": "            steps {"
+            },
+            {
+              "type": "context",
+              "old_line": 81,
+              "new_line": 81,
+              "content": "                sh '''"
+            },
+            {
+              "type": "context",
+              "old_line": 82,
+              "new_line": 82,
+              "content": "                    set +e"
+            },
+            {
+              "type": "context",
+              "old_line": 83,
+              "new_line": 83,
+              "content": "                    git diff --no-ext-diff --unified=80 HEAD -- . > \"$WORKSPACE/.preprod/post-remediation.diff\""
+            },
+            {
+              "type": "context",
+              "old_line": 84,
+              "new_line": 84,
+              "content": "                    PYTHONPATH=\"$WORKSPACE/.preprod-engine\" python3 -m scanner --repo \"$WORKSPACE\" --diff \"$WORKSPACE/.preprod/post-remediation.diff\" --model none --format all --output \"$WORKSPACE/.preprod/post-remediation-scan\" --quiet"
+            },
+            {
+              "type": "context",
+              "old_line": 85,
+              "new_line": 85,
+              "content": "                    rc=$?"
+            },
+            {
+              "type": "context",
+              "old_line": 86,
+              "new_line": 86,
+              "content": "                    set -e"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 6,
+          "content": "        string(name: 'ORCHESTRATOR_REF', defaultValue: 'main', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')"
+        }
+      ],
+      "removed_lines": [
+        {
+          "type": "removed",
+          "old_line": 6,
+          "content": "        string(name: 'ORCHESTRATOR_REF', defaultValue: 'Adi-initial', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')"
+        }
+      ]
+    }
+  ]
+}

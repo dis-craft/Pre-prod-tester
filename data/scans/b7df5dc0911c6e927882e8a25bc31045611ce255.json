@@ -1,0 +1,1458 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_b7df5dc0911c",
+    "trigger": "push",
+    "captured_at": "2026-09-20T08:02:30.216186+00:00",
+    "workflow_run_id": "35498459508",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35498459508"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "408d3bf51ea6bafde2f8bc9562c0fb5a55ad06e5",
+    "target_commit": "b7df5dc0911c6e927882e8a25bc31045611ce255",
+    "range": "408d3bf51ea6bafde2f8bc9562c0fb5a55ad06e5..b7df5dc0911c6e927882e8a25bc31045611ce255",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "408d3bf51ea6bafde2f8bc9562c0fb5a55ad06e5",
+    "after": "b7df5dc0911c6e927882e8a25bc31045611ce255",
+    "branch": "main",
+    "message": "feat: run live security detection before publishing scan",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T13:32:14+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 15,
+    "deletions": 0,
+    "net_lines": 15
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": ".github/workflows/capture-and-publish.yml",
+        "status": "M",
+        "additions": 15,
+        "deletions": 0,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 44,
+            "content": "      - name: Run live security detection"
+          },
+          {
+            "type": "added",
+            "new_line": 45,
+            "content": "        id: security"
+          },
+          {
+            "type": "added",
+            "new_line": 46,
+            "content": "        uses: dis-craft/Pre-Prod-Orchestrator/.github/actions/security-engine@Adi-initial"
+          },
+          {
+            "type": "added",
+            "new_line": 47,
+            "content": "        with:"
+          },
+          {
+            "type": "added",
+            "new_line": 48,
+            "content": "          scan-input: data/latest.json"
+          },
+          {
+            "type": "added",
+            "new_line": 49,
+            "content": "          scan-output: .preprod/baseline-scan"
+          },
+          {
+            "type": "added",
+            "new_line": 50,
+            "content": "          generate-remediation: \"false\""
+          },
+          {
+            "type": "added",
+            "new_line": 51,
+            "content": ""
+          },
+          {
+            "type": "added",
+            "new_line": 52,
+            "content": "      - name: Attach findings to published scan"
+          },
+          {
+            "type": "added",
+            "new_line": 53,
+            "content": "        env:"
+          },
+          {
+            "type": "added",
+            "new_line": 54,
+            "content": "          FINDINGS: ${{ steps.security.outputs.findings }}"
+          },
+          {
+            "type": "added",
+            "new_line": 55,
+            "content": "        run: |"
+          },
+          {
+            "type": "added",
+            "new_line": 56,
+            "content": "          set -euo pipefail"
+          },
+          {
+            "type": "added",
+            "new_line": 57,
+            "content": "          test -n \"$FINDINGS\""
+          },
+          {
+            "type": "added",
+            "new_line": 58,
+            "content": "          python3 scripts/attach-security-findings.py --scan data/latest.json --findings \"$FINDINGS\""
+          }
+        ],
+        "removed_lines": [],
+        "hunks": [
+          {
+            "header": "@@ -1,88 +1,103 @@",
+            "old_start": 1,
+            "old_count": 88,
+            "new_start": 1,
+            "new_count": 103,
+            "lines": [
+              {
+                "type": "context",
+                "old_line": 1,
+                "new_line": 1,
+                "content": "name: Capture Changes and Publish"
+              },
+              {
+                "type": "context",
+                "old_line": 2,
+                "new_line": 2,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 3,
+                "new_line": 3,
+                "content": "on:"
+              },
+              {
+                "type": "context",
+                "old_line": 4,
+                "new_line": 4,
+                "content": "  push:"
+              },
+              {
+                "type": "context",
+                "old_line": 5,
+                "new_line": 5,
+                "content": "    branches:"
+              },
+              {
+                "type": "context",
+                "old_line": 6,
+                "new_line": 6,
+                "content": "      - main"
+              },
+              {
+                "type": "context",
+                "old_line": 7,
+                "new_line": 7,
+                "content": "    paths-ignore:"
+              },
+              {
+                "type": "context",
+                "old_line": 8,
+                "new_line": 8,
+                "content": "      - 'data/**'"
+              },
+              {
+                "type": "context",
+                "old_line": 9,
+                "new_line": 9,
+                "content": "  workflow_dispatch:"
+              },
+              {
+                "type": "context",
+                "old_line": 10,
+                "new_line": 10,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 11,
+                "new_line": 11,
+                "content": "permissions:"
+              },
+              {
+                "type": "context",
+                "old_line": 12,
+                "new_line": 12,
+                "content": "  contents: write"
+              },
+              {
+                "type": "context",
+                "old_line": 13,
+                "new_line": 13,
+                "content": "  pages: write"
+              },
+              {
+                "type": "context",
+                "old_line": 14,
+                "new_line": 14,
+                "content": "  id-token: write"
+              },
+              {
+                "type": "context",
+                "old_line": 15,
+                "new_line": 15,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 16,
+                "new_line": 16,
+                "content": "concurrency:"
+              },
+              {
+                "type": "context",
+                "old_line": 17,
+                "new_line": 17,
+                "content": "  group: pages"
+              },
+              {
+                "type": "context",
+                "old_line": 18,
+                "new_line": 18,
+                "content": "  cancel-in-progress: false"
+              },
+              {
+                "type": "context",
+                "old_line": 19,
+                "new_line": 19,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 20,
+                "new_line": 20,
+                "content": "jobs:"
+              },
+              {
+                "type": "context",
+                "old_line": 21,
+                "new_line": 21,
+                "content": "  capture-and-publish:"
+              },
+              {
+                "type": "context",
+                "old_line": 22,
+                "new_line": 22,
+                "content": "    runs-on: ubuntu-latest"
+              },
+              {
+                "type": "context",
+                "old_line": 23,
+                "new_line": 23,
+                "content": "    environment:"
+              },
+              {
+                "type": "context",
+                "old_line": 24,
+                "new_line": 24,
+                "content": "      name: github-pages"
+              },
+              {
+                "type": "context",
+                "old_line": 25,
+                "new_line": 25,
+                "content": "      url: ${{ steps.deployment.outputs.page_url }}"
+              },
+              {
+                "type": "context",
+                "old_line": 26,
+                "new_line": 26,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 27,
+                "new_line": 27,
+                "content": "    steps:"
+              },
+              {
+                "type": "context",
+                "old_line": 28,
+                "new_line": 28,
+                "content": "      - name: Checkout full history"
+              },
+              {
+                "type": "context",
+                "old_line": 29,
+                "new_line": 29,
+                "content": "        uses: actions/checkout@v4"
+              },
+              {
+                "type": "context",
+                "old_line": 30,
+                "new_line": 30,
+                "content": "        with:"
+              },
+              {
+                "type": "context",
+                "old_line": 31,
+                "new_line": 31,
+                "content": "          fetch-depth: 0"
+              },
+              {
+                "type": "context",
+                "old_line": 32,
+                "new_line": 32,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 33,
+                "new_line": 33,
+                "content": "      - name: Capture exact push diff"
+              },
+              {
+                "type": "context",
+                "old_line": 34,
+                "new_line": 34,
+                "content": "        env:"
+              },
+              {
+                "type": "context",
+                "old_line": 35,
+                "new_line": 35,
+                "content": "          GITHUB_EVENT_BEFORE: ${{ github.event.before }}"
+              },
+              {
+                "type": "context",
+                "old_line": 36,
+                "new_line": 36,
+                "content": "          GITHUB_SHA: ${{ github.sha }}"
+              },
+              {
+                "type": "context",
+                "old_line": 37,
+                "new_line": 37,
+                "content": "          GITHUB_EVENT_PATH: ${{ github.event_path }}"
+              },
+              {
+                "type": "context",
+                "old_line": 38,
+                "new_line": 38,
+                "content": "          GITHUB_REPOSITORY: ${{ github.repository }}"
+              },
+              {
+                "type": "context",
+                "old_line": 39,
+                "new_line": 39,
+                "content": "          GITHUB_SERVER_URL: ${{ github.server_url }}"
+              },
+              {
+                "type": "context",
+                "old_line": 40,
+                "new_line": 40,
+                "content": "          GITHUB_REF_NAME: ${{ github.ref_name }}"
+              },
+              {
+                "type": "context",
+                "old_line": 41,
+                "new_line": 41,
+                "content": "          GITHUB_RUN_ID: ${{ github.run_id }}"
+              },
+              {
+                "type": "context",
+                "old_line": 42,
+                "new_line": 42,
+                "content": "        run: python3 scripts/capture-diff.py"
+              },
+              {
+                "type": "context",
+                "old_line": 43,
+                "new_line": 43,
+                "content": ""
+              },
+              {
+                "type": "added",
+                "new_line": 44,
+                "content": "      - name: Run live security detection"
+              },
+              {
+                "type": "added",
+                "new_line": 45,
+                "content": "        id: security"
+              },
+              {
+                "type": "added",
+                "new_line": 46,
+                "content": "        uses: dis-craft/Pre-Prod-Orchestrator/.github/actions/security-engine@Adi-initial"
+              },
+              {
+                "type": "added",
+                "new_line": 47,
+                "content": "        with:"
+              },
+              {
+                "type": "added",
+                "new_line": 48,
+                "content": "          scan-input: data/latest.json"
+              },
+              {
+                "type": "added",
+                "new_line": 49,
+                "content": "          scan-output: .preprod/baseline-scan"
+              },
+              {
+                "type": "added",
+                "new_line": 50,
+                "content": "          generate-remediation: \"false\""
+              },
+              {
+                "type": "added",
+                "new_line": 51,
+                "content": ""
+              },
+              {
+                "type": "added",
+                "new_line": 52,
+                "content": "      - name: Attach findings to published scan"
+              },
+              {
+                "type": "added",
+                "new_line": 53,
+                "content": "        env:"
+              },
+              {
+                "type": "added",
+                "new_line": 54,
+                "content": "          FINDINGS: ${{ steps.security.outputs.findings }}"
+              },
+              {
+                "type": "added",
+                "new_line": 55,
+                "content": "        run: |"
+              },
+              {
+                "type": "added",
+                "new_line": 56,
+                "content": "          set -euo pipefail"
+              },
+              {
+                "type": "added",
+                "new_line": 57,
+                "content": "          test -n \"$FINDINGS\""
+              },
+              {
+                "type": "added",
+                "new_line": 58,
+                "content": "          python3 scripts/attach-security-findings.py --scan data/latest.json --findings \"$FINDINGS\""
+              },
+              {
+                "type": "context",
+                "old_line": 44,
+                "new_line": 59,
+                "content": "      - name: Persist generated scan data"
+              },
+              {
+                "type": "context",
+                "old_line": 45,
+                "new_line": 60,
+                "content": "        run: |"
+              },
+              {
+                "type": "context",
+                "old_line": 46,
+                "new_line": 61,
+                "content": "          git config user.name \"github-actions[bot]\""
+              },
+              {
+                "type": "context",
+                "old_line": 47,
+                "new_line": 62,
+                "content": "          git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\""
+              },
+              {
+                "type": "context",
+                "old_line": 48,
+                "new_line": 63,
+                "content": "          git add data/latest.json data/index.json data/scans/"
+              },
+              {
+                "type": "context",
+                "old_line": 49,
+                "new_line": 64,
+                "content": "          if git diff --cached --quiet; then"
+              },
+              {
+                "type": "context",
+                "old_line": 50,
+                "new_line": 65,
+                "content": "            echo \"No generated data changes to commit.\""
+              },
+              {
+                "type": "context",
+                "old_line": 51,
+                "new_line": 66,
+                "content": "          else"
+              },
+              {
+                "type": "context",
+                "old_line": 52,
+                "new_line": 67,
+                "content": "            git commit -m \"chore: publish scan data [skip ci]\""
+              },
+              {
+                "type": "context",
+                "old_line": 53,
+                "new_line": 68,
+                "content": "            git push origin HEAD:\"$GITHUB_REF_NAME\""
+              },
+              {
+                "type": "context",
+                "old_line": 54,
+                "new_line": 69,
+                "content": "          fi"
+              },
+              {
+                "type": "context",
+                "old_line": 55,
+                "new_line": 70,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 56,
+                "new_line": 71,
+                "content": "      - name: Build isolated Pages site"
+              },
+              {
+                "type": "context",
+                "old_line": 57,
+                "new_line": 72,
+                "content": "        run: |"
+              },
+              {
+                "type": "context",
+                "old_line": 58,
+                "new_line": 73,
+                "content": "          rm -rf .pages"
+              },
+              {
+                "type": "context",
+                "old_line": 59,
+                "new_line": 74,
+                "content": "          mkdir -p .pages/data/scans"
+              },
+              {
+                "type": "context",
+                "old_line": 60,
+                "new_line": 75,
+                "content": "          cp index.html .pages/index.html"
+              },
+              {
+                "type": "context",
+                "old_line": 61,
+                "new_line": 76,
+                "content": "          cp data/latest.json .pages/data/latest.json"
+              },
+              {
+                "type": "context",
+                "old_line": 62,
+                "new_line": 77,
+                "content": "          cp data/index.json .pages/data/index.json"
+              },
+              {
+                "type": "context",
+                "old_line": 63,
+                "new_line": 78,
+                "content": "          cp -R data/scans/. .pages/data/scans/"
+              },
+              {
+                "type": "context",
+                "old_line": 64,
+                "new_line": 79,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 65,
+                "new_line": 80,
+                "content": "          cat > .pages/deployment.json <<EOF"
+              },
+              {
+                "type": "context",
+                "old_line": 66,
+                "new_line": 81,
+                "content": "          {"
+              },
+              {
+                "type": "context",
+                "old_line": 67,
+                "new_line": 82,
+                "content": "            \"deployed_commit\": \"${{ github.sha }}\","
+              },
+              {
+                "type": "context",
+                "old_line": 68,
+                "new_line": 83,
+                "content": "            \"deployed_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\","
+              },
+              {
+                "type": "context",
+                "old_line": 69,
+                "new_line": 84,
+                "content": "            \"workflow_run\": \"${{ github.run_id }}\""
+              },
+              {
+                "type": "context",
+                "old_line": 70,
+                "new_line": 85,
+                "content": "          }"
+              },
+              {
+                "type": "context",
+                "old_line": 71,
+                "new_line": 86,
+                "content": "          EOF"
+              },
+              {
+                "type": "context",
+                "old_line": 72,
+                "new_line": 87,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 73,
+                "new_line": 88,
+                "content": "          echo \"Pages payload:\""
+              },
+              {
+                "type": "context",
+                "old_line": 74,
+                "new_line": 89,
+                "content": "          find .pages -type f -maxdepth 4 -print"
+              },
+              {
+                "type": "context",
+                "old_line": 75,
+                "new_line": 90,
+                "content": "          echo \"Latest scan:\""
+              },
+              {
+                "type": "context",
+                "old_line": 76,
+                "new_line": 91,
+                "content": "          python3 -m json.tool .pages/data/latest.json | head -80"
+              },
+              {
+                "type": "context",
+                "old_line": 77,
+                "new_line": 92,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 78,
+                "new_line": 93,
+                "content": "      - name: Configure GitHub Pages"
+              },
+              {
+                "type": "context",
+                "old_line": 79,
+                "new_line": 94,
+                "content": "        uses: actions/configure-pages@v5"
+              },
+              {
+                "type": "context",
+                "old_line": 80,
+                "new_line": 95,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 81,
+                "new_line": 96,
+                "content": "      - name: Upload Pages artifact"
+              },
+              {
+                "type": "context",
+                "old_line": 82,
+                "new_line": 97,
+                "content": "        uses: actions/upload-pages-artifact@v4"
+              },
+              {
+                "type": "context",
+                "old_line": 83,
+                "new_line": 98,
+                "content": "        with:"
+              },
+              {
+                "type": "context",
+                "old_line": 84,
+                "new_line": 99,
+                "content": "          path: .pages"
+              },
+              {
+                "type": "context",
+                "old_line": 85,
+                "new_line": 100,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 86,
+                "new_line": 101,
+                "content": "      - name: Deploy to GitHub Pages"
+              },
+              {
+                "type": "context",
+                "old_line": 87,
+                "new_line": 102,
+                "content": "        id: deployment"
+              },
+              {
+                "type": "context",
+                "old_line": 88,
+                "new_line": 103,
+                "content": "        uses: actions/deploy-pages@v4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": ".github/workflows/capture-and-publish.yml",
+      "status": "M",
+      "language": "yml",
+      "changes": {
+        "additions": 15,
+        "deletions": 0,
+        "total": 15
+      },
+      "diff": "diff --git a/.github/workflows/capture-and-publish.yml b/.github/workflows/capture-and-publish.yml\nindex ffdfac4..62f2665 100644\n--- a/.github/workflows/capture-and-publish.yml\n+++ b/.github/workflows/capture-and-publish.yml\n@@ -1,88 +1,103 @@\n name: Capture Changes and Publish\n \n on:\n   push:\n     branches:\n       - main\n     paths-ignore:\n       - 'data/**'\n   workflow_dispatch:\n \n permissions:\n   contents: write\n   pages: write\n   id-token: write\n \n concurrency:\n   group: pages\n   cancel-in-progress: false\n \n jobs:\n   capture-and-publish:\n     runs-on: ubuntu-latest\n     environment:\n       name: github-pages\n       url: ${{ steps.deployment.outputs.page_url }}\n \n     steps:\n       - name: Checkout full history\n         uses: actions/checkout@v4\n         with:\n           fetch-depth: 0\n \n       - name: Capture exact push diff\n         env:\n           GITHUB_EVENT_BEFORE: ${{ github.event.before }}\n           GITHUB_SHA: ${{ github.sha }}\n           GITHUB_EVENT_PATH: ${{ github.event_path }}\n           GITHUB_REPOSITORY: ${{ github.repository }}\n           GITHUB_SERVER_URL: ${{ github.server_url }}\n           GITHUB_REF_NAME: ${{ github.ref_name }}\n           GITHUB_RUN_ID: ${{ github.run_id }}\n         run: python3 scripts/capture-diff.py\n \n+      - name: Run live security detection\n+        id: security\n+        uses: dis-craft/Pre-Prod-Orchestrator/.github/actions/security-engine@Adi-initial\n+        with:\n+          scan-input: data/latest.json\n+          scan-output: .preprod/baseline-scan\n+          generate-remediation: \"false\"\n+\n+      - name: Attach findings to published scan\n+        env:\n+          FINDINGS: ${{ steps.security.outputs.findings }}\n+        run: |\n+          set -euo pipefail\n+          test -n \"$FINDINGS\"\n+          python3 scripts/attach-security-findings.py --scan data/latest.json --findings \"$FINDINGS\"\n       - name: Persist generated scan data\n         run: |\n           git config user.name \"github-actions[bot]\"\n           git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\"\n           git add data/latest.json data/index.json data/scans/\n           if git diff --cached --quiet; then\n             echo \"No generated data changes to commit.\"\n           else\n             git commit -m \"chore: publish scan data [skip ci]\"\n             git push origin HEAD:\"$GITHUB_REF_NAME\"\n           fi\n \n       - name: Build isolated Pages site\n         run: |\n           rm -rf .pages\n           mkdir -p .pages/data/scans\n           cp index.html .pages/index.html\n           cp data/latest.json .pages/data/latest.json\n           cp data/index.json .pages/data/index.json\n           cp -R data/scans/. .pages/data/scans/\n \n           cat > .pages/deployment.json <<EOF\n           {\n             \"deployed_commit\": \"${{ github.sha }}\",\n             \"deployed_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\n             \"workflow_run\": \"${{ github.run_id }}\"\n           }\n           EOF\n \n           echo \"Pages payload:\"\n           find .pages -type f -maxdepth 4 -print\n           echo \"Latest scan:\"\n           python3 -m json.tool .pages/data/latest.json | head -80\n \n       - name: Configure GitHub Pages\n         uses: actions/configure-pages@v5\n \n       - name: Upload Pages artifact\n         uses: actions/upload-pages-artifact@v4\n         with:\n           path: .pages\n \n       - name: Deploy to GitHub Pages\n         id: deployment\n         uses: actions/deploy-pages@v4\n",
+      "hunks": [
+        {
+          "header": "@@ -1,88 +1,103 @@",
+          "old_start": 1,
+          "old_count": 88,
+          "new_start": 1,
+          "new_count": 103,
+          "lines": [
+            {
+              "type": "context",
+              "old_line": 1,
+              "new_line": 1,
+              "content": "name: Capture Changes and Publish"
+            },
+            {
+              "type": "context",
+              "old_line": 2,
+              "new_line": 2,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 3,
+              "new_line": 3,
+              "content": "on:"
+            },
+            {
+              "type": "context",
+              "old_line": 4,
+              "new_line": 4,
+              "content": "  push:"
+            },
+            {
+              "type": "context",
+              "old_line": 5,
+              "new_line": 5,
+              "content": "    branches:"
+            },
+            {
+              "type": "context",
+              "old_line": 6,
+              "new_line": 6,
+              "content": "      - main"
+            },
+            {
+              "type": "context",
+              "old_line": 7,
+              "new_line": 7,
+              "content": "    paths-ignore:"
+            },
+            {
+              "type": "context",
+              "old_line": 8,
+              "new_line": 8,
+              "content": "      - 'data/**'"
+            },
+            {
+              "type": "context",
+              "old_line": 9,
+              "new_line": 9,
+              "content": "  workflow_dispatch:"
+            },
+            {
+              "type": "context",
+              "old_line": 10,
+              "new_line": 10,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 11,
+              "new_line": 11,
+              "content": "permissions:"
+            },
+            {
+              "type": "context",
+              "old_line": 12,
+              "new_line": 12,
+              "content": "  contents: write"
+            },
+            {
+              "type": "context",
+              "old_line": 13,
+              "new_line": 13,
+              "content": "  pages: write"
+            },
+            {
+              "type": "context",
+              "old_line": 14,
+              "new_line": 14,
+              "content": "  id-token: write"
+            },
+            {
+              "type": "context",
+              "old_line": 15,
+              "new_line": 15,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 16,
+              "new_line": 16,
+              "content": "concurrency:"
+            },
+            {
+              "type": "context",
+              "old_line": 17,
+              "new_line": 17,
+              "content": "  group: pages"
+            },
+            {
+              "type": "context",
+              "old_line": 18,
+              "new_line": 18,
+              "content": "  cancel-in-progress: false"
+            },
+            {
+              "type": "context",
+              "old_line": 19,
+              "new_line": 19,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 20,
+              "new_line": 20,
+              "content": "jobs:"
+            },
+            {
+              "type": "context",
+              "old_line": 21,
+              "new_line": 21,
+              "content": "  capture-and-publish:"
+            },
+            {
+              "type": "context",
+              "old_line": 22,
+              "new_line": 22,
+              "content": "    runs-on: ubuntu-latest"
+            },
+            {
+              "type": "context",
+              "old_line": 23,
+              "new_line": 23,
+              "content": "    environment:"
+            },
+            {
+              "type": "context",
+              "old_line": 24,
+              "new_line": 24,
+              "content": "      name: github-pages"
+            },
+            {
+              "type": "context",
+              "old_line": 25,
+              "new_line": 25,
+              "content": "      url: ${{ steps.deployment.outputs.page_url }}"
+            },
+            {
+              "type": "context",
+              "old_line": 26,
+              "new_line": 26,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 27,
+              "new_line": 27,
+              "content": "    steps:"
+            },
+            {
+              "type": "context",
+              "old_line": 28,
+              "new_line": 28,
+              "content": "      - name: Checkout full history"
+            },
+            {
+              "type": "context",
+              "old_line": 29,
+              "new_line": 29,
+              "content": "        uses: actions/checkout@v4"
+            },
+            {
+              "type": "context",
+              "old_line": 30,
+              "new_line": 30,
+              "content": "        with:"
+            },
+            {
+              "type": "context",
+              "old_line": 31,
+              "new_line": 31,
+              "content": "          fetch-depth: 0"
+            },
+            {
+              "type": "context",
+              "old_line": 32,
+              "new_line": 32,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 33,
+              "new_line": 33,
+              "content": "      - name: Capture exact push diff"
+            },
+            {
+              "type": "context",
+              "old_line": 34,
+              "new_line": 34,
+              "content": "        env:"
+            },
+            {
+              "type": "context",
+              "old_line": 35,
+              "new_line": 35,
+              "content": "          GITHUB_EVENT_BEFORE: ${{ github.event.before }}"
+            },
+            {
+              "type": "context",
+              "old_line": 36,
+              "new_line": 36,
+              "content": "          GITHUB_SHA: ${{ github.sha }}"
+            },
+            {
+              "type": "context",
+              "old_line": 37,
+              "new_line": 37,
+              "content": "          GITHUB_EVENT_PATH: ${{ github.event_path }}"
+            },
+            {
+              "type": "context",
+              "old_line": 38,
+              "new_line": 38,
+              "content": "          GITHUB_REPOSITORY: ${{ github.repository }}"
+            },
+            {
+              "type": "context",
+              "old_line": 39,
+              "new_line": 39,
+              "content": "          GITHUB_SERVER_URL: ${{ github.server_url }}"
+            },
+            {
+              "type": "context",
+              "old_line": 40,
+              "new_line": 40,
+              "content": "          GITHUB_REF_NAME: ${{ github.ref_name }}"
+            },
+            {
+              "type": "context",
+              "old_line": 41,
+              "new_line": 41,
+              "content": "          GITHUB_RUN_ID: ${{ github.run_id }}"
+            },
+            {
+              "type": "context",
+              "old_line": 42,
+              "new_line": 42,
+              "content": "        run: python3 scripts/capture-diff.py"
+            },
+            {
+              "type": "context",
+              "old_line": 43,
+              "new_line": 43,
+              "content": ""
+            },
+            {
+              "type": "added",
+              "new_line": 44,
+              "content": "      - name: Run live security detection"
+            },
+            {
+              "type": "added",
+              "new_line": 45,
+              "content": "        id: security"
+            },
+            {
+              "type": "added",
+              "new_line": 46,
+              "content": "        uses: dis-craft/Pre-Prod-Orchestrator/.github/actions/security-engine@Adi-initial"
+            },
+            {
+              "type": "added",
+              "new_line": 47,
+              "content": "        with:"
+            },
+            {
+              "type": "added",
+              "new_line": 48,
+              "content": "          scan-input: data/latest.json"
+            },
+            {
+              "type": "added",
+              "new_line": 49,
+              "content": "          scan-output: .preprod/baseline-scan"
+            },
+            {
+              "type": "added",
+              "new_line": 50,
+              "content": "          generate-remediation: \"false\""
+            },
+            {
+              "type": "added",
+              "new_line": 51,
+              "content": ""
+            },
+            {
+              "type": "added",
+              "new_line": 52,
+              "content": "      - name: Attach findings to published scan"
+            },
+            {
+              "type": "added",
+              "new_line": 53,
+              "content": "        env:"
+            },
+            {
+              "type": "added",
+              "new_line": 54,
+              "content": "          FINDINGS: ${{ steps.security.outputs.findings }}"
+            },
+            {
+              "type": "added",
+              "new_line": 55,
+              "content": "        run: |"
+            },
+            {
+              "type": "added",
+              "new_line": 56,
+              "content": "          set -euo pipefail"
+            },
+            {
+              "type": "added",
+              "new_line": 57,
+              "content": "          test -n \"$FINDINGS\""
+            },
+            {
+              "type": "added",
+              "new_line": 58,
+              "content": "          python3 scripts/attach-security-findings.py --scan data/latest.json --findings \"$FINDINGS\""
+            },
+            {
+              "type": "context",
+              "old_line": 44,
+              "new_line": 59,
+              "content": "      - name: Persist generated scan data"
+            },
+            {
+              "type": "context",
+              "old_line": 45,
+              "new_line": 60,
+              "content": "        run: |"
+            },
+            {
+              "type": "context",
+              "old_line": 46,
+              "new_line": 61,
+              "content": "          git config user.name \"github-actions[bot]\""
+            },
+            {
+              "type": "context",
+              "old_line": 47,
+              "new_line": 62,
+              "content": "          git config user.email \"41898282+github-actions[bot]@users.noreply.github.com\""
+            },
+            {
+              "type": "context",
+              "old_line": 48,
+              "new_line": 63,
+              "content": "          git add data/latest.json data/index.json data/scans/"
+            },
+            {
+              "type": "context",
+              "old_line": 49,
+              "new_line": 64,
+              "content": "          if git diff --cached --quiet; then"
+            },
+            {
+              "type": "context",
+              "old_line": 50,
+              "new_line": 65,
+              "content": "            echo \"No generated data changes to commit.\""
+            },
+            {
+              "type": "context",
+              "old_line": 51,
+              "new_line": 66,
+              "content": "          else"
+            },
+            {
+              "type": "context",
+              "old_line": 52,
+              "new_line": 67,
+              "content": "            git commit -m \"chore: publish scan data [skip ci]\""
+            },
+            {
+              "type": "context",
+              "old_line": 53,
+              "new_line": 68,
+              "content": "            git push origin HEAD:\"$GITHUB_REF_NAME\""
+            },
+            {
+              "type": "context",
+              "old_line": 54,
+              "new_line": 69,
+              "content": "          fi"
+            },
+            {
+              "type": "context",
+              "old_line": 55,
+              "new_line": 70,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 56,
+              "new_line": 71,
+              "content": "      - name: Build isolated Pages site"
+            },
+            {
+              "type": "context",
+              "old_line": 57,
+              "new_line": 72,
+              "content": "        run: |"
+            },
+            {
+              "type": "context",
+              "old_line": 58,
+              "new_line": 73,
+              "content": "          rm -rf .pages"
+            },
+            {
+              "type": "context",
+              "old_line": 59,
+              "new_line": 74,
+              "content": "          mkdir -p .pages/data/scans"
+            },
+            {
+              "type": "context",
+              "old_line": 60,
+              "new_line": 75,
+              "content": "          cp index.html .pages/index.html"
+            },
+            {
+              "type": "context",
+              "old_line": 61,
+              "new_line": 76,
+              "content": "          cp data/latest.json .pages/data/latest.json"
+            },
+            {
+              "type": "context",
+              "old_line": 62,
+              "new_line": 77,
+              "content": "          cp data/index.json .pages/data/index.json"
+            },
+            {
+              "type": "context",
+              "old_line": 63,
+              "new_line": 78,
+              "content": "          cp -R data/scans/. .pages/data/scans/"
+            },
+            {
+              "type": "context",
+              "old_line": 64,
+              "new_line": 79,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 65,
+              "new_line": 80,
+              "content": "          cat > .pages/deployment.json <<EOF"
+            },
+            {
+              "type": "context",
+              "old_line": 66,
+              "new_line": 81,
+              "content": "          {"
+            },
+            {
+              "type": "context",
+              "old_line": 67,
+              "new_line": 82,
+              "content": "            \"deployed_commit\": \"${{ github.sha }}\","
+            },
+            {
+              "type": "context",
+              "old_line": 68,
+              "new_line": 83,
+              "content": "            \"deployed_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\","
+            },
+            {
+              "type": "context",
+              "old_line": 69,
+              "new_line": 84,
+              "content": "            \"workflow_run\": \"${{ github.run_id }}\""
+            },
+            {
+              "type": "context",
+              "old_line": 70,
+              "new_line": 85,
+              "content": "          }"
+            },
+            {
+              "type": "context",
+              "old_line": 71,
+              "new_line": 86,
+              "content": "          EOF"
+            },
+            {
+              "type": "context",
+              "old_line": 72,
+              "new_line": 87,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 73,
+              "new_line": 88,
+              "content": "          echo \"Pages payload:\""
+            },
+            {
+              "type": "context",
+              "old_line": 74,
+              "new_line": 89,
+              "content": "          find .pages -type f -maxdepth 4 -print"
+            },
+            {
+              "type": "context",
+              "old_line": 75,
+              "new_line": 90,
+              "content": "          echo \"Latest scan:\""
+            },
+            {
+              "type": "context",
+              "old_line": 76,
+              "new_line": 91,
+              "content": "          python3 -m json.tool .pages/data/latest.json | head -80"
+            },
+            {
+              "type": "context",
+              "old_line": 77,
+              "new_line": 92,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 78,
+              "new_line": 93,
+              "content": "      - name: Configure GitHub Pages"
+            },
+            {
+              "type": "context",
+              "old_line": 79,
+              "new_line": 94,
+              "content": "        uses: actions/configure-pages@v5"
+            },
+            {
+              "type": "context",
+              "old_line": 80,
+              "new_line": 95,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 81,
+              "new_line": 96,
+              "content": "      - name: Upload Pages artifact"
+            },
+            {
+              "type": "context",
+              "old_line": 82,
+              "new_line": 97,
+              "content": "        uses: actions/upload-pages-artifact@v4"
+            },
+            {
+              "type": "context",
+              "old_line": 83,
+              "new_line": 98,
+              "content": "        with:"
+            },
+            {
+              "type": "context",
+              "old_line": 84,
+              "new_line": 99,
+              "content": "          path: .pages"
+            },
+            {
+              "type": "context",
+              "old_line": 85,
+              "new_line": 100,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 86,
+              "new_line": 101,
+              "content": "      - name: Deploy to GitHub Pages"
+            },
+            {
+              "type": "context",
+              "old_line": 87,
+              "new_line": 102,
+              "content": "        id: deployment"
+            },
+            {
+              "type": "context",
+              "old_line": 88,
+              "new_line": 103,
+              "content": "        uses: actions/deploy-pages@v4"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 44,
+          "content": "      - name: Run live security detection"
+        },
+        {
+          "type": "added",
+          "new_line": 45,
+          "content": "        id: security"
+        },
+        {
+          "type": "added",
+          "new_line": 46,
+          "content": "        uses: dis-craft/Pre-Prod-Orchestrator/.github/actions/security-engine@Adi-initial"
+        },
+        {
+          "type": "added",
+          "new_line": 47,
+          "content": "        with:"
+        },
+        {
+          "type": "added",
+          "new_line": 48,
+          "content": "          scan-input: data/latest.json"
+        },
+        {
+          "type": "added",
+          "new_line": 49,
+          "content": "          scan-output: .preprod/baseline-scan"
+        },
+        {
+          "type": "added",
+          "new_line": 50,
+          "content": "          generate-remediation: \"false\""
+        },
+        {
+          "type": "added",
+          "new_line": 51,
+          "content": ""
+        },
+        {
+          "type": "added",
+          "new_line": 52,
+          "content": "      - name: Attach findings to published scan"
+        },
+        {
+          "type": "added",
+          "new_line": 53,
+          "content": "        env:"
+        },
+        {
+          "type": "added",
+          "new_line": 54,
+          "content": "          FINDINGS: ${{ steps.security.outputs.findings }}"
+        },
+        {
+          "type": "added",
+          "new_line": 55,
+          "content": "        run: |"
+        },
+        {
+          "type": "added",
+          "new_line": 56,
+          "content": "          set -euo pipefail"
+        },
+        {
+          "type": "added",
+          "new_line": 57,
+          "content": "          test -n \"$FINDINGS\""
+        },
+        {
+          "type": "added",
+          "new_line": 58,
+          "content": "          python3 scripts/attach-security-findings.py --scan data/latest.json --findings \"$FINDINGS\""
+        }
+      ],
+      "removed_lines": []
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 {
   "schema_version": "1.1",
   "scan": {
-    "id": "scn_cfe65d5c9f5d",
+    "id": "scn_360cf4343111",
     "trigger": "push",
-    "captured_at": "2026-09-20T08:33:06.525431+00:00",
-    "workflow_run_id": "35499857043",
-    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35499857043"
+    "captured_at": "2026-09-20T08:05:04.669284+00:00",
+    "workflow_run_id": "35498581159",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35498581159"
   },
   "repository": {
     "full_name": "dis-craft/Pre-prod-tester",
@@ -13,21 +13,21 @@
     "default_branch": "main"
   },
   "comparison": {
-    "base_commit": "26dc822333ebec14996a2cc156d789429cd5dbb2",
-    "target_commit": "cfe65d5c9f5d59608bf318f6ffad4294884ed953",
-    "range": "26dc822333ebec14996a2cc156d789429cd5dbb2..cfe65d5c9f5d59608bf318f6ffad4294884ed953",
+    "base_commit": "d8d576a0ede787673c0be9c1beb23b91bc1a304d",
+    "target_commit": "360cf434311103ba6d22859b8da945000745039e",
+    "range": "d8d576a0ede787673c0be9c1beb23b91bc1a304d..360cf434311103ba6d22859b8da945000745039e",
     "method": "git diff two-commit comparison"
   },
   "commit": {
-    "before": "26dc822333ebec14996a2cc156d789429cd5dbb2",
-    "after": "cfe65d5c9f5d59608bf318f6ffad4294884ed953",
+    "before": "d8d576a0ede787673c0be9c1beb23b91bc1a304d",
+    "after": "360cf434311103ba6d22859b8da945000745039e",
     "branch": "main",
-    "message": "Merge pull request #2 from dis-craft/security-pipeline-test",
+    "message": "test: verify live vulnerability detection",
     "author": {
       "name": "Srikar T",
       "email": "169169726+dis-craft@users.noreply.github.com"
     },
-    "committed_at": "2026-09-20T14:02:52+05:30"
+    "committed_at": "2026-09-20T13:34:55+05:30"
   },
   "change_summary": {
     "files_changed": 1,
@@ -44,7 +44,7 @@
     },
     "files": [
       {
-        "path": "security-pipeline-test.js",
+        "path": "live-detection-test.js",
         "status": "A",
         "additions": 8,
         "deletions": 0,
@@ -154,7 +154,7 @@
   },
   "files": [
     {
-      "path": "security-pipeline-test.js",
+      "path": "live-detection-test.js",
       "status": "A",
       "language": "js",
       "changes": {
@@ -162,7 +162,7 @@
         "deletions": 0,
         "total": 8
       },
-      "diff": "diff --git a/security-pipeline-test.js b/security-pipeline-test.js\nnew file mode 100644\nindex 0000000..6befa09\n--- /dev/null\n+++ b/security-pipeline-test.js\n@@ -0,0 +1,8 @@\n+const mysql = require(\"mysql2\");\n+\n+function findUser(db, username) {\n+  const query = `SELECT * FROM users WHERE username = '${username}'`;\n+  return db.query(query);\n+}\n+\n+module.exports = { findUser };\n",
+      "diff": "diff --git a/live-detection-test.js b/live-detection-test.js\nnew file mode 100644\nindex 0000000..6befa09\n--- /dev/null\n+++ b/live-detection-test.js\n@@ -0,0 +1,8 @@\n+const mysql = require(\"mysql2\");\n+\n+function findUser(db, username) {\n+  const query = `SELECT * FROM users WHERE username = '${username}'`;\n+  return db.query(query);\n+}\n+\n+module.exports = { findUser };\n",
       "hunks": [
         {
           "header": "@@ -0,0 +1,8 @@",
@@ -258,75 +258,5 @@
       ],
       "removed_lines": []
     }
-  ],
-  "security_engine": {
-    "status": "FAILED",
-    "scanner": "Pre-Prod-Orchestrator/rule_engine",
-    "findings": [
-      {
-        "id": "c8c33074-2b29-4f3c-89a2-c350d49773de",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "security-pipeline-test.js",
-        "line": 4,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 4,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 4:\n  const query = `SELECT * FROM users WHERE username = '${username}'`;",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "security-pipeline-test.js",
-            "line": 4
-          }
-        ]
-      },
-      {
-        "id": "b511eb60-dea9-40e8-8593-8144f2dd3a9f",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "security-pipeline-test.js",
-        "line": 5,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 5,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 5:\n  return db.query(query);",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "security-pipeline-test.js",
-            "line": 5
-          }
-        ]
-      }
-    ],
-    "scan_metadata": {
-      "timestamp": "2026-09-20T08:33:16.681852",
-      "total_findings": 2,
-      "by_severity": {
-        "CRITICAL": 2,
-        "HIGH": 0,
-        "MEDIUM": 0,
-        "LOW": 0,
-        "INFO": 0
-      },
-      "model_used": "none"
-    }
-  }
+  ]
 }

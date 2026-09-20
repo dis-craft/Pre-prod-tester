@@ -41,6 +41,21 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
         run: python3 scripts/capture-diff.py
 
+      - name: Run live security detection
+        id: security
+        uses: dis-craft/Pre-Prod-Orchestrator/.github/actions/security-engine@main
+        with:
+          scan-input: data/latest.json
+          scan-output: .preprod/baseline-scan
+          generate-remediation: "false"
+
+      - name: Attach findings to published scan
+        env:
+          FINDINGS: ${{ steps.security.outputs.findings }}
+        run: |
+          set -euo pipefail
+          test -n "$FINDINGS"
+          python3 scripts/attach-security-findings.py --scan data/latest.json --findings "$FINDINGS"
       - name: Persist generated scan data
         run: |
           git config user.name "github-actions[bot]"

@@ -1,0 +1,262 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_b5b8e231c3ab",
+    "trigger": "push",
+    "captured_at": "2026-09-20T08:05:41.111136+00:00",
+    "workflow_run_id": "35498609107",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35498609107"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "1c9cde047dbddb6c167da71201196b1ecf11f5bd",
+    "target_commit": "b5b8e231c3ab158d3542bde205691184a16045c0",
+    "range": "1c9cde047dbddb6c167da71201196b1ecf11f5bd..b5b8e231c3ab158d3542bde205691184a16045c0",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "1c9cde047dbddb6c167da71201196b1ecf11f5bd",
+    "after": "b5b8e231c3ab158d3542bde205691184a16045c0",
+    "branch": "main",
+    "message": "chore: remove live detection test fixture",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T13:35:30+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 0,
+    "deletions": 8,
+    "net_lines": -8
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": "live-detection-test.js",
+        "status": "D",
+        "additions": 0,
+        "deletions": 8,
+        "added_lines": [],
+        "removed_lines": [
+          {
+            "type": "removed",
+            "old_line": 1,
+            "content": "const mysql = require(\"mysql2\");"
+          },
+          {
+            "type": "removed",
+            "old_line": 2,
+            "content": ""
+          },
+          {
+            "type": "removed",
+            "old_line": 3,
+            "content": "function findUser(db, username) {"
+          },
+          {
+            "type": "removed",
+            "old_line": 4,
+            "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+          },
+          {
+            "type": "removed",
+            "old_line": 5,
+            "content": "  return db.query(query);"
+          },
+          {
+            "type": "removed",
+            "old_line": 6,
+            "content": "}"
+          },
+          {
+            "type": "removed",
+            "old_line": 7,
+            "content": ""
+          },
+          {
+            "type": "removed",
+            "old_line": 8,
+            "content": "module.exports = { findUser };"
+          }
+        ],
+        "hunks": [
+          {
+            "header": "@@ -1,8 +0,0 @@",
+            "old_start": 1,
+            "old_count": 8,
+            "new_start": 0,
+            "new_count": 0,
+            "lines": [
+              {
+                "type": "removed",
+                "old_line": 1,
+                "content": "const mysql = require(\"mysql2\");"
+              },
+              {
+                "type": "removed",
+                "old_line": 2,
+                "content": ""
+              },
+              {
+                "type": "removed",
+                "old_line": 3,
+                "content": "function findUser(db, username) {"
+              },
+              {
+                "type": "removed",
+                "old_line": 4,
+                "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+              },
+              {
+                "type": "removed",
+                "old_line": 5,
+                "content": "  return db.query(query);"
+              },
+              {
+                "type": "removed",
+                "old_line": 6,
+                "content": "}"
+              },
+              {
+                "type": "removed",
+                "old_line": 7,
+                "content": ""
+              },
+              {
+                "type": "removed",
+                "old_line": 8,
+                "content": "module.exports = { findUser };"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": "live-detection-test.js",
+      "status": "D",
+      "language": "js",
+      "changes": {
+        "additions": 0,
+        "deletions": 8,
+        "total": 8
+      },
+      "diff": "diff --git a/live-detection-test.js b/live-detection-test.js\ndeleted file mode 100644\nindex 6befa09..0000000\n--- a/live-detection-test.js\n+++ /dev/null\n@@ -1,8 +0,0 @@\n-const mysql = require(\"mysql2\");\n-\n-function findUser(db, username) {\n-  const query = `SELECT * FROM users WHERE username = '${username}'`;\n-  return db.query(query);\n-}\n-\n-module.exports = { findUser };\n",
+      "hunks": [
+        {
+          "header": "@@ -1,8 +0,0 @@",
+          "old_start": 1,
+          "old_count": 8,
+          "new_start": 0,
+          "new_count": 0,
+          "lines": [
+            {
+              "type": "removed",
+              "old_line": 1,
+              "content": "const mysql = require(\"mysql2\");"
+            },
+            {
+              "type": "removed",
+              "old_line": 2,
+              "content": ""
+            },
+            {
+              "type": "removed",
+              "old_line": 3,
+              "content": "function findUser(db, username) {"
+            },
+            {
+              "type": "removed",
+              "old_line": 4,
+              "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+            },
+            {
+              "type": "removed",
+              "old_line": 5,
+              "content": "  return db.query(query);"
+            },
+            {
+              "type": "removed",
+              "old_line": 6,
+              "content": "}"
+            },
+            {
+              "type": "removed",
+              "old_line": 7,
+              "content": ""
+            },
+            {
+              "type": "removed",
+              "old_line": 8,
+              "content": "module.exports = { findUser };"
+            }
+          ]
+        }
+      ],
+      "added_lines": [],
+      "removed_lines": [
+        {
+          "type": "removed",
+          "old_line": 1,
+          "content": "const mysql = require(\"mysql2\");"
+        },
+        {
+          "type": "removed",
+          "old_line": 2,
+          "content": ""
+        },
+        {
+          "type": "removed",
+          "old_line": 3,
+          "content": "function findUser(db, username) {"
+        },
+        {
+          "type": "removed",
+          "old_line": 4,
+          "content": "  const query = `SELECT * FROM users WHERE username = '${username}'`;"
+        },
+        {
+          "type": "removed",
+          "old_line": 5,
+          "content": "  return db.query(query);"
+        },
+        {
+          "type": "removed",
+          "old_line": 6,
+          "content": "}"
+        },
+        {
+          "type": "removed",
+          "old_line": 7,
+          "content": ""
+        },
+        {
+          "type": "removed",
+          "old_line": 8,
+          "content": "module.exports = { findUser };"
+        }
+      ]
+    }
+  ]
+}

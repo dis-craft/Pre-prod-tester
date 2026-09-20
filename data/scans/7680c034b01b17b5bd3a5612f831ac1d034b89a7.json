@@ -1,0 +1,2348 @@
+{
+  "schema_version": "1.1",
+  "scan": {
+    "id": "scn_7680c034b01b",
+    "trigger": "push",
+    "captured_at": "2026-09-20T08:04:11.871827+00:00",
+    "workflow_run_id": "35498538326",
+    "workflow_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35498538326"
+  },
+  "repository": {
+    "full_name": "dis-craft/Pre-prod-tester",
+    "url": "https://github.com/dis-craft/Pre-prod-tester",
+    "default_branch": "main"
+  },
+  "comparison": {
+    "base_commit": "65072204d034a21bb9d2a4ca4bf6c3fe5c890557",
+    "target_commit": "7680c034b01b17b5bd3a5612f831ac1d034b89a7",
+    "range": "65072204d034a21bb9d2a4ca4bf6c3fe5c890557..7680c034b01b17b5bd3a5612f831ac1d034b89a7",
+    "method": "git diff two-commit comparison"
+  },
+  "commit": {
+    "before": "65072204d034a21bb9d2a4ca4bf6c3fe5c890557",
+    "after": "7680c034b01b17b5bd3a5612f831ac1d034b89a7",
+    "branch": "main",
+    "message": "fix: decode non-UTF8 git diffs safely in reusable capture action",
+    "author": {
+      "name": "Srikar T",
+      "email": "169169726+dis-craft@users.noreply.github.com"
+    },
+    "committed_at": "2026-09-20T13:34:00+05:30"
+  },
+  "change_summary": {
+    "files_changed": 1,
+    "additions": 3,
+    "deletions": 3,
+    "net_lines": 0
+  },
+  "changes": {
+    "format": "github-style-unified-diff",
+    "legend": {
+      "added": "+",
+      "removed": "-",
+      "context": " "
+    },
+    "files": [
+      {
+        "path": ".github/actions/capture-diff/capture.py",
+        "status": "M",
+        "additions": 3,
+        "deletions": 3,
+        "added_lines": [
+          {
+            "type": "added",
+            "new_line": 18,
+            "content": "        [\"git\", *args], cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", stderr=subprocess.DEVNULL"
+          },
+          {
+            "type": "added",
+            "new_line": 76,
+            "content": "        cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\""
+          },
+          {
+            "type": "added",
+            "new_line": 100,
+            "content": "            cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", capture_output=True"
+          }
+        ],
+        "removed_lines": [
+          {
+            "type": "removed",
+            "old_line": 18,
+            "content": "        [\"git\", *args], cwd=ROOT, text=True, stderr=subprocess.DEVNULL"
+          },
+          {
+            "type": "removed",
+            "old_line": 76,
+            "content": "        cwd=ROOT, text=True"
+          },
+          {
+            "type": "removed",
+            "old_line": 100,
+            "content": "            cwd=ROOT, text=True, capture_output=True"
+          }
+        ],
+        "hunks": [
+          {
+            "header": "@@ -1,180 +1,180 @@",
+            "old_start": 1,
+            "old_count": 180,
+            "new_start": 1,
+            "new_count": 180,
+            "lines": [
+              {
+                "type": "context",
+                "old_line": 1,
+                "new_line": 1,
+                "content": "#!/usr/bin/env python3"
+              },
+              {
+                "type": "context",
+                "old_line": 2,
+                "new_line": 2,
+                "content": "from __future__ import annotations"
+              },
+              {
+                "type": "context",
+                "old_line": 3,
+                "new_line": 3,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 4,
+                "new_line": 4,
+                "content": "import json"
+              },
+              {
+                "type": "context",
+                "old_line": 5,
+                "new_line": 5,
+                "content": "import os"
+              },
+              {
+                "type": "context",
+                "old_line": 6,
+                "new_line": 6,
+                "content": "import re"
+              },
+              {
+                "type": "context",
+                "old_line": 7,
+                "new_line": 7,
+                "content": "import subprocess"
+              },
+              {
+                "type": "context",
+                "old_line": 8,
+                "new_line": 8,
+                "content": "from datetime import datetime, timezone"
+              },
+              {
+                "type": "context",
+                "old_line": 9,
+                "new_line": 9,
+                "content": "from pathlib import Path"
+              },
+              {
+                "type": "context",
+                "old_line": 10,
+                "new_line": 10,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 11,
+                "new_line": 11,
+                "content": "ROOT = Path(os.environ.get(\"GITHUB_WORKSPACE\", os.getcwd())).resolve()"
+              },
+              {
+                "type": "context",
+                "old_line": 12,
+                "new_line": 12,
+                "content": "OUTPUT = ROOT / os.environ.get(\"PREPROD_OUTPUT\", \".preprod/scan.json\")"
+              },
+              {
+                "type": "context",
+                "old_line": 13,
+                "new_line": 13,
+                "content": "HUNK_RE = re.compile(r\"^@@ -(\\d+)(?:,(\\d+))? \\+(\\d+)(?:,(\\d+))? @@(?: (.*))?$\")"
+              },
+              {
+                "type": "context",
+                "old_line": 14,
+                "new_line": 14,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 15,
+                "new_line": 15,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 16,
+                "new_line": 16,
+                "content": "def git(*args: str) -> str:"
+              },
+              {
+                "type": "context",
+                "old_line": 17,
+                "new_line": 17,
+                "content": "    return subprocess.check_output("
+              },
+              {
+                "type": "removed",
+                "old_line": 18,
+                "content": "        [\"git\", *args], cwd=ROOT, text=True, stderr=subprocess.DEVNULL"
+              },
+              {
+                "type": "added",
+                "new_line": 18,
+                "content": "        [\"git\", *args], cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", stderr=subprocess.DEVNULL"
+              },
+              {
+                "type": "context",
+                "old_line": 19,
+                "new_line": 19,
+                "content": "    ).strip()"
+              },
+              {
+                "type": "context",
+                "old_line": 20,
+                "new_line": 20,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 21,
+                "new_line": 21,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 22,
+                "new_line": 22,
+                "content": "def parse_patch(patch: str):"
+              },
+              {
+                "type": "context",
+                "old_line": 23,
+                "new_line": 23,
+                "content": "    hunks, added, removed = [], [], []"
+              },
+              {
+                "type": "context",
+                "old_line": 24,
+                "new_line": 24,
+                "content": "    current = None"
+              },
+              {
+                "type": "context",
+                "old_line": 25,
+                "new_line": 25,
+                "content": "    old_line = new_line = 0"
+              },
+              {
+                "type": "context",
+                "old_line": 26,
+                "new_line": 26,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 27,
+                "new_line": 27,
+                "content": "    for raw in patch.splitlines():"
+              },
+              {
+                "type": "context",
+                "old_line": 28,
+                "new_line": 28,
+                "content": "        match = HUNK_RE.match(raw)"
+              },
+              {
+                "type": "context",
+                "old_line": 29,
+                "new_line": 29,
+                "content": "        if match:"
+              },
+              {
+                "type": "context",
+                "old_line": 30,
+                "new_line": 30,
+                "content": "            old_line, new_line = int(match.group(1)), int(match.group(3))"
+              },
+              {
+                "type": "context",
+                "old_line": 31,
+                "new_line": 31,
+                "content": "            current = {"
+              },
+              {
+                "type": "context",
+                "old_line": 32,
+                "new_line": 32,
+                "content": "                \"header\": raw,"
+              },
+              {
+                "type": "context",
+                "old_line": 33,
+                "new_line": 33,
+                "content": "                \"old_start\": old_line,"
+              },
+              {
+                "type": "context",
+                "old_line": 34,
+                "new_line": 34,
+                "content": "                \"old_count\": int(match.group(2) or \"1\"),"
+              },
+              {
+                "type": "context",
+                "old_line": 35,
+                "new_line": 35,
+                "content": "                \"new_start\": new_line,"
+              },
+              {
+                "type": "context",
+                "old_line": 36,
+                "new_line": 36,
+                "content": "                \"new_count\": int(match.group(4) or \"1\"),"
+              },
+              {
+                "type": "context",
+                "old_line": 37,
+                "new_line": 37,
+                "content": "                \"lines\": [],"
+              },
+              {
+                "type": "context",
+                "old_line": 38,
+                "new_line": 38,
+                "content": "            }"
+              },
+              {
+                "type": "context",
+                "old_line": 39,
+                "new_line": 39,
+                "content": "            hunks.append(current)"
+              },
+              {
+                "type": "context",
+                "old_line": 40,
+                "new_line": 40,
+                "content": "            continue"
+              },
+              {
+                "type": "context",
+                "old_line": 41,
+                "new_line": 41,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 42,
+                "new_line": 42,
+                "content": "        if current is None or raw == \"\":"
+              },
+              {
+                "type": "context",
+                "old_line": 43,
+                "new_line": 43,
+                "content": "            continue"
+              },
+              {
+                "type": "context",
+                "old_line": 44,
+                "new_line": 44,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 45,
+                "new_line": 45,
+                "content": "        marker = raw[0]"
+              },
+              {
+                "type": "context",
+                "old_line": 46,
+                "new_line": 46,
+                "content": "        content = raw[1:] if marker in (\"+\", \"-\", \" \") else raw"
+              },
+              {
+                "type": "context",
+                "old_line": 47,
+                "new_line": 47,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 48,
+                "new_line": 48,
+                "content": "        if marker == \"+\":"
+              },
+              {
+                "type": "context",
+                "old_line": 49,
+                "new_line": 49,
+                "content": "            item = {\"type\": \"added\", \"new_line\": new_line, \"content\": content}"
+              },
+              {
+                "type": "context",
+                "old_line": 50,
+                "new_line": 50,
+                "content": "            current[\"lines\"].append(item)"
+              },
+              {
+                "type": "context",
+                "old_line": 51,
+                "new_line": 51,
+                "content": "            added.append(item.copy())"
+              },
+              {
+                "type": "context",
+                "old_line": 52,
+                "new_line": 52,
+                "content": "            new_line += 1"
+              },
+              {
+                "type": "context",
+                "old_line": 53,
+                "new_line": 53,
+                "content": "        elif marker == \"-\":"
+              },
+              {
+                "type": "context",
+                "old_line": 54,
+                "new_line": 54,
+                "content": "            item = {\"type\": \"removed\", \"old_line\": old_line, \"content\": content}"
+              },
+              {
+                "type": "context",
+                "old_line": 55,
+                "new_line": 55,
+                "content": "            current[\"lines\"].append(item)"
+              },
+              {
+                "type": "context",
+                "old_line": 56,
+                "new_line": 56,
+                "content": "            removed.append(item.copy())"
+              },
+              {
+                "type": "context",
+                "old_line": 57,
+                "new_line": 57,
+                "content": "            old_line += 1"
+              },
+              {
+                "type": "context",
+                "old_line": 58,
+                "new_line": 58,
+                "content": "        elif marker == \" \":"
+              },
+              {
+                "type": "context",
+                "old_line": 59,
+                "new_line": 59,
+                "content": "            current[\"lines\"].append({"
+              },
+              {
+                "type": "context",
+                "old_line": 60,
+                "new_line": 60,
+                "content": "                \"type\": \"context\","
+              },
+              {
+                "type": "context",
+                "old_line": 61,
+                "new_line": 61,
+                "content": "                \"old_line\": old_line,"
+              },
+              {
+                "type": "context",
+                "old_line": 62,
+                "new_line": 62,
+                "content": "                \"new_line\": new_line,"
+              },
+              {
+                "type": "context",
+                "old_line": 63,
+                "new_line": 63,
+                "content": "                \"content\": content,"
+              },
+              {
+                "type": "context",
+                "old_line": 64,
+                "new_line": 64,
+                "content": "            })"
+              },
+              {
+                "type": "context",
+                "old_line": 65,
+                "new_line": 65,
+                "content": "            old_line += 1"
+              },
+              {
+                "type": "context",
+                "old_line": 66,
+                "new_line": 66,
+                "content": "            new_line += 1"
+              },
+              {
+                "type": "context",
+                "old_line": 67,
+                "new_line": 67,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 68,
+                "new_line": 68,
+                "content": "    return hunks, added, removed"
+              },
+              {
+                "type": "context",
+                "old_line": 69,
+                "new_line": 69,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 70,
+                "new_line": 70,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 71,
+                "new_line": 71,
+                "content": "def capture(before: str, after: str):"
+              },
+              {
+                "type": "context",
+                "old_line": 72,
+                "new_line": 72,
+                "content": "    base = before if before and set(before) != {\"0\"} else \"4b825dc642cb6eb9a060e54bf8d69288fbee4904\""
+              },
+              {
+                "type": "context",
+                "old_line": 73,
+                "new_line": 73,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 74,
+                "new_line": 74,
+                "content": "    statuses = subprocess.check_output("
+              },
+              {
+                "type": "context",
+                "old_line": 75,
+                "new_line": 75,
+                "content": "        [\"git\", \"diff\", \"--no-ext-diff\", \"--name-status\", base, after, \"--\", \".\"],"
+              },
+              {
+                "type": "removed",
+                "old_line": 76,
+                "content": "        cwd=ROOT, text=True"
+              },
+              {
+                "type": "added",
+                "new_line": 76,
+                "content": "        cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\""
+              },
+              {
+                "type": "context",
+                "old_line": 77,
+                "new_line": 77,
+                "content": "    )"
+              },
+              {
+                "type": "context",
+                "old_line": 78,
+                "new_line": 78,
+                "content": "    numstats = subprocess.check_output("
+              },
+              {
+                "type": "context",
+                "old_line": 79,
+                "new_line": 79,
+                "content": "        [\"git\", \"diff\", \"--no-ext-diff\", \"--numstat\", base, after, \"--\", \".\"],"
+              },
+              {
+                "type": "context",
+                "old_line": 80,
+                "new_line": 80,
+                "content": "        cwd=ROOT, text=True"
+              },
+              {
+                "type": "context",
+                "old_line": 81,
+                "new_line": 81,
+                "content": "    )"
+              },
+              {
+                "type": "context",
+                "old_line": 82,
+                "new_line": 82,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 83,
+                "new_line": 83,
+                "content": "    stats = {}"
+              },
+              {
+                "type": "context",
+                "old_line": 84,
+                "new_line": 84,
+                "content": "    for row in numstats.splitlines():"
+              },
+              {
+                "type": "context",
+                "old_line": 85,
+                "new_line": 85,
+                "content": "        parts = row.split(\"\\t\")"
+              },
+              {
+                "type": "context",
+                "old_line": 86,
+                "new_line": 86,
+                "content": "        if len(parts) >= 3:"
+              },
+              {
+                "type": "context",
+                "old_line": 87,
+                "new_line": 87,
+                "content": "            stats[parts[-1]] = ("
+              },
+              {
+                "type": "context",
+                "old_line": 88,
+                "new_line": 88,
+                "content": "                0 if parts[0] == \"-\" else int(parts[0]),"
+              },
+              {
+                "type": "context",
+                "old_line": 89,
+                "new_line": 89,
+                "content": "                0 if parts[1] == \"-\" else int(parts[1]),"
+              },
+              {
+                "type": "context",
+                "old_line": 90,
+                "new_line": 90,
+                "content": "            )"
+              },
+              {
+                "type": "context",
+                "old_line": 91,
+                "new_line": 91,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 92,
+                "new_line": 92,
+                "content": "    files = []"
+              },
+              {
+                "type": "context",
+                "old_line": 93,
+                "new_line": 93,
+                "content": "    for row in statuses.splitlines():"
+              },
+              {
+                "type": "context",
+                "old_line": 94,
+                "new_line": 94,
+                "content": "        parts = row.split(\"\\t\")"
+              },
+              {
+                "type": "context",
+                "old_line": 95,
+                "new_line": 95,
+                "content": "        status, path = parts[0], parts[-1]"
+              },
+              {
+                "type": "context",
+                "old_line": 96,
+                "new_line": 96,
+                "content": "        additions, deletions = stats.get(path, (0, 0))"
+              },
+              {
+                "type": "context",
+                "old_line": 97,
+                "new_line": 97,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 98,
+                "new_line": 98,
+                "content": "        patch = subprocess.run("
+              },
+              {
+                "type": "context",
+                "old_line": 99,
+                "new_line": 99,
+                "content": "            [\"git\", \"diff\", \"--no-ext-diff\", \"--unified=80\", base, after, \"--\", path],"
+              },
+              {
+                "type": "removed",
+                "old_line": 100,
+                "content": "            cwd=ROOT, text=True, capture_output=True"
+              },
+              {
+                "type": "added",
+                "new_line": 100,
+                "content": "            cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", capture_output=True"
+              },
+              {
+                "type": "context",
+                "old_line": 101,
+                "new_line": 101,
+                "content": "        ).stdout"
+              },
+              {
+                "type": "context",
+                "old_line": 102,
+                "new_line": 102,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 103,
+                "new_line": 103,
+                "content": "        hunks, added_lines, removed_lines = parse_patch(patch)"
+              },
+              {
+                "type": "context",
+                "old_line": 104,
+                "new_line": 104,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 105,
+                "new_line": 105,
+                "content": "        files.append({"
+              },
+              {
+                "type": "context",
+                "old_line": 106,
+                "new_line": 106,
+                "content": "            \"path\": path,"
+              },
+              {
+                "type": "context",
+                "old_line": 107,
+                "new_line": 107,
+                "content": "            \"status\": status,"
+              },
+              {
+                "type": "context",
+                "old_line": 108,
+                "new_line": 108,
+                "content": "            \"language\": Path(path).suffix.lstrip(\".\") or \"unknown\","
+              },
+              {
+                "type": "context",
+                "old_line": 109,
+                "new_line": 109,
+                "content": "            \"changes\": {"
+              },
+              {
+                "type": "context",
+                "old_line": 110,
+                "new_line": 110,
+                "content": "                \"additions\": additions,"
+              },
+              {
+                "type": "context",
+                "old_line": 111,
+                "new_line": 111,
+                "content": "                \"deletions\": deletions,"
+              },
+              {
+                "type": "context",
+                "old_line": 112,
+                "new_line": 112,
+                "content": "                \"total\": additions + deletions,"
+              },
+              {
+                "type": "context",
+                "old_line": 113,
+                "new_line": 113,
+                "content": "            },"
+              },
+              {
+                "type": "context",
+                "old_line": 114,
+                "new_line": 114,
+                "content": "            \"diff\": patch,"
+              },
+              {
+                "type": "context",
+                "old_line": 115,
+                "new_line": 115,
+                "content": "            \"hunks\": hunks,"
+              },
+              {
+                "type": "context",
+                "old_line": 116,
+                "new_line": 116,
+                "content": "            \"added_lines\": added_lines,"
+              },
+              {
+                "type": "context",
+                "old_line": 117,
+                "new_line": 117,
+                "content": "            \"removed_lines\": removed_lines,"
+              },
+              {
+                "type": "context",
+                "old_line": 118,
+                "new_line": 118,
+                "content": "        })"
+              },
+              {
+                "type": "context",
+                "old_line": 119,
+                "new_line": 119,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 120,
+                "new_line": 120,
+                "content": "    return files"
+              },
+              {
+                "type": "context",
+                "old_line": 121,
+                "new_line": 121,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 122,
+                "new_line": 122,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 123,
+                "new_line": 123,
+                "content": "def main():"
+              },
+              {
+                "type": "context",
+                "old_line": 124,
+                "new_line": 124,
+                "content": "    before = os.environ.get(\"PREPROD_BEFORE\", \"\")"
+              },
+              {
+                "type": "context",
+                "old_line": 125,
+                "new_line": 125,
+                "content": "    after = os.environ.get(\"PREPROD_AFTER\") or git(\"rev-parse\", \"HEAD\")"
+              },
+              {
+                "type": "context",
+                "old_line": 126,
+                "new_line": 126,
+                "content": "    repo = os.environ.get(\"PREPROD_REPOSITORY\", \"\")"
+              },
+              {
+                "type": "context",
+                "old_line": 127,
+                "new_line": 127,
+                "content": "    server = os.environ.get(\"PREPROD_SERVER\", \"https://github.com\")"
+              },
+              {
+                "type": "context",
+                "old_line": 128,
+                "new_line": 128,
+                "content": "    branch = os.environ.get(\"PREPROD_REF\", \"\")"
+              },
+              {
+                "type": "context",
+                "old_line": 129,
+                "new_line": 129,
+                "content": "    run_id = os.environ.get(\"PREPROD_RUN_ID\", \"\")"
+              },
+              {
+                "type": "context",
+                "old_line": 130,
+                "new_line": 130,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 131,
+                "new_line": 131,
+                "content": "    files = capture(before, after)"
+              },
+              {
+                "type": "context",
+                "old_line": 132,
+                "new_line": 132,
+                "content": "    additions = sum(f[\"changes\"][\"additions\"] for f in files)"
+              },
+              {
+                "type": "context",
+                "old_line": 133,
+                "new_line": 133,
+                "content": "    deletions = sum(f[\"changes\"][\"deletions\"] for f in files)"
+              },
+              {
+                "type": "context",
+                "old_line": 134,
+                "new_line": 134,
+                "content": ""
+              },
+              {
+                "type": "context",
+                "old_line": 135,
+                "new_line": 135,
+                "content": "    payload = {"
+              },
+              {
+                "type": "context",
+                "old_line": 136,
+                "new_line": 136,
+                "content": "        \"schema_version\": \"1.0\","
+              },
+              {
+                "type": "context",
+                "old_line": 137,
+                "new_line": 137,
+                "content": "        \"scan\": {"
+              },
+              {
+                "type": "context",
+                "old_line": 138,
+                "new_line": 138,
+                "content": "            \"id\": f\"scn_{after[:12]}\","
+              },
+              {
+                "type": "context",
+                "old_line": 139,
+                "new_line": 139,
+                "content": "            \"trigger\": \"push\","
+              },
+              {
+                "type": "context",
+                "old_line": 140,
+                "new_line": 140,
+                "content": "            \"captured_at\": datetime.now(timezone.utc).isoformat(),"
+              },
+              {
+                "type": "context",
+                "old_line": 141,
+                "new_line": 141,
+                "content": "            \"workflow_run_id\": run_id,"
+              },
+              {
+                "type": "context",
+                "old_line": 142,
+                "new_line": 142,
+                "content": "            \"workflow_url\": f\"{server}/{repo}/actions/runs/{run_id}\","
+              },
+              {
+                "type": "context",
+                "old_line": 143,
+                "new_line": 143,
+                "content": "        },"
+              },
+              {
+                "type": "context",
+                "old_line": 144,
+                "new_line": 144,
+                "content": "        \"repository\": {"
+              },
+              {
+                "type": "context",
+                "old_line": 145,
+                "new_line": 145,
+                "content": "            \"full_name\": repo,"
+              },
+              {
+                "type": "context",
+                "old_line": 146,
+                "new_line": 146,
+                "content": "            \"url\": f\"{server}/{repo}\","
+              },
+              {
+                "type": "context",
+                "old_line": 147,
+                "new_line": 147,
+                "content": "            \"default_branch\": branch,"
+              },
+              {
+                "type": "context",
+                "old_line": 148,
+                "new_line": 148,
+                "content": "        },"
+              },
+              {
+                "type": "context",
+                "old_line": 149,
+                "new_line": 149,
+                "content": "        \"comparison\": {"
+              },
+              {
+                "type": "context",
+                "old_line": 150,
+                "new_line": 150,
+                "content": "            \"base_commit\": before,"
+              },
+              {
+                "type": "context",
+                "old_line": 151,
+                "new_line": 151,
+                "content": "            \"target_commit\": after,"
+              },
+              {
+                "type": "context",
+                "old_line": 152,
+                "new_line": 152,
+                "content": "            \"range\": f\"{before}..{after}\" if before else after,"
+              },
+              {
+                "type": "context",
+                "old_line": 153,
+                "new_line": 153,
+                "content": "            \"method\": \"git diff two-commit comparison\","
+              },
+              {
+                "type": "context",
+                "old_line": 154,
+                "new_line": 154,
+                "content": "        },"
+              },
+              {
+                "type": "context",
+                "old_line": 155,
+                "new_line": 155,
+                "content": "        \"commit\": {"
+              },
+              {
+                "type": "context",
+                "old_line": 156,
+                "new_line": 156,
+                "content": "            \"before\": before,"
+              },
+              {
+                "type": "context",
+                "old_line": 157,
+                "new_line": 157,
+                "content": "            \"after\": after,"
+              },
+              {
+                "type": "context",
+                "old_line": 158,
+                "new_line": 158,
+                "content": "            \"branch\": branch,"
+              },
+              {
+                "type": "context",
+                "old_line": 159,
+                "new_line": 159,
+                "content": "            \"message\": git(\"show\", \"-s\", \"--format=%s\", after),"
+              },
+              {
+                "type": "context",
+                "old_line": 160,
+                "new_line": 160,
+                "content": "            \"author\": {"
+              },
+              {
+                "type": "context",
+                "old_line": 161,
+                "new_line": 161,
+                "content": "                \"name\": git(\"show\", \"-s\", \"--format=%an\", after),"
+              },
+              {
+                "type": "context",
+                "old_line": 162,
+                "new_line": 162,
+                "content": "                \"email\": git(\"show\", \"-s\", \"--format=%ae\", after),"
+              },
+              {
+                "type": "context",
+                "old_line": 163,
+                "new_line": 163,
+                "content": "            },"
+              },
+              {
+                "type": "context",
+                "old_line": 164,
+                "new_line": 164,
+                "content": "            \"committed_at\": git(\"show\", \"-s\", \"--format=%cI\", after),"
+              },
+              {
+                "type": "context",
+                "old_line": 165,
+                "new_line": 165,
+                "content": "        },"
+              },
+              {
+                "type": "context",
+                "old_line": 166,
+                "new_line": 166,
+                "content": "        \"change_summary\": {"
+              },
+              {
+                "type": "context",
+                "old_line": 167,
+                "new_line": 167,
+                "content": "            \"files_changed\": len(files),"
+              },
+              {
+                "type": "context",
+                "old_line": 168,
+                "new_line": 168,
+                "content": "            \"additions\": additions,"
+              },
+              {
+                "type": "context",
+                "old_line": 169,
+                "new_line": 169,
+                "content": "            \"deletions\": deletions,"
+              },
+              {
+                "type": "context",
+                "old_line": 170,
+                "new_line": 170,
+                "content": "            \"net_lines\": additions - deletions,"
+              },
+              {
+                "type": "context",
+                "old_line": 171,
+                "new_line": 171,
+                "content": "        },"
+              },
+              {
+                "type": "context",
+                "old_line": 172,
+                "new_line": 172,
+                "content": "        \"changes\": {"
+              },
+              {
+                "type": "context",
+                "old_line": 173,
+                "new_line": 173,
+                "content": "            \"format\": \"github-style-unified-diff\","
+              },
+              {
+                "type": "context",
+                "old_line": 174,
+                "new_line": 174,
+                "content": "            \"legend\": {\"added\": \"+\", \"removed\": \"-\", \"context\": \" \"},"
+              },
+              {
+                "type": "context",
+                "old_line": 175,
+                "new_line": 175,
+                "content": "            \"files\": ["
+              },
+              {
+                "type": "context",
+                "old_line": 176,
+                "new_line": 176,
+                "content": "                {"
+              },
+              {
+                "type": "context",
+                "old_line": 177,
+                "new_line": 177,
+                "content": "                    \"path\": f[\"path\"],"
+              },
+              {
+                "type": "context",
+                "old_line": 178,
+                "new_line": 178,
+                "content": "                    \"status\": f[\"status\"],"
+              },
+              {
+                "type": "context",
+                "old_line": 179,
+                "new_line": 179,
+                "content": "                    \"additions\": f[\"changes\"][\"additions\"],"
+              },
+              {
+                "type": "context",
+                "old_line": 180,
+                "new_line": 180,
+                "content": "                    \"deletions\": f[\"changes\"][\"deletions\"],"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "security_context": {
+    "detection_enabled": false,
+    "secrets_scan": false,
+    "sast_scan": false,
+    "dependency_scan": false,
+    "llm_analysis": false
+  },
+  "files": [
+    {
+      "path": ".github/actions/capture-diff/capture.py",
+      "status": "M",
+      "language": "py",
+      "changes": {
+        "additions": 3,
+        "deletions": 3,
+        "total": 6
+      },
+      "diff": "diff --git a/.github/actions/capture-diff/capture.py b/.github/actions/capture-diff/capture.py\nindex 640845a..bc30588 100644\n--- a/.github/actions/capture-diff/capture.py\n+++ b/.github/actions/capture-diff/capture.py\n@@ -1,180 +1,180 @@\n #!/usr/bin/env python3\n from __future__ import annotations\n \n import json\n import os\n import re\n import subprocess\n from datetime import datetime, timezone\n from pathlib import Path\n \n ROOT = Path(os.environ.get(\"GITHUB_WORKSPACE\", os.getcwd())).resolve()\n OUTPUT = ROOT / os.environ.get(\"PREPROD_OUTPUT\", \".preprod/scan.json\")\n HUNK_RE = re.compile(r\"^@@ -(\\d+)(?:,(\\d+))? \\+(\\d+)(?:,(\\d+))? @@(?: (.*))?$\")\n \n \n def git(*args: str) -> str:\n     return subprocess.check_output(\n-        [\"git\", *args], cwd=ROOT, text=True, stderr=subprocess.DEVNULL\n+        [\"git\", *args], cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", stderr=subprocess.DEVNULL\n     ).strip()\n \n \n def parse_patch(patch: str):\n     hunks, added, removed = [], [], []\n     current = None\n     old_line = new_line = 0\n \n     for raw in patch.splitlines():\n         match = HUNK_RE.match(raw)\n         if match:\n             old_line, new_line = int(match.group(1)), int(match.group(3))\n             current = {\n                 \"header\": raw,\n                 \"old_start\": old_line,\n                 \"old_count\": int(match.group(2) or \"1\"),\n                 \"new_start\": new_line,\n                 \"new_count\": int(match.group(4) or \"1\"),\n                 \"lines\": [],\n             }\n             hunks.append(current)\n             continue\n \n         if current is None or raw == \"\":\n             continue\n \n         marker = raw[0]\n         content = raw[1:] if marker in (\"+\", \"-\", \" \") else raw\n \n         if marker == \"+\":\n             item = {\"type\": \"added\", \"new_line\": new_line, \"content\": content}\n             current[\"lines\"].append(item)\n             added.append(item.copy())\n             new_line += 1\n         elif marker == \"-\":\n             item = {\"type\": \"removed\", \"old_line\": old_line, \"content\": content}\n             current[\"lines\"].append(item)\n             removed.append(item.copy())\n             old_line += 1\n         elif marker == \" \":\n             current[\"lines\"].append({\n                 \"type\": \"context\",\n                 \"old_line\": old_line,\n                 \"new_line\": new_line,\n                 \"content\": content,\n             })\n             old_line += 1\n             new_line += 1\n \n     return hunks, added, removed\n \n \n def capture(before: str, after: str):\n     base = before if before and set(before) != {\"0\"} else \"4b825dc642cb6eb9a060e54bf8d69288fbee4904\"\n \n     statuses = subprocess.check_output(\n         [\"git\", \"diff\", \"--no-ext-diff\", \"--name-status\", base, after, \"--\", \".\"],\n-        cwd=ROOT, text=True\n+        cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\"\n     )\n     numstats = subprocess.check_output(\n         [\"git\", \"diff\", \"--no-ext-diff\", \"--numstat\", base, after, \"--\", \".\"],\n         cwd=ROOT, text=True\n     )\n \n     stats = {}\n     for row in numstats.splitlines():\n         parts = row.split(\"\\t\")\n         if len(parts) >= 3:\n             stats[parts[-1]] = (\n                 0 if parts[0] == \"-\" else int(parts[0]),\n                 0 if parts[1] == \"-\" else int(parts[1]),\n             )\n \n     files = []\n     for row in statuses.splitlines():\n         parts = row.split(\"\\t\")\n         status, path = parts[0], parts[-1]\n         additions, deletions = stats.get(path, (0, 0))\n \n         patch = subprocess.run(\n             [\"git\", \"diff\", \"--no-ext-diff\", \"--unified=80\", base, after, \"--\", path],\n-            cwd=ROOT, text=True, capture_output=True\n+            cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", capture_output=True\n         ).stdout\n \n         hunks, added_lines, removed_lines = parse_patch(patch)\n \n         files.append({\n             \"path\": path,\n             \"status\": status,\n             \"language\": Path(path).suffix.lstrip(\".\") or \"unknown\",\n             \"changes\": {\n                 \"additions\": additions,\n                 \"deletions\": deletions,\n                 \"total\": additions + deletions,\n             },\n             \"diff\": patch,\n             \"hunks\": hunks,\n             \"added_lines\": added_lines,\n             \"removed_lines\": removed_lines,\n         })\n \n     return files\n \n \n def main():\n     before = os.environ.get(\"PREPROD_BEFORE\", \"\")\n     after = os.environ.get(\"PREPROD_AFTER\") or git(\"rev-parse\", \"HEAD\")\n     repo = os.environ.get(\"PREPROD_REPOSITORY\", \"\")\n     server = os.environ.get(\"PREPROD_SERVER\", \"https://github.com\")\n     branch = os.environ.get(\"PREPROD_REF\", \"\")\n     run_id = os.environ.get(\"PREPROD_RUN_ID\", \"\")\n \n     files = capture(before, after)\n     additions = sum(f[\"changes\"][\"additions\"] for f in files)\n     deletions = sum(f[\"changes\"][\"deletions\"] for f in files)\n \n     payload = {\n         \"schema_version\": \"1.0\",\n         \"scan\": {\n             \"id\": f\"scn_{after[:12]}\",\n             \"trigger\": \"push\",\n             \"captured_at\": datetime.now(timezone.utc).isoformat(),\n             \"workflow_run_id\": run_id,\n             \"workflow_url\": f\"{server}/{repo}/actions/runs/{run_id}\",\n         },\n         \"repository\": {\n             \"full_name\": repo,\n             \"url\": f\"{server}/{repo}\",\n             \"default_branch\": branch,\n         },\n         \"comparison\": {\n             \"base_commit\": before,\n             \"target_commit\": after,\n             \"range\": f\"{before}..{after}\" if before else after,\n             \"method\": \"git diff two-commit comparison\",\n         },\n         \"commit\": {\n             \"before\": before,\n             \"after\": after,\n             \"branch\": branch,\n             \"message\": git(\"show\", \"-s\", \"--format=%s\", after),\n             \"author\": {\n                 \"name\": git(\"show\", \"-s\", \"--format=%an\", after),\n                 \"email\": git(\"show\", \"-s\", \"--format=%ae\", after),\n             },\n             \"committed_at\": git(\"show\", \"-s\", \"--format=%cI\", after),\n         },\n         \"change_summary\": {\n             \"files_changed\": len(files),\n             \"additions\": additions,\n             \"deletions\": deletions,\n             \"net_lines\": additions - deletions,\n         },\n         \"changes\": {\n             \"format\": \"github-style-unified-diff\",\n             \"legend\": {\"added\": \"+\", \"removed\": \"-\", \"context\": \" \"},\n             \"files\": [\n                 {\n                     \"path\": f[\"path\"],\n                     \"status\": f[\"status\"],\n                     \"additions\": f[\"changes\"][\"additions\"],\n                     \"deletions\": f[\"changes\"][\"deletions\"],\n",
+      "hunks": [
+        {
+          "header": "@@ -1,180 +1,180 @@",
+          "old_start": 1,
+          "old_count": 180,
+          "new_start": 1,
+          "new_count": 180,
+          "lines": [
+            {
+              "type": "context",
+              "old_line": 1,
+              "new_line": 1,
+              "content": "#!/usr/bin/env python3"
+            },
+            {
+              "type": "context",
+              "old_line": 2,
+              "new_line": 2,
+              "content": "from __future__ import annotations"
+            },
+            {
+              "type": "context",
+              "old_line": 3,
+              "new_line": 3,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 4,
+              "new_line": 4,
+              "content": "import json"
+            },
+            {
+              "type": "context",
+              "old_line": 5,
+              "new_line": 5,
+              "content": "import os"
+            },
+            {
+              "type": "context",
+              "old_line": 6,
+              "new_line": 6,
+              "content": "import re"
+            },
+            {
+              "type": "context",
+              "old_line": 7,
+              "new_line": 7,
+              "content": "import subprocess"
+            },
+            {
+              "type": "context",
+              "old_line": 8,
+              "new_line": 8,
+              "content": "from datetime import datetime, timezone"
+            },
+            {
+              "type": "context",
+              "old_line": 9,
+              "new_line": 9,
+              "content": "from pathlib import Path"
+            },
+            {
+              "type": "context",
+              "old_line": 10,
+              "new_line": 10,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 11,
+              "new_line": 11,
+              "content": "ROOT = Path(os.environ.get(\"GITHUB_WORKSPACE\", os.getcwd())).resolve()"
+            },
+            {
+              "type": "context",
+              "old_line": 12,
+              "new_line": 12,
+              "content": "OUTPUT = ROOT / os.environ.get(\"PREPROD_OUTPUT\", \".preprod/scan.json\")"
+            },
+            {
+              "type": "context",
+              "old_line": 13,
+              "new_line": 13,
+              "content": "HUNK_RE = re.compile(r\"^@@ -(\\d+)(?:,(\\d+))? \\+(\\d+)(?:,(\\d+))? @@(?: (.*))?$\")"
+            },
+            {
+              "type": "context",
+              "old_line": 14,
+              "new_line": 14,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 15,
+              "new_line": 15,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 16,
+              "new_line": 16,
+              "content": "def git(*args: str) -> str:"
+            },
+            {
+              "type": "context",
+              "old_line": 17,
+              "new_line": 17,
+              "content": "    return subprocess.check_output("
+            },
+            {
+              "type": "removed",
+              "old_line": 18,
+              "content": "        [\"git\", *args], cwd=ROOT, text=True, stderr=subprocess.DEVNULL"
+            },
+            {
+              "type": "added",
+              "new_line": 18,
+              "content": "        [\"git\", *args], cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", stderr=subprocess.DEVNULL"
+            },
+            {
+              "type": "context",
+              "old_line": 19,
+              "new_line": 19,
+              "content": "    ).strip()"
+            },
+            {
+              "type": "context",
+              "old_line": 20,
+              "new_line": 20,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 21,
+              "new_line": 21,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 22,
+              "new_line": 22,
+              "content": "def parse_patch(patch: str):"
+            },
+            {
+              "type": "context",
+              "old_line": 23,
+              "new_line": 23,
+              "content": "    hunks, added, removed = [], [], []"
+            },
+            {
+              "type": "context",
+              "old_line": 24,
+              "new_line": 24,
+              "content": "    current = None"
+            },
+            {
+              "type": "context",
+              "old_line": 25,
+              "new_line": 25,
+              "content": "    old_line = new_line = 0"
+            },
+            {
+              "type": "context",
+              "old_line": 26,
+              "new_line": 26,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 27,
+              "new_line": 27,
+              "content": "    for raw in patch.splitlines():"
+            },
+            {
+              "type": "context",
+              "old_line": 28,
+              "new_line": 28,
+              "content": "        match = HUNK_RE.match(raw)"
+            },
+            {
+              "type": "context",
+              "old_line": 29,
+              "new_line": 29,
+              "content": "        if match:"
+            },
+            {
+              "type": "context",
+              "old_line": 30,
+              "new_line": 30,
+              "content": "            old_line, new_line = int(match.group(1)), int(match.group(3))"
+            },
+            {
+              "type": "context",
+              "old_line": 31,
+              "new_line": 31,
+              "content": "            current = {"
+            },
+            {
+              "type": "context",
+              "old_line": 32,
+              "new_line": 32,
+              "content": "                \"header\": raw,"
+            },
+            {
+              "type": "context",
+              "old_line": 33,
+              "new_line": 33,
+              "content": "                \"old_start\": old_line,"
+            },
+            {
+              "type": "context",
+              "old_line": 34,
+              "new_line": 34,
+              "content": "                \"old_count\": int(match.group(2) or \"1\"),"
+            },
+            {
+              "type": "context",
+              "old_line": 35,
+              "new_line": 35,
+              "content": "                \"new_start\": new_line,"
+            },
+            {
+              "type": "context",
+              "old_line": 36,
+              "new_line": 36,
+              "content": "                \"new_count\": int(match.group(4) or \"1\"),"
+            },
+            {
+              "type": "context",
+              "old_line": 37,
+              "new_line": 37,
+              "content": "                \"lines\": [],"
+            },
+            {
+              "type": "context",
+              "old_line": 38,
+              "new_line": 38,
+              "content": "            }"
+            },
+            {
+              "type": "context",
+              "old_line": 39,
+              "new_line": 39,
+              "content": "            hunks.append(current)"
+            },
+            {
+              "type": "context",
+              "old_line": 40,
+              "new_line": 40,
+              "content": "            continue"
+            },
+            {
+              "type": "context",
+              "old_line": 41,
+              "new_line": 41,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 42,
+              "new_line": 42,
+              "content": "        if current is None or raw == \"\":"
+            },
+            {
+              "type": "context",
+              "old_line": 43,
+              "new_line": 43,
+              "content": "            continue"
+            },
+            {
+              "type": "context",
+              "old_line": 44,
+              "new_line": 44,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 45,
+              "new_line": 45,
+              "content": "        marker = raw[0]"
+            },
+            {
+              "type": "context",
+              "old_line": 46,
+              "new_line": 46,
+              "content": "        content = raw[1:] if marker in (\"+\", \"-\", \" \") else raw"
+            },
+            {
+              "type": "context",
+              "old_line": 47,
+              "new_line": 47,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 48,
+              "new_line": 48,
+              "content": "        if marker == \"+\":"
+            },
+            {
+              "type": "context",
+              "old_line": 49,
+              "new_line": 49,
+              "content": "            item = {\"type\": \"added\", \"new_line\": new_line, \"content\": content}"
+            },
+            {
+              "type": "context",
+              "old_line": 50,
+              "new_line": 50,
+              "content": "            current[\"lines\"].append(item)"
+            },
+            {
+              "type": "context",
+              "old_line": 51,
+              "new_line": 51,
+              "content": "            added.append(item.copy())"
+            },
+            {
+              "type": "context",
+              "old_line": 52,
+              "new_line": 52,
+              "content": "            new_line += 1"
+            },
+            {
+              "type": "context",
+              "old_line": 53,
+              "new_line": 53,
+              "content": "        elif marker == \"-\":"
+            },
+            {
+              "type": "context",
+              "old_line": 54,
+              "new_line": 54,
+              "content": "            item = {\"type\": \"removed\", \"old_line\": old_line, \"content\": content}"
+            },
+            {
+              "type": "context",
+              "old_line": 55,
+              "new_line": 55,
+              "content": "            current[\"lines\"].append(item)"
+            },
+            {
+              "type": "context",
+              "old_line": 56,
+              "new_line": 56,
+              "content": "            removed.append(item.copy())"
+            },
+            {
+              "type": "context",
+              "old_line": 57,
+              "new_line": 57,
+              "content": "            old_line += 1"
+            },
+            {
+              "type": "context",
+              "old_line": 58,
+              "new_line": 58,
+              "content": "        elif marker == \" \":"
+            },
+            {
+              "type": "context",
+              "old_line": 59,
+              "new_line": 59,
+              "content": "            current[\"lines\"].append({"
+            },
+            {
+              "type": "context",
+              "old_line": 60,
+              "new_line": 60,
+              "content": "                \"type\": \"context\","
+            },
+            {
+              "type": "context",
+              "old_line": 61,
+              "new_line": 61,
+              "content": "                \"old_line\": old_line,"
+            },
+            {
+              "type": "context",
+              "old_line": 62,
+              "new_line": 62,
+              "content": "                \"new_line\": new_line,"
+            },
+            {
+              "type": "context",
+              "old_line": 63,
+              "new_line": 63,
+              "content": "                \"content\": content,"
+            },
+            {
+              "type": "context",
+              "old_line": 64,
+              "new_line": 64,
+              "content": "            })"
+            },
+            {
+              "type": "context",
+              "old_line": 65,
+              "new_line": 65,
+              "content": "            old_line += 1"
+            },
+            {
+              "type": "context",
+              "old_line": 66,
+              "new_line": 66,
+              "content": "            new_line += 1"
+            },
+            {
+              "type": "context",
+              "old_line": 67,
+              "new_line": 67,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 68,
+              "new_line": 68,
+              "content": "    return hunks, added, removed"
+            },
+            {
+              "type": "context",
+              "old_line": 69,
+              "new_line": 69,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 70,
+              "new_line": 70,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 71,
+              "new_line": 71,
+              "content": "def capture(before: str, after: str):"
+            },
+            {
+              "type": "context",
+              "old_line": 72,
+              "new_line": 72,
+              "content": "    base = before if before and set(before) != {\"0\"} else \"4b825dc642cb6eb9a060e54bf8d69288fbee4904\""
+            },
+            {
+              "type": "context",
+              "old_line": 73,
+              "new_line": 73,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 74,
+              "new_line": 74,
+              "content": "    statuses = subprocess.check_output("
+            },
+            {
+              "type": "context",
+              "old_line": 75,
+              "new_line": 75,
+              "content": "        [\"git\", \"diff\", \"--no-ext-diff\", \"--name-status\", base, after, \"--\", \".\"],"
+            },
+            {
+              "type": "removed",
+              "old_line": 76,
+              "content": "        cwd=ROOT, text=True"
+            },
+            {
+              "type": "added",
+              "new_line": 76,
+              "content": "        cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\""
+            },
+            {
+              "type": "context",
+              "old_line": 77,
+              "new_line": 77,
+              "content": "    )"
+            },
+            {
+              "type": "context",
+              "old_line": 78,
+              "new_line": 78,
+              "content": "    numstats = subprocess.check_output("
+            },
+            {
+              "type": "context",
+              "old_line": 79,
+              "new_line": 79,
+              "content": "        [\"git\", \"diff\", \"--no-ext-diff\", \"--numstat\", base, after, \"--\", \".\"],"
+            },
+            {
+              "type": "context",
+              "old_line": 80,
+              "new_line": 80,
+              "content": "        cwd=ROOT, text=True"
+            },
+            {
+              "type": "context",
+              "old_line": 81,
+              "new_line": 81,
+              "content": "    )"
+            },
+            {
+              "type": "context",
+              "old_line": 82,
+              "new_line": 82,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 83,
+              "new_line": 83,
+              "content": "    stats = {}"
+            },
+            {
+              "type": "context",
+              "old_line": 84,
+              "new_line": 84,
+              "content": "    for row in numstats.splitlines():"
+            },
+            {
+              "type": "context",
+              "old_line": 85,
+              "new_line": 85,
+              "content": "        parts = row.split(\"\\t\")"
+            },
+            {
+              "type": "context",
+              "old_line": 86,
+              "new_line": 86,
+              "content": "        if len(parts) >= 3:"
+            },
+            {
+              "type": "context",
+              "old_line": 87,
+              "new_line": 87,
+              "content": "            stats[parts[-1]] = ("
+            },
+            {
+              "type": "context",
+              "old_line": 88,
+              "new_line": 88,
+              "content": "                0 if parts[0] == \"-\" else int(parts[0]),"
+            },
+            {
+              "type": "context",
+              "old_line": 89,
+              "new_line": 89,
+              "content": "                0 if parts[1] == \"-\" else int(parts[1]),"
+            },
+            {
+              "type": "context",
+              "old_line": 90,
+              "new_line": 90,
+              "content": "            )"
+            },
+            {
+              "type": "context",
+              "old_line": 91,
+              "new_line": 91,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 92,
+              "new_line": 92,
+              "content": "    files = []"
+            },
+            {
+              "type": "context",
+              "old_line": 93,
+              "new_line": 93,
+              "content": "    for row in statuses.splitlines():"
+            },
+            {
+              "type": "context",
+              "old_line": 94,
+              "new_line": 94,
+              "content": "        parts = row.split(\"\\t\")"
+            },
+            {
+              "type": "context",
+              "old_line": 95,
+              "new_line": 95,
+              "content": "        status, path = parts[0], parts[-1]"
+            },
+            {
+              "type": "context",
+              "old_line": 96,
+              "new_line": 96,
+              "content": "        additions, deletions = stats.get(path, (0, 0))"
+            },
+            {
+              "type": "context",
+              "old_line": 97,
+              "new_line": 97,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 98,
+              "new_line": 98,
+              "content": "        patch = subprocess.run("
+            },
+            {
+              "type": "context",
+              "old_line": 99,
+              "new_line": 99,
+              "content": "            [\"git\", \"diff\", \"--no-ext-diff\", \"--unified=80\", base, after, \"--\", path],"
+            },
+            {
+              "type": "removed",
+              "old_line": 100,
+              "content": "            cwd=ROOT, text=True, capture_output=True"
+            },
+            {
+              "type": "added",
+              "new_line": 100,
+              "content": "            cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", capture_output=True"
+            },
+            {
+              "type": "context",
+              "old_line": 101,
+              "new_line": 101,
+              "content": "        ).stdout"
+            },
+            {
+              "type": "context",
+              "old_line": 102,
+              "new_line": 102,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 103,
+              "new_line": 103,
+              "content": "        hunks, added_lines, removed_lines = parse_patch(patch)"
+            },
+            {
+              "type": "context",
+              "old_line": 104,
+              "new_line": 104,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 105,
+              "new_line": 105,
+              "content": "        files.append({"
+            },
+            {
+              "type": "context",
+              "old_line": 106,
+              "new_line": 106,
+              "content": "            \"path\": path,"
+            },
+            {
+              "type": "context",
+              "old_line": 107,
+              "new_line": 107,
+              "content": "            \"status\": status,"
+            },
+            {
+              "type": "context",
+              "old_line": 108,
+              "new_line": 108,
+              "content": "            \"language\": Path(path).suffix.lstrip(\".\") or \"unknown\","
+            },
+            {
+              "type": "context",
+              "old_line": 109,
+              "new_line": 109,
+              "content": "            \"changes\": {"
+            },
+            {
+              "type": "context",
+              "old_line": 110,
+              "new_line": 110,
+              "content": "                \"additions\": additions,"
+            },
+            {
+              "type": "context",
+              "old_line": 111,
+              "new_line": 111,
+              "content": "                \"deletions\": deletions,"
+            },
+            {
+              "type": "context",
+              "old_line": 112,
+              "new_line": 112,
+              "content": "                \"total\": additions + deletions,"
+            },
+            {
+              "type": "context",
+              "old_line": 113,
+              "new_line": 113,
+              "content": "            },"
+            },
+            {
+              "type": "context",
+              "old_line": 114,
+              "new_line": 114,
+              "content": "            \"diff\": patch,"
+            },
+            {
+              "type": "context",
+              "old_line": 115,
+              "new_line": 115,
+              "content": "            \"hunks\": hunks,"
+            },
+            {
+              "type": "context",
+              "old_line": 116,
+              "new_line": 116,
+              "content": "            \"added_lines\": added_lines,"
+            },
+            {
+              "type": "context",
+              "old_line": 117,
+              "new_line": 117,
+              "content": "            \"removed_lines\": removed_lines,"
+            },
+            {
+              "type": "context",
+              "old_line": 118,
+              "new_line": 118,
+              "content": "        })"
+            },
+            {
+              "type": "context",
+              "old_line": 119,
+              "new_line": 119,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 120,
+              "new_line": 120,
+              "content": "    return files"
+            },
+            {
+              "type": "context",
+              "old_line": 121,
+              "new_line": 121,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 122,
+              "new_line": 122,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 123,
+              "new_line": 123,
+              "content": "def main():"
+            },
+            {
+              "type": "context",
+              "old_line": 124,
+              "new_line": 124,
+              "content": "    before = os.environ.get(\"PREPROD_BEFORE\", \"\")"
+            },
+            {
+              "type": "context",
+              "old_line": 125,
+              "new_line": 125,
+              "content": "    after = os.environ.get(\"PREPROD_AFTER\") or git(\"rev-parse\", \"HEAD\")"
+            },
+            {
+              "type": "context",
+              "old_line": 126,
+              "new_line": 126,
+              "content": "    repo = os.environ.get(\"PREPROD_REPOSITORY\", \"\")"
+            },
+            {
+              "type": "context",
+              "old_line": 127,
+              "new_line": 127,
+              "content": "    server = os.environ.get(\"PREPROD_SERVER\", \"https://github.com\")"
+            },
+            {
+              "type": "context",
+              "old_line": 128,
+              "new_line": 128,
+              "content": "    branch = os.environ.get(\"PREPROD_REF\", \"\")"
+            },
+            {
+              "type": "context",
+              "old_line": 129,
+              "new_line": 129,
+              "content": "    run_id = os.environ.get(\"PREPROD_RUN_ID\", \"\")"
+            },
+            {
+              "type": "context",
+              "old_line": 130,
+              "new_line": 130,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 131,
+              "new_line": 131,
+              "content": "    files = capture(before, after)"
+            },
+            {
+              "type": "context",
+              "old_line": 132,
+              "new_line": 132,
+              "content": "    additions = sum(f[\"changes\"][\"additions\"] for f in files)"
+            },
+            {
+              "type": "context",
+              "old_line": 133,
+              "new_line": 133,
+              "content": "    deletions = sum(f[\"changes\"][\"deletions\"] for f in files)"
+            },
+            {
+              "type": "context",
+              "old_line": 134,
+              "new_line": 134,
+              "content": ""
+            },
+            {
+              "type": "context",
+              "old_line": 135,
+              "new_line": 135,
+              "content": "    payload = {"
+            },
+            {
+              "type": "context",
+              "old_line": 136,
+              "new_line": 136,
+              "content": "        \"schema_version\": \"1.0\","
+            },
+            {
+              "type": "context",
+              "old_line": 137,
+              "new_line": 137,
+              "content": "        \"scan\": {"
+            },
+            {
+              "type": "context",
+              "old_line": 138,
+              "new_line": 138,
+              "content": "            \"id\": f\"scn_{after[:12]}\","
+            },
+            {
+              "type": "context",
+              "old_line": 139,
+              "new_line": 139,
+              "content": "            \"trigger\": \"push\","
+            },
+            {
+              "type": "context",
+              "old_line": 140,
+              "new_line": 140,
+              "content": "            \"captured_at\": datetime.now(timezone.utc).isoformat(),"
+            },
+            {
+              "type": "context",
+              "old_line": 141,
+              "new_line": 141,
+              "content": "            \"workflow_run_id\": run_id,"
+            },
+            {
+              "type": "context",
+              "old_line": 142,
+              "new_line": 142,
+              "content": "            \"workflow_url\": f\"{server}/{repo}/actions/runs/{run_id}\","
+            },
+            {
+              "type": "context",
+              "old_line": 143,
+              "new_line": 143,
+              "content": "        },"
+            },
+            {
+              "type": "context",
+              "old_line": 144,
+              "new_line": 144,
+              "content": "        \"repository\": {"
+            },
+            {
+              "type": "context",
+              "old_line": 145,
+              "new_line": 145,
+              "content": "            \"full_name\": repo,"
+            },
+            {
+              "type": "context",
+              "old_line": 146,
+              "new_line": 146,
+              "content": "            \"url\": f\"{server}/{repo}\","
+            },
+            {
+              "type": "context",
+              "old_line": 147,
+              "new_line": 147,
+              "content": "            \"default_branch\": branch,"
+            },
+            {
+              "type": "context",
+              "old_line": 148,
+              "new_line": 148,
+              "content": "        },"
+            },
+            {
+              "type": "context",
+              "old_line": 149,
+              "new_line": 149,
+              "content": "        \"comparison\": {"
+            },
+            {
+              "type": "context",
+              "old_line": 150,
+              "new_line": 150,
+              "content": "            \"base_commit\": before,"
+            },
+            {
+              "type": "context",
+              "old_line": 151,
+              "new_line": 151,
+              "content": "            \"target_commit\": after,"
+            },
+            {
+              "type": "context",
+              "old_line": 152,
+              "new_line": 152,
+              "content": "            \"range\": f\"{before}..{after}\" if before else after,"
+            },
+            {
+              "type": "context",
+              "old_line": 153,
+              "new_line": 153,
+              "content": "            \"method\": \"git diff two-commit comparison\","
+            },
+            {
+              "type": "context",
+              "old_line": 154,
+              "new_line": 154,
+              "content": "        },"
+            },
+            {
+              "type": "context",
+              "old_line": 155,
+              "new_line": 155,
+              "content": "        \"commit\": {"
+            },
+            {
+              "type": "context",
+              "old_line": 156,
+              "new_line": 156,
+              "content": "            \"before\": before,"
+            },
+            {
+              "type": "context",
+              "old_line": 157,
+              "new_line": 157,
+              "content": "            \"after\": after,"
+            },
+            {
+              "type": "context",
+              "old_line": 158,
+              "new_line": 158,
+              "content": "            \"branch\": branch,"
+            },
+            {
+              "type": "context",
+              "old_line": 159,
+              "new_line": 159,
+              "content": "            \"message\": git(\"show\", \"-s\", \"--format=%s\", after),"
+            },
+            {
+              "type": "context",
+              "old_line": 160,
+              "new_line": 160,
+              "content": "            \"author\": {"
+            },
+            {
+              "type": "context",
+              "old_line": 161,
+              "new_line": 161,
+              "content": "                \"name\": git(\"show\", \"-s\", \"--format=%an\", after),"
+            },
+            {
+              "type": "context",
+              "old_line": 162,
+              "new_line": 162,
+              "content": "                \"email\": git(\"show\", \"-s\", \"--format=%ae\", after),"
+            },
+            {
+              "type": "context",
+              "old_line": 163,
+              "new_line": 163,
+              "content": "            },"
+            },
+            {
+              "type": "context",
+              "old_line": 164,
+              "new_line": 164,
+              "content": "            \"committed_at\": git(\"show\", \"-s\", \"--format=%cI\", after),"
+            },
+            {
+              "type": "context",
+              "old_line": 165,
+              "new_line": 165,
+              "content": "        },"
+            },
+            {
+              "type": "context",
+              "old_line": 166,
+              "new_line": 166,
+              "content": "        \"change_summary\": {"
+            },
+            {
+              "type": "context",
+              "old_line": 167,
+              "new_line": 167,
+              "content": "            \"files_changed\": len(files),"
+            },
+            {
+              "type": "context",
+              "old_line": 168,
+              "new_line": 168,
+              "content": "            \"additions\": additions,"
+            },
+            {
+              "type": "context",
+              "old_line": 169,
+              "new_line": 169,
+              "content": "            \"deletions\": deletions,"
+            },
+            {
+              "type": "context",
+              "old_line": 170,
+              "new_line": 170,
+              "content": "            \"net_lines\": additions - deletions,"
+            },
+            {
+              "type": "context",
+              "old_line": 171,
+              "new_line": 171,
+              "content": "        },"
+            },
+            {
+              "type": "context",
+              "old_line": 172,
+              "new_line": 172,
+              "content": "        \"changes\": {"
+            },
+            {
+              "type": "context",
+              "old_line": 173,
+              "new_line": 173,
+              "content": "            \"format\": \"github-style-unified-diff\","
+            },
+            {
+              "type": "context",
+              "old_line": 174,
+              "new_line": 174,
+              "content": "            \"legend\": {\"added\": \"+\", \"removed\": \"-\", \"context\": \" \"},"
+            },
+            {
+              "type": "context",
+              "old_line": 175,
+              "new_line": 175,
+              "content": "            \"files\": ["
+            },
+            {
+              "type": "context",
+              "old_line": 176,
+              "new_line": 176,
+              "content": "                {"
+            },
+            {
+              "type": "context",
+              "old_line": 177,
+              "new_line": 177,
+              "content": "                    \"path\": f[\"path\"],"
+            },
+            {
+              "type": "context",
+              "old_line": 178,
+              "new_line": 178,
+              "content": "                    \"status\": f[\"status\"],"
+            },
+            {
+              "type": "context",
+              "old_line": 179,
+              "new_line": 179,
+              "content": "                    \"additions\": f[\"changes\"][\"additions\"],"
+            },
+            {
+              "type": "context",
+              "old_line": 180,
+              "new_line": 180,
+              "content": "                    \"deletions\": f[\"changes\"][\"deletions\"],"
+            }
+          ]
+        }
+      ],
+      "added_lines": [
+        {
+          "type": "added",
+          "new_line": 18,
+          "content": "        [\"git\", *args], cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", stderr=subprocess.DEVNULL"
+        },
+        {
+          "type": "added",
+          "new_line": 76,
+          "content": "        cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\""
+        },
+        {
+          "type": "added",
+          "new_line": 100,
+          "content": "            cwd=ROOT, text=True, encoding=\"utf-8\", errors=\"replace\", capture_output=True"
+        }
+      ],
+      "removed_lines": [
+        {
+          "type": "removed",
+          "old_line": 18,
+          "content": "        [\"git\", *args], cwd=ROOT, text=True, stderr=subprocess.DEVNULL"
+        },
+        {
+          "type": "removed",
+          "old_line": 76,
+          "content": "        cwd=ROOT, text=True"
+        },
+        {
+          "type": "removed",
+          "old_line": 100,
+          "content": "            cwd=ROOT, text=True, capture_output=True"
+        }
+      ]
+    }
+  ]
+}
