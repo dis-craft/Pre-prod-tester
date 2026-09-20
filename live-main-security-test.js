@@ -18,4 +18,14 @@ function findRole(db, role) {
   return db.query(query);
 }
 
-module.exports = { findUser, findEmail, findRole };
+function findOrder(db, orderId) {
+  const query = "SELECT * FROM orders WHERE id = " + orderId;
+  return db.query(query);
+}
+
+function findProduct(db, name) {
+  const query = `SELECT * FROM products WHERE name = '${name}'`;
+  return db.query(query);
+}
+
+module.exports = { findUser, findEmail, findRole, findOrder, findProduct };
