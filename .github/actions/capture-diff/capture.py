@@ -106,7 +106,15 @@ def capture(before: str, after: str):
             "path": path,
             "status": status,
             "language": Path(path).suffix.lstrip(".") or "unknown",
-            "changes": {
+            **({
+            "pull_request": {
+                "number": int(pr_number),
+                "base": pr_base,
+                "head": pr_head,
+                "url": f"{server}/{repo}/pull/{pr_number}",
+            }
+        } if pr_number else {}),
+        "changes": {
                 "additions": additions,
                 "deletions": deletions,
                 "total": additions + deletions,
@@ -127,6 +135,10 @@ def main():
     server = os.environ.get("PREPROD_SERVER", "https://github.com")
     branch = os.environ.get("PREPROD_REF", "")
     run_id = os.environ.get("PREPROD_RUN_ID", "")
+    event = os.environ.get("PREPROD_EVENT", "push")
+    pr_number = os.environ.get("PREPROD_PR_NUMBER", "")
+    pr_base = os.environ.get("PREPROD_PR_BASE", "")
+    pr_head = os.environ.get("PREPROD_PR_HEAD", "")
 
     files = capture(before, after)
     additions = sum(f["changes"]["additions"] for f in files)
@@ -136,7 +148,7 @@ def main():
         "schema_version": "1.0",
         "scan": {
             "id": f"scn_{after[:12]}",
-            "trigger": "push",
+            "trigger": event,
             "captured_at": datetime.now(timezone.utc).isoformat(),
             "workflow_run_id": run_id,
             "workflow_url": f"{server}/{repo}/actions/runs/{run_id}",
