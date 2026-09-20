@@ -276,3 +276,5 @@ class ShopService {
 module.exports = {
   ShopService
 };
+
+//this file contains intentionally vulnerable code for testing purposes. which can be tested using the security scanner. The code includes SQL injection vulnerabilities, command injection, and unsafe eval usage.!!
