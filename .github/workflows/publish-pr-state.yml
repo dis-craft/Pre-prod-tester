@@ -52,7 +52,7 @@ jobs:
               raise SystemExit(0)
 
           head = os.environ.get("PR_HEAD", "")
-          if not head.startswith("security-remediation/"):
+          if not (head.startswith("security-remediation/") or head.startswith("security/ai-remediation/")):
               print(f"Ignoring non-remediation PR: {head}")
               raise SystemExit(0)
 
@@ -79,6 +79,7 @@ jobs:
           latest_path.write_text(
               json.dumps(latest, indent=2) + "\n", encoding="utf-8"
           )
+          Path("data/flow.json").write_text(json.dumps(latest.get("flow", {}), indent=2) + "\n", encoding="utf-8")
           Path("data/pull-requests.json").write_text(
               json.dumps(current, indent=2) + "\n", encoding="utf-8"
           )
@@ -107,6 +108,7 @@ jobs:
           cp data/latest.json .pages/data/latest.json
           cp data/index.json .pages/data/index.json
           cp data/pull-requests.json .pages/data/pull-requests.json
+          cp data/flow.json .pages/data/flow.json
           cp -R data/scans/. .pages/data/scans/
           cat > .pages/deployment.json <<EOF
           {
