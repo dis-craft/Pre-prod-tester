@@ -1,0 +1,3 @@
+git add .
+git commit -m "test: demonstrate end to end security remediation"
+git push origin main
