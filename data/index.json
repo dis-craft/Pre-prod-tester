@@ -2,6 +2,30 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_64183becce8e",
+      "commit": "64183becce8e91d3c89b4cca3fbd696af1e3f41c",
+      "parent": "4cdb14c312eb29093c4ac23caa36227590a597bb",
+      "branch": "main",
+      "message": "Merge branch 'main' of https://github.com/dis-craft/Pre-prod-tester",
+      "captured_at": "2026-09-20T17:51:24.308703+00:00",
+      "files_changed": 2,
+      "additions": 326,
+      "deletions": 0,
+      "url": "scans/64183becce8e91d3c89b4cca3fbd696af1e3f41c.json"
+    },
+    {
+      "scan_id": "scn_7f6f150acf0f",
+      "commit": "7f6f150acf0f9bfc90e80c25208c64991da850cf",
+      "parent": "3ad5b1986da4c23ef23287424064c52acb68bc45",
+      "branch": "main",
+      "message": "Test",
+      "captured_at": "2026-09-20T17:45:15.939459+00:00",
+      "files_changed": 10,
+      "additions": 0,
+      "deletions": 369,
+      "url": "scans/7f6f150acf0f9bfc90e80c25208c64991da850cf.json"
+    },
+    {
       "scan_id": "scn_5abb0c7c4a82",
       "commit": "5abb0c7c4a82363da505fab944fa1ebea0a0b625",
       "parent": "8bfeea823c99be267c49a66765722b117b232a7d",
