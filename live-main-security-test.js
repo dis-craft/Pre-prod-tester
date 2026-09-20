@@ -5,12 +5,11 @@ const mysql = require('mysql2');
  * This commit exercises the main-branch security -> AI-fix -> PR flow.
  */
 function findUser(db, username) {
-  const query = `SELECT * FROM users WHERE username = '${username}'`;
-  return db.query(query);
+  return db.query("SELECT * FROM users WHERE username = ?", [username]);
 }
 
 function findEmail(db, email) {
-  return db.query("SELECT * FROM users WHERE email = '" + email + "'");
+  return db.query("SELECT * FROM users WHERE email = ?", [email]);
 }
 
 function findRole(db, role) {
@@ -24,8 +23,7 @@ function findOrder(db, orderId) {
 }
 
 function findProduct(db, name) {
-  const query = `SELECT * FROM products WHERE name = '${name}'`;
-  return db.query(query);
+  return db.query('SELECT * FROM products WHERE name = ?', [name]);
 }
 
 module.exports = { findUser, findEmail, findRole, findOrder, findProduct };
