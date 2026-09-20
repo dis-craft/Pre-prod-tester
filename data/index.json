@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_5a2d58e5c041",
+      "commit": "5a2d58e5c0418ca92eeaca7d49d541de5757c66a",
+      "parent": "867bbb0ae63c885c5d1ba890d2d33f3201d6bf23",
+      "branch": "main",
+      "message": "fix: prevent PR state workflow from overwriting live flow",
+      "captured_at": "2026-09-20T15:49:24.607891+00:00",
+      "files_changed": 1,
+      "additions": 0,
+      "deletions": 1,
+      "url": "scans/5a2d58e5c0418ca92eeaca7d49d541de5757c66a.json"
+    },
+    {
       "scan_id": "scn_26ba91fd5dff",
       "commit": "26ba91fd5dff5198ac471177750a17baf85bcf10",
       "parent": "17da2d3eee2678752035222580747ba0b37334d6",
