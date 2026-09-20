@@ -45,11 +45,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          cp .runtime-flow.json "$RUNNER_TEMP/runtime-flow.json"
+          cp .runtime-prs.json "$RUNNER_TEMP/runtime-prs.json"
+
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
-            cp .runtime-flow.json data/flow.json
-            cp .runtime-prs.json data/pull-requests.json
+            cp "$RUNNER_TEMP/runtime-flow.json" data/flow.json
+            cp "$RUNNER_TEMP/runtime-prs.json" data/pull-requests.json
             git add data/flow.json data/pull-requests.json
             if git diff --cached --quiet; then
               echo "No flow-state changes to publish."
