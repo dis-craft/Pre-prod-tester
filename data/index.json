@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_237cfb03f6d2",
+      "commit": "237cfb03f6d2dbff7b82f4f1f845e4551530bde5",
+      "parent": "49ef75dbf7f7bf7876f9c4f1aaa7dff6281fc0fe",
+      "branch": "main",
+      "message": "fix: simplify dashboard Pages trigger",
+      "captured_at": "2026-09-20T16:04:36.831510+00:00",
+      "files_changed": 1,
+      "additions": 0,
+      "deletions": 4,
+      "url": "scans/237cfb03f6d2dbff7b82f4f1f845e4551530bde5.json"
+    },
+    {
       "scan_id": "scn_08d98c26256e",
       "commit": "08d98c26256e6dbe175c120183c2ae999276e107",
       "parent": "0f5e68edc598761e20e3fb7f31b39f0372e5dd06",
