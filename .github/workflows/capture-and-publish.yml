@@ -135,6 +135,7 @@ jobs:
       primary-attempts: "1"
       fallback-attempts: "1"
       full-repo-rescan: false
+      reuse-findings: true
       scan-input: data/scans/${{ github.sha }}.json
       source-sha: ${{ github.sha }}
     secrets:
