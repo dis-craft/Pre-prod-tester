@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_b5b8e231c3ab",
+      "commit": "b5b8e231c3ab158d3542bde205691184a16045c0",
+      "parent": "1c9cde047dbddb6c167da71201196b1ecf11f5bd",
+      "branch": "main",
+      "message": "chore: remove live detection test fixture",
+      "captured_at": "2026-09-20T08:05:41.111136+00:00",
+      "files_changed": 1,
+      "additions": 0,
+      "deletions": 8,
+      "url": "scans/b5b8e231c3ab158d3542bde205691184a16045c0.json"
+    },
+    {
       "scan_id": "scn_360cf4343111",
       "commit": "360cf434311103ba6d22859b8da945000745039e",
       "parent": "d8d576a0ede787673c0be9c1beb23b91bc1a304d",
