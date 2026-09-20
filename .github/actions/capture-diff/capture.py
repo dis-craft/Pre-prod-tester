@@ -15,7 +15,7 @@ HUNK_RE = re.compile(r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@(?: (.*))?$")
 
 def git(*args: str) -> str:
     return subprocess.check_output(
-        ["git", *args], cwd=ROOT, text=True, stderr=subprocess.DEVNULL
+        ["git", *args], cwd=ROOT, text=True, encoding="utf-8", errors="replace", stderr=subprocess.DEVNULL
     ).strip()
 
 
@@ -73,7 +73,7 @@ def capture(before: str, after: str):
 
     statuses = subprocess.check_output(
         ["git", "diff", "--no-ext-diff", "--name-status", base, after, "--", "."],
-        cwd=ROOT, text=True
+        cwd=ROOT, text=True, encoding="utf-8", errors="replace"
     )
     numstats = subprocess.check_output(
         ["git", "diff", "--no-ext-diff", "--numstat", base, after, "--", "."],
@@ -97,7 +97,7 @@ def capture(before: str, after: str):
 
         patch = subprocess.run(
             ["git", "diff", "--no-ext-diff", "--unified=80", base, after, "--", path],
-            cwd=ROOT, text=True, capture_output=True
+            cwd=ROOT, text=True, encoding="utf-8", errors="replace", capture_output=True
         ).stdout
 
         hunks, added_lines, removed_lines = parse_patch(patch)
