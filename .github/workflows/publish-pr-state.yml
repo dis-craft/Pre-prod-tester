@@ -1,0 +1,88 @@
+name: Publish Live Remediation PR State
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish-pr-state:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Publish remediation PR metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p data
+          curl --fail --silent --show-error             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer ${GH_TOKEN}"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/${REPOSITORY}/pulls?state=all&per_page=30&sort=updated&direction=desc"             | jq '[.[] | select(.head.ref | startswith("security-remediation/")) | {
+                number,
+                title,
+                state,
+                merged: (.merged_at != null),
+                head: .head.ref,
+                base: .base.ref,
+                url: .html_url,
+                created_at,
+                updated_at,
+                merged_at
+              }]' > data/pull-requests.json
+          python3 -m json.tool data/pull-requests.json >/dev/null
+          cat data/pull-requests.json
+
+      - name: Commit live PR state
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/pull-requests.json
+          if git diff --cached --quiet; then
+            echo "No PR state changes."
+            exit 0
+          fi
+          git commit -m "chore: publish live remediation PR state [skip ci]"
+          git push origin HEAD:main
+
+      - name: Build isolated Pages site
+        run: |
+          set -euo pipefail
+          rm -rf .pages
+          mkdir -p .pages/data/scans
+          cp index.html .pages/index.html
+          cp data/latest.json .pages/data/latest.json
+          cp data/index.json .pages/data/index.json
+          cp data/pull-requests.json .pages/data/pull-requests.json
+          cp -R data/scans/. .pages/data/scans/
+          cat > .pages/deployment.json <<EOF
+          {
+            "deployed_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "workflow_run": "${{ github.run_id }}"
+          }
+          EOF
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .pages
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
