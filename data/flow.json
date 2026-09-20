@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1",
-  "generated_at": "2026-09-20T15:49:31.372037+00:00",
+  "generated_at": "2026-09-20T15:49:40.784969+00:00",
   "current_stage_label": "2. Capture exact diff",
   "commit": {
     "sha": "5a2d58e5c0418ca92eeaca7d49d541de5757c66a",
@@ -34,21 +34,21 @@
     },
     {
       "label": "4. AI remediation",
-      "status": "running",
+      "status": "pass",
       "detail": "Gemini primary model retries first; secondary Gemini model is used only after primary attempts are exhausted.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520758999",
       "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
-      "status": "waiting",
+      "status": "pass",
       "detail": "AI changes are sandbox-validated before acceptance.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520758999",
       "pr_url": null
     },
     {
       "label": "6. Post-fix scan",
-      "status": "waiting",
+      "status": "pass",
       "detail": "The remediation is re-scanned before a PR is created.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35520758999",
       "pr_url": null
