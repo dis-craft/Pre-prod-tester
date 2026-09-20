@@ -10,13 +10,9 @@ on:
       - AI Security Remediation
       - Security Review
     types: [requested, in_progress, completed]
-  pull_request:
-    types: [opened, reopened, synchronize, closed]
 
 permissions:
   contents: read
-  actions: read
-  pull-requests: read
   pages: write
   id-token: write
 
