@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-09-20T16:49:28.957139+00:00",
+  "generated_at": "2026-09-20T16:50:19.385355+00:00",
   "current_stage_label": "4. AI remediation",
   "source_of_truth": {
     "capture": "data/latest.json or data/scans/<commit>.json",
@@ -51,29 +51,29 @@
     },
     {
       "label": "4. AI remediation",
-      "status": "running",
-      "detail": "Run scanner and AI remediation is running.",
+      "status": "fail",
+      "detail": "Run scanner and AI remediation ended as failure.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252/job/106112614628",
       "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
-      "status": "running",
-      "detail": "AI remediation is still running; validation has not completed.",
+      "status": "waiting",
+      "detail": "Validation was not reached because AI remediation failed.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252/job/106112614628",
       "pr_url": null
     },
     {
       "label": "6. Post-fix verification",
-      "status": "running",
-      "detail": "AI remediation is still running; validation has not completed.",
+      "status": "waiting",
+      "detail": "Validation was not reached because AI remediation failed.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252/job/106112614628",
       "pr_url": null
     },
     {
       "label": "7. Remediation PR",
-      "status": "waiting",
-      "detail": "Waiting for remediation to validate and create the PR.",
+      "status": "fail",
+      "detail": "No remediation PR has been created for this commit.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252",
       "pr_url": null
     },
