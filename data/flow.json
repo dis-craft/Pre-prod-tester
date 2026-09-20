@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-09-20T16:47:16.467002+00:00",
+  "generated_at": "2026-09-20T16:47:28.252100+00:00",
   "current_stage_label": "2. Capture exact diff",
   "source_of_truth": {
     "capture": "data/latest.json or data/scans/<commit>.json",
@@ -20,61 +20,61 @@
     "high": 0
   },
   "commit": {
-    "sha": "533eeb3194e5f8f1cea37a78ea0a459e7eb095bd",
+    "sha": "19e4fd6d7597633ae32127e126d9d6c928a986aa",
     "author": "dis-craft",
     "branch": "main",
-    "message": "test: fresh canonical security pipeline",
-    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/533eeb3194e5f8f1cea37a78ea0a459e7eb095bd"
+    "message": "test: cleanup legacy remediation branches",
+    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/19e4fd6d7597633ae32127e126d9d6c928a986aa"
   },
   "pull_request": null,
   "stages": [
     {
       "label": "1. Commit received",
       "status": "pass",
-      "detail": "Commit 533eeb3194e5 received.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/commit/533eeb3194e5f8f1cea37a78ea0a459e7eb095bd",
+      "detail": "Commit 19e4fd6d7597 received.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/commit/19e4fd6d7597633ae32127e126d9d6c928a986aa",
       "pr_url": null
     },
     {
       "label": "2. Capture exact diff",
-      "status": "running",
-      "detail": "Waiting for the canonical capture workflow to finish.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252",
+      "status": "fail",
+      "detail": "Canonical capture workflow failed; no trusted diff is available.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523793827",
       "pr_url": null
     },
     {
       "label": "3. Security scan",
-      "status": "waiting",
-      "detail": "Waiting for the canonical security scan results.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252",
+      "status": "fail",
+      "detail": "Capture/security workflow failed before canonical scan results were published.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523793827",
       "pr_url": null
     },
     {
       "label": "4. AI remediation",
       "status": "pass",
       "detail": "No blocking findings were detected; AI remediation is not required.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523793827",
       "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
       "status": "pass",
       "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523793827",
       "pr_url": null
     },
     {
       "label": "6. Post-fix verification",
       "status": "pass",
       "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523793827",
       "pr_url": null
     },
     {
       "label": "7. Remediation PR",
       "status": "pass",
       "detail": "No remediation PR required.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523772252",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523793827",
       "pr_url": null
     },
     {
