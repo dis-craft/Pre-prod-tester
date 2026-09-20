@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_b7df5dc0911c",
+      "commit": "b7df5dc0911c6e927882e8a25bc31045611ce255",
+      "parent": "408d3bf51ea6bafde2f8bc9562c0fb5a55ad06e5",
+      "branch": "main",
+      "message": "feat: run live security detection before publishing scan",
+      "captured_at": "2026-09-20T08:02:30.216186+00:00",
+      "files_changed": 1,
+      "additions": 15,
+      "deletions": 0,
+      "url": "scans/b7df5dc0911c6e927882e8a25bc31045611ce255.json"
+    },
+    {
       "scan_id": "scn_eb63b28ba2cc",
       "commit": "eb63b28ba2cc4e321cef857410808c00004df7ac",
       "parent": "f0e6fd93232d27a1f6ed9f2418802fe6642873e5",
