@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         booleanParam(name: 'GENERATE_REMEDIATION', defaultValue: false, description: 'Generate/apply AI remediation and create a remediation PR')
-        string(name: 'ORCHESTRATOR_REF', defaultValue: 'Adi-initial', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')
+        string(name: 'ORCHESTRATOR_REF', defaultValue: 'main', description: 'Pre-Prod-Orchestrator branch/tag/commit to use')
         string(name: 'BASE_BRANCH', defaultValue: 'main', description: 'Target branch for the remediation PR')
     }
 
