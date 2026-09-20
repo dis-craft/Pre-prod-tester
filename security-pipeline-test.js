@@ -6,3 +6,5 @@ function findUser(db, username) {
 }
 
 module.exports = { findUser };
+
+// E2E remediation trigger: intentionally keep this fixture vulnerable for the test.
