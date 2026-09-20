@@ -47,3 +47,6 @@ For Phase 2, the same JSON contract can be POSTed to a real API (FastAPI/Vercel/
 The workflow treats repository changes as data. It does not execute the changed application code, install project dependencies, or run untrusted scripts.
 
 Do not put secrets, credentials, or sensitive source material into the Pages-published scan data. GitHub notes that Pages sites can be publicly accessible even when the source repository is private, depending on the account/plan configuration.
+
+
+<!-- E2E flow verification: retry/fallback/PR review/dashboard path -->
