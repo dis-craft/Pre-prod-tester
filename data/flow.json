@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-09-20T17:05:33.861415+00:00",
+  "generated_at": "2026-09-20T17:05:45.749728+00:00",
   "current_stage_label": "8. Full PR security re-scan",
   "source_of_truth": {
     "capture": "data/latest.json or data/scans/<commit>.json",
