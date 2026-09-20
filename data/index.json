@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_010b730ca698",
+      "commit": "010b730ca6985cf787ef7ce956e7d9fed587bfce",
+      "parent": "8ee965d0e4c1065964698a0035ca8a78503cbae5",
+      "branch": "main",
+      "message": "test: trigger live security pipeline",
+      "captured_at": "2026-09-20T16:54:12.036901+00:00",
+      "files_changed": 1,
+      "additions": 9,
+      "deletions": 0,
+      "url": "scans/010b730ca6985cf787ef7ce956e7d9fed587bfce.json"
+    },
+    {
       "scan_id": "scn_a33ac0bd4e82",
       "commit": "a33ac0bd4e82cee74c011478c72fcc8a5a69156f",
       "parent": "a98c83bdc59bc580fb8921d4f1ee06117e4b4ef5",
