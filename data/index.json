@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_1321fffb246f",
+      "commit": "1321fffb246fcac18f2aeddc8a3f5f7d8c14afc8",
+      "parent": "e35f1772b1ac342f9e6645a8ccc6025c6c58d60e",
+      "branch": "main",
+      "message": "feat: add Jenkins security pipeline",
+      "captured_at": "2026-09-20T07:47:42.246901+00:00",
+      "files_changed": 1,
+      "additions": 123,
+      "deletions": 0,
+      "url": "scans/1321fffb246fcac18f2aeddc8a3f5f7d8c14afc8.json"
+    },
+    {
       "scan_id": "scn_64d6f14ce300",
       "commit": "64d6f14ce3003578c721cdea552160263d9d7bca",
       "parent": "cdf51b5e1597cebb6eaccbcd65f83e61df0e534c",
