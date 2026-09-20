@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_94b53b43f74d",
+      "commit": "94b53b43f74db789471e75a5444180266dcecf7a",
+      "parent": "04b8fa34bf351e685f2ef8fd1dc3c8d55f5435d7",
+      "branch": "main",
+      "message": "feat: automate AI remediation and PR security review",
+      "captured_at": "2026-09-20T09:00:29.161815+00:00",
+      "files_changed": 1,
+      "additions": 16,
+      "deletions": 0,
+      "url": "scans/94b53b43f74db789471e75a5444180266dcecf7a.json"
+    },
+    {
       "scan_id": "scn_501df77ca4a5",
       "commit": "501df77ca4a5a03d28443d1958554f528a24acdf",
       "parent": "c3978daeec8f44b3c3c16a3f2dc964a64c4a450e",
