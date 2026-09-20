@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-09-20T17:06:10.614683+00:00",
-  "current_stage_label": "8. Full PR security re-scan",
+  "generated_at": "2026-09-20T17:06:20.761159+00:00",
+  "current_stage_label": "2. Capture exact diff",
   "source_of_truth": {
     "capture": "data/latest.json or data/scans/<commit>.json",
     "security": "security_engine embedded in canonical scan data",
@@ -10,71 +10,71 @@
     "merge": "GitHub PR state"
   },
   "scan": {
-    "id": "scn_563ca4838c52",
-    "captured_at": "2026-09-20T17:05:17.843927+00:00",
-    "files_changed": 1,
-    "additions": 2,
-    "deletions": 0,
+    "id": null,
+    "captured_at": null,
+    "files_changed": null,
+    "additions": null,
+    "deletions": null,
     "findings": 0,
     "critical": 0,
     "high": 0
   },
   "commit": {
-    "sha": "563ca4838c52d56b10b44afc3c123fd83d0d6763",
+    "sha": "0dd56f3297c7f4c59268b11588049be8f2167ac6",
     "author": "dis-craft",
     "branch": "main",
-    "message": "test: verify flow and website sync",
-    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/563ca4838c52d56b10b44afc3c123fd83d0d6763"
+    "message": "fix: mark clean scans completed in flow state",
+    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/0dd56f3297c7f4c59268b11588049be8f2167ac6"
   },
   "pull_request": null,
   "stages": [
     {
       "label": "1. Commit received",
       "status": "pass",
-      "detail": "Commit 563ca4838c52 received.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/commit/563ca4838c52d56b10b44afc3c123fd83d0d6763",
+      "detail": "Commit 0dd56f3297c7 received.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/commit/0dd56f3297c7f4c59268b11588049be8f2167ac6",
       "pr_url": null
     },
     {
       "label": "2. Capture exact diff",
-      "status": "pass",
-      "detail": "Canonical diff captured: 1 file(s), +2/-0.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294",
+      "status": "fail",
+      "detail": "Canonical capture workflow failed; no trusted diff is available.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524779706",
       "pr_url": null
     },
     {
       "label": "3. Security scan",
-      "status": "pass",
-      "detail": "Security scan completed with no blocking findings.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294",
+      "status": "fail",
+      "detail": "Capture/security workflow failed before canonical scan results were published.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524779706",
       "pr_url": null
     },
     {
       "label": "4. AI remediation",
       "status": "pass",
       "detail": "No blocking findings were detected; AI remediation is not required.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524779706",
       "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
       "status": "pass",
       "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524779706",
       "pr_url": null
     },
     {
       "label": "6. Post-fix verification",
       "status": "pass",
       "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524779706",
       "pr_url": null
     },
     {
       "label": "7. Remediation PR",
       "status": "pass",
       "detail": "No remediation PR required.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524779706",
       "pr_url": null
     },
     {
@@ -93,8 +93,8 @@
     },
     {
       "label": "10. Merge / completed",
-      "status": "pass",
-      "detail": "Merged.",
+      "status": "waiting",
+      "detail": "Waiting for merge.",
       "run_url": null,
       "pr_url": null
     }
