@@ -52,10 +52,7 @@ class ShopService {
   }
 
   findUserByEmail(email) {
-    const query =
-      `SELECT id, username, email FROM users WHERE email = '${email}'`;
-
-    return this.db.query(query);
+    return this.db.query('SELECT id, username, email FROM users WHERE email = ?', [email]);
   }
 
   // ------------------------------------------------------------
@@ -63,10 +60,7 @@ class ShopService {
   // ------------------------------------------------------------
 
   findProduct(productId) {
-    const query =
-      `SELECT id, name, price FROM products WHERE id = '${productId}'`;
-
-    return this.db.query(query);
+    return this.db.query('SELECT id, name, price FROM products WHERE id = ?', [productId]);
   }
 
   findProductsByCategory(category) {
@@ -81,10 +75,7 @@ class ShopService {
   // ------------------------------------------------------------
 
   findOrder(orderId) {
-    const query =
-      `SELECT * FROM orders WHERE id = '${orderId}'`;
-
-    return this.db.query(query);
+    return this.db.query('SELECT * FROM orders WHERE id = ?', [orderId]);
   }
 
   findOrdersForUser(userId) {
