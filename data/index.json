@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_0177e4f13d25",
+      "commit": "0177e4f13d2595a556c18112fdd7afa6d2eaf88c",
+      "parent": "401348a3cd6234f138fc4b0ba24da0ca78fef503",
+      "branch": "main",
+      "message": "test: trigger hardened security flow",
+      "captured_at": "2026-09-20T15:34:04.437862+00:00",
+      "files_changed": 1,
+      "additions": 3,
+      "deletions": 0,
+      "url": "scans/0177e4f13d2595a556c18112fdd7afa6d2eaf88c.json"
+    },
+    {
       "scan_id": "scn_0a83395080ab",
       "commit": "0a83395080ab1ce04a0823c3d9eb5d54efb64102",
       "parent": "d76d41ad550b4de5c3a2acacbe5f29865c66582c",

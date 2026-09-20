@@ -126,7 +126,7 @@
                 "type": "context",
                 "old_line": 9,
                 "new_line": 9,
-                "content": "   \u2193"
+                "content": "   ↓"
               },
               {
                 "type": "context",
@@ -138,19 +138,19 @@
                 "type": "context",
                 "old_line": 11,
                 "new_line": 11,
-                "content": "   \u2193"
+                "content": "   ↓"
               },
               {
                 "type": "context",
                 "old_line": 12,
                 "new_line": 12,
-                "content": "git diff (before \u2192 after)"
+                "content": "git diff (before → after)"
               },
               {
                 "type": "context",
                 "old_line": 13,
                 "new_line": 13,
-                "content": "   \u2193"
+                "content": "   ↓"
               },
               {
                 "type": "context",
@@ -162,7 +162,7 @@
                 "type": "context",
                 "old_line": 15,
                 "new_line": 15,
-                "content": "   \u2193"
+                "content": "   ↓"
               },
               {
                 "type": "context",
@@ -174,7 +174,7 @@
                 "type": "context",
                 "old_line": 17,
                 "new_line": 17,
-                "content": "   \u2193"
+                "content": "   ↓"
               },
               {
                 "type": "context",
@@ -186,19 +186,19 @@
                 "type": "context",
                 "old_line": 19,
                 "new_line": 19,
-                "content": "   \u251c\u2500\u2500 /data/latest.json"
+                "content": "   ├── /data/latest.json"
               },
               {
                 "type": "context",
                 "old_line": 20,
                 "new_line": 20,
-                "content": "   \u251c\u2500\u2500 /data/index.json"
+                "content": "   ├── /data/index.json"
               },
               {
                 "type": "context",
                 "old_line": 21,
                 "new_line": 21,
-                "content": "   \u2514\u2500\u2500 /data/scans/<commit>.json"
+                "content": "   └── /data/scans/<commit>.json"
               },
               {
                 "type": "context",
@@ -252,25 +252,25 @@
                 "type": "context",
                 "old_line": 30,
                 "new_line": 30,
-                "content": "- `/data/latest.json` \u2014 latest captured push"
+                "content": "- `/data/latest.json` — latest captured push"
               },
               {
                 "type": "context",
                 "old_line": 31,
                 "new_line": 31,
-                "content": "- `/data/index.json` \u2014 scan history/index"
+                "content": "- `/data/index.json` — scan history/index"
               },
               {
                 "type": "context",
                 "old_line": 32,
                 "new_line": 32,
-                "content": "- `/data/scans/<commit-sha>.json` \u2014 immutable scan payload for a commit"
+                "content": "- `/data/scans/<commit-sha>.json` — immutable scan payload for a commit"
               },
               {
                 "type": "context",
                 "old_line": 33,
                 "new_line": 33,
-                "content": "- `/` \u2014 human-readable viewer"
+                "content": "- `/` — human-readable viewer"
               },
               {
                 "type": "context",
@@ -406,7 +406,7 @@
         "deletions": 0,
         "total": 3
       },
-      "diff": "diff --git a/README.md b/README.md\nindex d39da2a..4d782da 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,49 +1,52 @@\n # Pre-prod Tester\n \n Phase 1 is a CI/CD change-capture pipeline.\n \n ## Current architecture\n \n ```\n git push\n    \u2193\n GitHub Actions\n    \u2193\n git diff (before \u2192 after)\n    \u2193\n structured JSON\n    \u2193\n data/scans/<commit>.json\n    \u2193\n GitHub Pages\n    \u251c\u2500\u2500 /data/latest.json\n    \u251c\u2500\u2500 /data/index.json\n    \u2514\u2500\u2500 /data/scans/<commit>.json\n ```\n \n This phase deliberately does **not** perform vulnerability detection yet. It captures the exact code changes and exposes them as machine-readable JSON. Detection engines can be added later without changing the capture contract.\n \n ## API-style endpoints\n \n Once GitHub Pages is enabled for this repository:\n \n - `/data/latest.json` \u2014 latest captured push\n - `/data/index.json` \u2014 scan history/index\n - `/data/scans/<commit-sha>.json` \u2014 immutable scan payload for a commit\n - `/` \u2014 human-readable viewer\n \n Expected project-site URL:\n \n `https://dis-craft.github.io/Pre-prod-tester/`\n \n ## Important\n \n GitHub Pages is a static host, not a server-side API. The JSON endpoints above are static HTTP resources. This is intentional for Phase 1 because it removes database/deployment complexity while giving the CI pipeline a stable URL contract.\n \n For Phase 2, the same JSON contract can be POSTed to a real API (FastAPI/Vercel/other host) and persisted in a database.\n \n ## Security\n \n The workflow treats repository changes as data. It does not execute the changed application code, install project dependencies, or run untrusted scripts.\n \n Do not put secrets, credentials, or sensitive source material into the Pages-published scan data. GitHub notes that Pages sites can be publicly accessible even when the source repository is private, depending on the account/plan configuration.\n+\n+\n+<!-- E2E flow verification: retry/fallback/PR review/dashboard path -->\n",
+      "diff": "diff --git a/README.md b/README.md\nindex d39da2a..4d782da 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,49 +1,52 @@\n # Pre-prod Tester\n \n Phase 1 is a CI/CD change-capture pipeline.\n \n ## Current architecture\n \n ```\n git push\n    ↓\n GitHub Actions\n    ↓\n git diff (before → after)\n    ↓\n structured JSON\n    ↓\n data/scans/<commit>.json\n    ↓\n GitHub Pages\n    ├── /data/latest.json\n    ├── /data/index.json\n    └── /data/scans/<commit>.json\n ```\n \n This phase deliberately does **not** perform vulnerability detection yet. It captures the exact code changes and exposes them as machine-readable JSON. Detection engines can be added later without changing the capture contract.\n \n ## API-style endpoints\n \n Once GitHub Pages is enabled for this repository:\n \n - `/data/latest.json` — latest captured push\n - `/data/index.json` — scan history/index\n - `/data/scans/<commit-sha>.json` — immutable scan payload for a commit\n - `/` — human-readable viewer\n \n Expected project-site URL:\n \n `https://dis-craft.github.io/Pre-prod-tester/`\n \n ## Important\n \n GitHub Pages is a static host, not a server-side API. The JSON endpoints above are static HTTP resources. This is intentional for Phase 1 because it removes database/deployment complexity while giving the CI pipeline a stable URL contract.\n \n For Phase 2, the same JSON contract can be POSTed to a real API (FastAPI/Vercel/other host) and persisted in a database.\n \n ## Security\n \n The workflow treats repository changes as data. It does not execute the changed application code, install project dependencies, or run untrusted scripts.\n \n Do not put secrets, credentials, or sensitive source material into the Pages-published scan data. GitHub notes that Pages sites can be publicly accessible even when the source repository is private, depending on the account/plan configuration.\n+\n+\n+<!-- E2E flow verification: retry/fallback/PR review/dashboard path -->\n",
       "hunks": [
         {
           "header": "@@ -1,49 +1,52 @@",
@@ -467,7 +467,7 @@
               "type": "context",
               "old_line": 9,
               "new_line": 9,
-              "content": "   \u2193"
+              "content": "   ↓"
             },
             {
               "type": "context",
@@ -479,19 +479,19 @@
               "type": "context",
               "old_line": 11,
               "new_line": 11,
-              "content": "   \u2193"
+              "content": "   ↓"
             },
             {
               "type": "context",
               "old_line": 12,
               "new_line": 12,
-              "content": "git diff (before \u2192 after)"
+              "content": "git diff (before → after)"
             },
             {
               "type": "context",
               "old_line": 13,
               "new_line": 13,
-              "content": "   \u2193"
+              "content": "   ↓"
             },
             {
               "type": "context",
@@ -503,7 +503,7 @@
               "type": "context",
               "old_line": 15,
               "new_line": 15,
-              "content": "   \u2193"
+              "content": "   ↓"
             },
             {
               "type": "context",
@@ -515,7 +515,7 @@
               "type": "context",
               "old_line": 17,
               "new_line": 17,
-              "content": "   \u2193"
+              "content": "   ↓"
             },
             {
               "type": "context",
@@ -527,19 +527,19 @@
               "type": "context",
               "old_line": 19,
               "new_line": 19,
-              "content": "   \u251c\u2500\u2500 /data/latest.json"
+              "content": "   ├── /data/latest.json"
             },
             {
               "type": "context",
               "old_line": 20,
               "new_line": 20,
-              "content": "   \u251c\u2500\u2500 /data/index.json"
+              "content": "   ├── /data/index.json"
             },
             {
               "type": "context",
               "old_line": 21,
               "new_line": 21,
-              "content": "   \u2514\u2500\u2500 /data/scans/<commit>.json"
+              "content": "   └── /data/scans/<commit>.json"
             },
             {
               "type": "context",
@@ -593,25 +593,25 @@
               "type": "context",
               "old_line": 30,
               "new_line": 30,
-              "content": "- `/data/latest.json` \u2014 latest captured push"
+              "content": "- `/data/latest.json` — latest captured push"
             },
             {
               "type": "context",
               "old_line": 31,
               "new_line": 31,
-              "content": "- `/data/index.json` \u2014 scan history/index"
+              "content": "- `/data/index.json` — scan history/index"
             },
             {
               "type": "context",
               "old_line": 32,
               "new_line": 32,
-              "content": "- `/data/scans/<commit-sha>.json` \u2014 immutable scan payload for a commit"
+              "content": "- `/data/scans/<commit-sha>.json` — immutable scan payload for a commit"
             },
             {
               "type": "context",
               "old_line": 33,
               "new_line": 33,
-              "content": "- `/` \u2014 human-readable viewer"
+              "content": "- `/` — human-readable viewer"
             },
             {
               "type": "context",
@@ -745,73 +745,6 @@
         }
       ],
       "removed_lines": []
-    }
-  ],
-  "security_engine": {
-    "status": "PASSED",
-    "scanner": "Pre-Prod-Orchestrator/rule_engine",
-    "findings": [],
-    "scan_metadata": {
-      "timestamp": "2026-09-20T15:34:11.410295",
-      "total_findings": 0,
-      "by_severity": {
-        "CRITICAL": 0,
-        "HIGH": 0,
-        "MEDIUM": 0,
-        "LOW": 0,
-        "INFO": 0
-      },
-      "model_used": "none"
-    }
-  },
-  "pull_requests": [
-    {
-      "number": 7,
-      "title": "fix: AI-generated security remediation",
-      "state": "closed",
-      "merged": false,
-      "head": "security-remediation/86219fd94f50",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/7",
-      "created_at": "2026-09-20T11:11:17Z",
-      "updated_at": "2026-09-20T11:24:58Z",
-      "merged_at": null
-    },
-    {
-      "number": 6,
-      "title": "fix: AI-generated security remediation",
-      "state": "closed",
-      "merged": false,
-      "head": "security-remediation/11323c78a922",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/6",
-      "created_at": "2026-09-20T11:08:02Z",
-      "updated_at": "2026-09-20T11:24:56Z",
-      "merged_at": null
-    },
-    {
-      "number": 4,
-      "title": "fix: AI-generated security remediation",
-      "state": "closed",
-      "merged": false,
-      "head": "security-remediation/7a1fcb7cf94c",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/4",
-      "created_at": "2026-09-20T09:45:52Z",
-      "updated_at": "2026-09-20T11:24:53Z",
-      "merged_at": null
-    },
-    {
-      "number": 8,
-      "title": "fix: AI-generated security remediation",
-      "state": "open",
-      "merged": false,
-      "head": "security-remediation/7b62b2b2605a",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/8",
-      "created_at": "2026-09-20T11:23:50Z",
-      "updated_at": "2026-09-20T11:23:50Z",
-      "merged_at": null
     }
   ]
 }
