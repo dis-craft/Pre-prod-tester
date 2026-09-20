@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_7f1024b6e4b8",
+      "commit": "7f1024b6e4b80cbd5eedaaebdd5804c1be0cc700",
+      "parent": "580808b48b284fc0dddcd06d58b3d5351a1916eb",
+      "branch": "main",
+      "message": "test: trigger end-to-end AI remediation flow",
+      "captured_at": "2026-09-20T09:01:31.685219+00:00",
+      "files_changed": 1,
+      "additions": 2,
+      "deletions": 0,
+      "url": "scans/7f1024b6e4b80cbd5eedaaebdd5804c1be0cc700.json"
+    },
+    {
       "scan_id": "scn_94b53b43f74d",
       "commit": "94b53b43f74db789471e75a5444180266dcecf7a",
       "parent": "04b8fa34bf351e685f2ef8fd1dc3c8d55f5435d7",
