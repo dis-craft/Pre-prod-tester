@@ -57,7 +57,7 @@
           {
             "type": "added",
             "new_line": 36,
-            "content": "<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history\u2026</div></div>"
+            "content": "<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history…</div></div>"
           },
           {
             "type": "added",
@@ -132,12 +132,12 @@
           {
             "type": "added",
             "new_line": 51,
-            "content": "    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' \u2014 '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';"
+            "content": "    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' — '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';"
           },
           {
             "type": "added",
             "new_line": 52,
-            "content": "    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit \u2197</a></td></tr>');"
+            "content": "    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit ↗</a></td></tr>');"
           },
           {
             "type": "added",
@@ -229,7 +229,7 @@
                 "type": "context",
                 "old_line": 6,
                 "new_line": 6,
-                "content": "<title>Pre-prod Tester \u2014 Diff Viewer</title>"
+                "content": "<title>Pre-prod Tester — Diff Viewer</title>"
               },
               {
                 "type": "context",
@@ -359,13 +359,13 @@
                 "type": "context",
                 "old_line": 27,
                 "new_line": 27,
-                "content": "  <div class=\"muted\">CI/CD change capture \u00b7 GitHub-style diff viewer \u00b7 vulnerability detection is disabled in this phase.</div>"
+                "content": "  <div class=\"muted\">CI/CD change capture · GitHub-style diff viewer · vulnerability detection is disabled in this phase.</div>"
               },
               {
                 "type": "context",
                 "old_line": 28,
                 "new_line": 28,
-                "content": "  <div id=\"app\" class=\"card\">Loading latest push\u2026</div>"
+                "content": "  <div id=\"app\" class=\"card\">Loading latest push…</div>"
               },
               {
                 "type": "context",
@@ -417,7 +417,7 @@
               {
                 "type": "added",
                 "new_line": 36,
-                "content": "<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history\u2026</div></div>"
+                "content": "<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history…</div></div>"
               },
               {
                 "type": "added",
@@ -492,12 +492,12 @@
               {
                 "type": "added",
                 "new_line": 51,
-                "content": "    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' \u2014 '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';"
+                "content": "    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' — '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';"
               },
               {
                 "type": "added",
                 "new_line": 52,
-                "content": "    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit \u2197</a></td></tr>');"
+                "content": "    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit ↗</a></td></tr>');"
               },
               {
                 "type": "added",
@@ -646,7 +646,7 @@
                 "type": "context",
                 "old_line": 55,
                 "new_line": 78,
-                "content": "  return '<section class=\"file\"><div class=\"file-head\"><div><div class=\"file-name\">'+esc(file.path)+'</div><span class=\"badge\">'+esc(file.status)+' \u00b7 '+esc(file.language)+'</span></div><span class=\"badge\">+'+file.changes.additions+' / -'+file.changes.deletions+'</span></div><div class=\"diff\">'+body+'</div></section>';"
+                "content": "  return '<section class=\"file\"><div class=\"file-head\"><div><div class=\"file-name\">'+esc(file.path)+'</div><span class=\"badge\">'+esc(file.status)+' · '+esc(file.language)+'</span></div><span class=\"badge\">+'+file.changes.additions+' / -'+file.changes.deletions+'</span></div><div class=\"diff\">'+body+'</div></section>';"
               },
               {
                 "type": "context",
@@ -706,7 +706,7 @@
                 "type": "context",
                 "old_line": 65,
                 "new_line": 88,
-                "content": "      '<p class=\"muted\">'+esc(s.repository?.full_name)+' \u00b7 '+esc(c.branch)+' \u00b7 '+esc(c.message)+'</p>'+"
+                "content": "      '<p class=\"muted\">'+esc(s.repository?.full_name)+' · '+esc(c.branch)+' · '+esc(c.message)+'</p>'+"
               },
               {
                 "type": "context",
@@ -754,7 +754,7 @@
                 "type": "context",
                 "old_line": 73,
                 "new_line": 96,
-                "content": "      '<p><a href=\"'+esc(c.before?'https://github.com/'+s.repository.full_name+'/compare/'+c.before+'...'+c.after:'https://github.com/'+s.repository.full_name+'/commit/'+c.after)+'\" target=\"_blank\" rel=\"noreferrer\">Open comparison on GitHub \u2197</a></p>'+"
+                "content": "      '<p><a href=\"'+esc(c.before?'https://github.com/'+s.repository.full_name+'/compare/'+c.before+'...'+c.after:'https://github.com/'+s.repository.full_name+'/commit/'+c.after)+'\" target=\"_blank\" rel=\"noreferrer\">Open comparison on GitHub ↗</a></p>'+"
               },
               {
                 "type": "context",
@@ -821,7 +821,7 @@
         "deletions": 2,
         "total": 27
       },
-      "diff": "diff --git a/index.html b/index.html\nindex ad8ea21..0893500 100644\n--- a/index.html\n+++ b/index.html\n@@ -1,80 +1,103 @@\n <!doctype html>\n <html lang=\"en\">\n <head>\n <meta charset=\"utf-8\">\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n <title>Pre-prod Tester \u2014 Diff Viewer</title>\n <style>\n :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif}\n *{box-sizing:border-box}body{margin:0;background:#0d1117;color:#e6edf3}\n main{max-width:1320px;margin:auto;padding:32px 20px 70px}\n h1{font-size:28px;margin:0 0 6px}.muted{color:#8b949e}.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:18px;margin-top:16px}\n .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.metric{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:13px}.metric span{color:#8b949e;font-size:12px}.metric strong{display:block;font-size:22px;margin-top:4px}\n .commit{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;word-break:break-all}\n a{color:#58a6ff;text-decoration:none}a:hover{text-decoration:underline}\n .file{border:1px solid #30363d;border-radius:7px;margin-top:16px;overflow:hidden}.file-head{padding:11px 14px;background:#161b22;display:flex;justify-content:space-between;gap:15px;align-items:center}.file-name{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600}.badge{font-size:12px;color:#8b949e}.diff{overflow:auto;background:#0d1117;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:20px}\n .line{display:grid;grid-template-columns:54px 54px 26px minmax(0,1fr);min-width:760px;white-space:pre}.line>span{padding:0 8px}.ln{color:#6e7681;text-align:right;user-select:none;border-right:1px solid #21262d}.mark{font-weight:700;text-align:center}.code{padding-left:10px!important}\n .added{background:rgba(46,160,67,.20)}.added .mark{color:#3fb950}.removed{background:rgba(248,81,73,.20)}.removed .mark{color:#f85149}.context .mark{color:#6e7681}\n .hunk{padding:5px 14px;background:#1f6feb22;color:#79c0ff;border-top:1px solid #21262d;border-bottom:1px solid #21262d}\n .empty{padding:20px;color:#8b949e}\n .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}.button{border:1px solid #30363d;border-radius:6px;padding:7px 11px;background:#21262d}\n @media(max-width:700px){main{padding:20px 10px}.line{grid-template-columns:42px 42px 24px minmax(0,1fr)}}\n-</style>\n+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px;border-bottom:1px solid #30363d;text-align:left;vertical-align:top}th{color:#8b949e}</style>\n </head>\n <body>\n <main>\n   <h1>Pre-prod Tester</h1>\n   <div class=\"muted\">CI/CD change capture \u00b7 GitHub-style diff viewer \u00b7 vulnerability detection is disabled in this phase.</div>\n   <div id=\"app\" class=\"card\">Loading latest push\u2026</div>\n   <div class=\"card\">\n     <strong>Machine-readable</strong>\n     <div class=\"actions\">\n       <a class=\"button\" href=\"data/latest.json\">Latest JSON</a>\n       <a class=\"button\" href=\"data/index.json\">Scan index</a>\n     </div>\n   </div>\n-</main>\n+<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history\u2026</div></div>\n+<script>\n+async function loadHistory(){\n+ const el=document.getElementById('history');\n+ try{\n+  const idx=await (await fetch('data/index.json?'+Date.now(),{cache:'no-store'})).json();\n+  const rows=[];\n+  for(const s of (idx.scans||[]).slice(0,30)){\n+   try{\n+    const d=await (await fetch('data/'+s.url+'?'+Date.now(),{cache:'no-store'})).json();\n+    const se=d.security_engine||{};\n+    const fs=se.findings||[];\n+    const blocking=fs.filter(f=>['HIGH','CRITICAL'].includes(String(f.severity||'').toUpperCase()));\n+    const status=se.status||'NOT_SCANNED';\n+    const author=d.commit?.author?.name||'unknown';\n+    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' \u2014 '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';\n+    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit \u2197</a></td></tr>');\n+   }catch(e){}\n+  }\n+  el.innerHTML='<div style=\"overflow:auto\"><table><thead><tr><th>Commit</th><th>Change</th><th>Author</th><th>Status</th><th>Issue</th><th>GitHub</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';\n+ }catch(e){el.textContent='Unable to load history: '+e.message}\n+}\n+loadHistory();\n+</script></main>\n <script>\n const esc = s => String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');\n function lineHtml(line){\n   const type=line.type;\n   const cls=type==='added'?'added':type==='removed'?'removed':'context';\n   const oldNo=line.old_line ?? '';\n   const newNo=line.new_line ?? '';\n   const mark=type==='added'?'+':type==='removed'?'-':' ';\n   return '<div class=\"line '+cls+'\"><span class=\"ln\">'+oldNo+'</span><span class=\"ln\">'+newNo+'</span><span class=\"mark\">'+mark+'</span><span class=\"code\">'+esc(line.content)+'</span></div>';\n }\n function renderFile(file){\n   const hunks=file.hunks||[];\n   let body='';\n   for(const h of hunks){\n     body+='<div class=\"hunk\">'+esc(h.header)+'</div>';\n     for(const line of h.lines||[]) body+=lineHtml(line);\n   }\n   if(!body) body='<div class=\"empty\">No textual diff available (binary file or file metadata-only change).</div>';\n   return '<section class=\"file\"><div class=\"file-head\"><div><div class=\"file-name\">'+esc(file.path)+'</div><span class=\"badge\">'+esc(file.status)+' \u00b7 '+esc(file.language)+'</span></div><span class=\"badge\">+'+file.changes.additions+' / -'+file.changes.deletions+'</span></div><div class=\"diff\">'+body+'</div></section>';\n }\n async function load(){\n   const root=document.getElementById('app');\n   try{\n     const r=await fetch('data/latest.json?'+Date.now(),{cache:'no-store'});\n     if(!r.ok)throw new Error('latest.json returned '+r.status);\n     const s=await r.json(), c=s.commit||{}, x=s.change_summary||{}, files=s.files||[];\n     root.innerHTML=\n       '<h2>Latest push</h2>'+\n       '<p class=\"muted\">'+esc(s.repository?.full_name)+' \u00b7 '+esc(c.branch)+' \u00b7 '+esc(c.message)+'</p>'+\n       '<div class=\"grid\">'+\n       '<div class=\"metric\"><span>Files changed</span><strong>'+x.files_changed+'</strong></div>'+\n       '<div class=\"metric\"><span>Additions</span><strong>+'+x.additions+'</strong></div>'+\n       '<div class=\"metric\"><span>Deletions</span><strong>-'+x.deletions+'</strong></div>'+\n       '<div class=\"metric\"><span>Net lines</span><strong>'+((x.net_lines>=0?'+':'')+x.net_lines)+'</strong></div>'+\n       '</div>'+\n       '<p class=\"commit\">BASE '+esc(c.before||'(initial)')+'<br>TARGET '+esc(c.after)+'</p>'+\n       '<p><a href=\"'+esc(c.before?'https://github.com/'+s.repository.full_name+'/compare/'+c.before+'...'+c.after:'https://github.com/'+s.repository.full_name+'/commit/'+c.after)+'\" target=\"_blank\" rel=\"noreferrer\">Open comparison on GitHub \u2197</a></p>'+\n       files.map(renderFile).join('');\n   }catch(e){root.innerHTML='<strong>Unable to load scan data.</strong><p class=\"muted\">'+esc(e.message)+'</p>'}\n }\n load();\n </script>\n </body>\n </html>\n",
+      "diff": "diff --git a/index.html b/index.html\nindex ad8ea21..0893500 100644\n--- a/index.html\n+++ b/index.html\n@@ -1,80 +1,103 @@\n <!doctype html>\n <html lang=\"en\">\n <head>\n <meta charset=\"utf-8\">\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n <title>Pre-prod Tester — Diff Viewer</title>\n <style>\n :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,\"Segoe UI\",sans-serif}\n *{box-sizing:border-box}body{margin:0;background:#0d1117;color:#e6edf3}\n main{max-width:1320px;margin:auto;padding:32px 20px 70px}\n h1{font-size:28px;margin:0 0 6px}.muted{color:#8b949e}.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:18px;margin-top:16px}\n .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.metric{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:13px}.metric span{color:#8b949e;font-size:12px}.metric strong{display:block;font-size:22px;margin-top:4px}\n .commit{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;word-break:break-all}\n a{color:#58a6ff;text-decoration:none}a:hover{text-decoration:underline}\n .file{border:1px solid #30363d;border-radius:7px;margin-top:16px;overflow:hidden}.file-head{padding:11px 14px;background:#161b22;display:flex;justify-content:space-between;gap:15px;align-items:center}.file-name{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600}.badge{font-size:12px;color:#8b949e}.diff{overflow:auto;background:#0d1117;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:20px}\n .line{display:grid;grid-template-columns:54px 54px 26px minmax(0,1fr);min-width:760px;white-space:pre}.line>span{padding:0 8px}.ln{color:#6e7681;text-align:right;user-select:none;border-right:1px solid #21262d}.mark{font-weight:700;text-align:center}.code{padding-left:10px!important}\n .added{background:rgba(46,160,67,.20)}.added .mark{color:#3fb950}.removed{background:rgba(248,81,73,.20)}.removed .mark{color:#f85149}.context .mark{color:#6e7681}\n .hunk{padding:5px 14px;background:#1f6feb22;color:#79c0ff;border-top:1px solid #21262d;border-bottom:1px solid #21262d}\n .empty{padding:20px;color:#8b949e}\n .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}.button{border:1px solid #30363d;border-radius:6px;padding:7px 11px;background:#21262d}\n @media(max-width:700px){main{padding:20px 10px}.line{grid-template-columns:42px 42px 24px minmax(0,1fr)}}\n-</style>\n+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px;border-bottom:1px solid #30363d;text-align:left;vertical-align:top}th{color:#8b949e}</style>\n </head>\n <body>\n <main>\n   <h1>Pre-prod Tester</h1>\n   <div class=\"muted\">CI/CD change capture · GitHub-style diff viewer · vulnerability detection is disabled in this phase.</div>\n   <div id=\"app\" class=\"card\">Loading latest push…</div>\n   <div class=\"card\">\n     <strong>Machine-readable</strong>\n     <div class=\"actions\">\n       <a class=\"button\" href=\"data/latest.json\">Latest JSON</a>\n       <a class=\"button\" href=\"data/index.json\">Scan index</a>\n     </div>\n   </div>\n-</main>\n+<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history…</div></div>\n+<script>\n+async function loadHistory(){\n+ const el=document.getElementById('history');\n+ try{\n+  const idx=await (await fetch('data/index.json?'+Date.now(),{cache:'no-store'})).json();\n+  const rows=[];\n+  for(const s of (idx.scans||[]).slice(0,30)){\n+   try{\n+    const d=await (await fetch('data/'+s.url+'?'+Date.now(),{cache:'no-store'})).json();\n+    const se=d.security_engine||{};\n+    const fs=se.findings||[];\n+    const blocking=fs.filter(f=>['HIGH','CRITICAL'].includes(String(f.severity||'').toUpperCase()));\n+    const status=se.status||'NOT_SCANNED';\n+    const author=d.commit?.author?.name||'unknown';\n+    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' — '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';\n+    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit ↗</a></td></tr>');\n+   }catch(e){}\n+  }\n+  el.innerHTML='<div style=\"overflow:auto\"><table><thead><tr><th>Commit</th><th>Change</th><th>Author</th><th>Status</th><th>Issue</th><th>GitHub</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';\n+ }catch(e){el.textContent='Unable to load history: '+e.message}\n+}\n+loadHistory();\n+</script></main>\n <script>\n const esc = s => String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');\n function lineHtml(line){\n   const type=line.type;\n   const cls=type==='added'?'added':type==='removed'?'removed':'context';\n   const oldNo=line.old_line ?? '';\n   const newNo=line.new_line ?? '';\n   const mark=type==='added'?'+':type==='removed'?'-':' ';\n   return '<div class=\"line '+cls+'\"><span class=\"ln\">'+oldNo+'</span><span class=\"ln\">'+newNo+'</span><span class=\"mark\">'+mark+'</span><span class=\"code\">'+esc(line.content)+'</span></div>';\n }\n function renderFile(file){\n   const hunks=file.hunks||[];\n   let body='';\n   for(const h of hunks){\n     body+='<div class=\"hunk\">'+esc(h.header)+'</div>';\n     for(const line of h.lines||[]) body+=lineHtml(line);\n   }\n   if(!body) body='<div class=\"empty\">No textual diff available (binary file or file metadata-only change).</div>';\n   return '<section class=\"file\"><div class=\"file-head\"><div><div class=\"file-name\">'+esc(file.path)+'</div><span class=\"badge\">'+esc(file.status)+' · '+esc(file.language)+'</span></div><span class=\"badge\">+'+file.changes.additions+' / -'+file.changes.deletions+'</span></div><div class=\"diff\">'+body+'</div></section>';\n }\n async function load(){\n   const root=document.getElementById('app');\n   try{\n     const r=await fetch('data/latest.json?'+Date.now(),{cache:'no-store'});\n     if(!r.ok)throw new Error('latest.json returned '+r.status);\n     const s=await r.json(), c=s.commit||{}, x=s.change_summary||{}, files=s.files||[];\n     root.innerHTML=\n       '<h2>Latest push</h2>'+\n       '<p class=\"muted\">'+esc(s.repository?.full_name)+' · '+esc(c.branch)+' · '+esc(c.message)+'</p>'+\n       '<div class=\"grid\">'+\n       '<div class=\"metric\"><span>Files changed</span><strong>'+x.files_changed+'</strong></div>'+\n       '<div class=\"metric\"><span>Additions</span><strong>+'+x.additions+'</strong></div>'+\n       '<div class=\"metric\"><span>Deletions</span><strong>-'+x.deletions+'</strong></div>'+\n       '<div class=\"metric\"><span>Net lines</span><strong>'+((x.net_lines>=0?'+':'')+x.net_lines)+'</strong></div>'+\n       '</div>'+\n       '<p class=\"commit\">BASE '+esc(c.before||'(initial)')+'<br>TARGET '+esc(c.after)+'</p>'+\n       '<p><a href=\"'+esc(c.before?'https://github.com/'+s.repository.full_name+'/compare/'+c.before+'...'+c.after:'https://github.com/'+s.repository.full_name+'/commit/'+c.after)+'\" target=\"_blank\" rel=\"noreferrer\">Open comparison on GitHub ↗</a></p>'+\n       files.map(renderFile).join('');\n   }catch(e){root.innerHTML='<strong>Unable to load scan data.</strong><p class=\"muted\">'+esc(e.message)+'</p>'}\n }\n load();\n </script>\n </body>\n </html>\n",
       "hunks": [
         {
           "header": "@@ -1,80 +1,103 @@",
@@ -864,7 +864,7 @@
               "type": "context",
               "old_line": 6,
               "new_line": 6,
-              "content": "<title>Pre-prod Tester \u2014 Diff Viewer</title>"
+              "content": "<title>Pre-prod Tester — Diff Viewer</title>"
             },
             {
               "type": "context",
@@ -994,13 +994,13 @@
               "type": "context",
               "old_line": 27,
               "new_line": 27,
-              "content": "  <div class=\"muted\">CI/CD change capture \u00b7 GitHub-style diff viewer \u00b7 vulnerability detection is disabled in this phase.</div>"
+              "content": "  <div class=\"muted\">CI/CD change capture · GitHub-style diff viewer · vulnerability detection is disabled in this phase.</div>"
             },
             {
               "type": "context",
               "old_line": 28,
               "new_line": 28,
-              "content": "  <div id=\"app\" class=\"card\">Loading latest push\u2026</div>"
+              "content": "  <div id=\"app\" class=\"card\">Loading latest push…</div>"
             },
             {
               "type": "context",
@@ -1052,7 +1052,7 @@
             {
               "type": "added",
               "new_line": 36,
-              "content": "<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history\u2026</div></div>"
+              "content": "<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history…</div></div>"
             },
             {
               "type": "added",
@@ -1127,12 +1127,12 @@
             {
               "type": "added",
               "new_line": 51,
-              "content": "    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' \u2014 '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';"
+              "content": "    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' — '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';"
             },
             {
               "type": "added",
               "new_line": 52,
-              "content": "    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit \u2197</a></td></tr>');"
+              "content": "    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit ↗</a></td></tr>');"
             },
             {
               "type": "added",
@@ -1281,7 +1281,7 @@
               "type": "context",
               "old_line": 55,
               "new_line": 78,
-              "content": "  return '<section class=\"file\"><div class=\"file-head\"><div><div class=\"file-name\">'+esc(file.path)+'</div><span class=\"badge\">'+esc(file.status)+' \u00b7 '+esc(file.language)+'</span></div><span class=\"badge\">+'+file.changes.additions+' / -'+file.changes.deletions+'</span></div><div class=\"diff\">'+body+'</div></section>';"
+              "content": "  return '<section class=\"file\"><div class=\"file-head\"><div><div class=\"file-name\">'+esc(file.path)+'</div><span class=\"badge\">'+esc(file.status)+' · '+esc(file.language)+'</span></div><span class=\"badge\">+'+file.changes.additions+' / -'+file.changes.deletions+'</span></div><div class=\"diff\">'+body+'</div></section>';"
             },
             {
               "type": "context",
@@ -1341,7 +1341,7 @@
               "type": "context",
               "old_line": 65,
               "new_line": 88,
-              "content": "      '<p class=\"muted\">'+esc(s.repository?.full_name)+' \u00b7 '+esc(c.branch)+' \u00b7 '+esc(c.message)+'</p>'+"
+              "content": "      '<p class=\"muted\">'+esc(s.repository?.full_name)+' · '+esc(c.branch)+' · '+esc(c.message)+'</p>'+"
             },
             {
               "type": "context",
@@ -1389,7 +1389,7 @@
               "type": "context",
               "old_line": 73,
               "new_line": 96,
-              "content": "      '<p><a href=\"'+esc(c.before?'https://github.com/'+s.repository.full_name+'/compare/'+c.before+'...'+c.after:'https://github.com/'+s.repository.full_name+'/commit/'+c.after)+'\" target=\"_blank\" rel=\"noreferrer\">Open comparison on GitHub \u2197</a></p>'+"
+              "content": "      '<p><a href=\"'+esc(c.before?'https://github.com/'+s.repository.full_name+'/compare/'+c.before+'...'+c.after:'https://github.com/'+s.repository.full_name+'/commit/'+c.after)+'\" target=\"_blank\" rel=\"noreferrer\">Open comparison on GitHub ↗</a></p>'+"
             },
             {
               "type": "context",
@@ -1445,7 +1445,7 @@
         {
           "type": "added",
           "new_line": 36,
-          "content": "<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history\u2026</div></div>"
+          "content": "<div class=\"card\"><h2>Commit & Security History</h2><div id=\"history\">Loading history…</div></div>"
         },
         {
           "type": "added",
@@ -1520,12 +1520,12 @@
         {
           "type": "added",
           "new_line": 51,
-          "content": "    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' \u2014 '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';"
+          "content": "    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' — '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';"
         },
         {
           "type": "added",
           "new_line": 52,
-          "content": "    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit \u2197</a></td></tr>');"
+          "content": "    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href=\"https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'\" target=\"_blank\">commit ↗</a></td></tr>');"
         },
         {
           "type": "added",
@@ -1575,73 +1575,6 @@
           "content": "</main>"
         }
       ]
-    }
-  ],
-  "security_engine": {
-    "status": "PASSED",
-    "scanner": "Pre-Prod-Orchestrator/rule_engine",
-    "findings": [],
-    "scan_metadata": {
-      "timestamp": "2026-09-20T15:32:07.807144",
-      "total_findings": 0,
-      "by_severity": {
-        "CRITICAL": 0,
-        "HIGH": 0,
-        "MEDIUM": 0,
-        "LOW": 0,
-        "INFO": 0
-      },
-      "model_used": "none"
-    }
-  },
-  "pull_requests": [
-    {
-      "number": 7,
-      "title": "fix: AI-generated security remediation",
-      "state": "closed",
-      "merged": false,
-      "head": "security-remediation/86219fd94f50",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/7",
-      "created_at": "2026-09-20T11:11:17Z",
-      "updated_at": "2026-09-20T11:24:58Z",
-      "merged_at": null
-    },
-    {
-      "number": 6,
-      "title": "fix: AI-generated security remediation",
-      "state": "closed",
-      "merged": false,
-      "head": "security-remediation/11323c78a922",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/6",
-      "created_at": "2026-09-20T11:08:02Z",
-      "updated_at": "2026-09-20T11:24:56Z",
-      "merged_at": null
-    },
-    {
-      "number": 4,
-      "title": "fix: AI-generated security remediation",
-      "state": "closed",
-      "merged": false,
-      "head": "security-remediation/7a1fcb7cf94c",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/4",
-      "created_at": "2026-09-20T09:45:52Z",
-      "updated_at": "2026-09-20T11:24:53Z",
-      "merged_at": null
-    },
-    {
-      "number": 8,
-      "title": "fix: AI-generated security remediation",
-      "state": "open",
-      "merged": false,
-      "head": "security-remediation/7b62b2b2605a",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/8",
-      "created_at": "2026-09-20T11:23:50Z",
-      "updated_at": "2026-09-20T11:23:50Z",
-      "merged_at": null
     }
   ]
 }

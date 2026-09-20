@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_0a83395080ab",
+      "commit": "0a83395080ab1ce04a0823c3d9eb5d54efb64102",
+      "parent": "d76d41ad550b4de5c3a2acacbe5f29865c66582c",
+      "branch": "main",
+      "message": "feat: show commit security history on dashboard",
+      "captured_at": "2026-09-20T15:31:57.769419+00:00",
+      "files_changed": 1,
+      "additions": 25,
+      "deletions": 2,
+      "url": "scans/0a83395080ab1ce04a0823c3d9eb5d54efb64102.json"
+    },
+    {
       "scan_id": "scn_4635dd505c70",
       "commit": "4635dd505c70ae0514f61773c988c81bf3ad74de",
       "parent": "6f3592fe0c705d10470017ceaced60f589fd5bb6",
