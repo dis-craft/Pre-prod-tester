@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_425d0b096011",
+      "commit": "425d0b09601180ce699e05e0d0ad3aa3fc602754",
+      "parent": "b1846e67d8ccb65cf5211f76faae65e8c76ba873",
+      "branch": "main",
+      "message": "chore: remove security E2E fixture after test",
+      "captured_at": "2026-09-20T11:16:36.459130+00:00",
+      "files_changed": 1,
+      "additions": 0,
+      "deletions": 15,
+      "url": "scans/425d0b09601180ce699e05e0d0ad3aa3fc602754.json"
+    },
+    {
       "scan_id": "scn_586175ae7f71",
       "commit": "586175ae7f7132115278429c291114ac8310884a",
       "parent": "3ae43561670a5cbe44fb087a3c9560baac6f6f3e",
