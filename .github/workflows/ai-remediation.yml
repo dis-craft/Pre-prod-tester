@@ -21,5 +21,9 @@ jobs:
     with:
       generate-remediation: true
       test-command: ""
+      fallback-model: grok-4.6
+      primary-attempts: "3"
+      fallback-attempts: "2"
     secrets:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
