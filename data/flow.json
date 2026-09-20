@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-09-20T17:53:30.125353+00:00",
-  "current_stage_label": "8. Full PR security re-scan",
+  "generated_at": "2026-09-20T17:58:04.584578+00:00",
+  "current_stage_label": "4. AI remediation",
   "source_of_truth": {
     "capture": "data/latest.json or data/scans/<commit>.json",
     "security": "security_engine embedded in canonical scan data",
@@ -10,101 +10,93 @@
     "merge": "GitHub PR state"
   },
   "scan": {
-    "id": "scn_64183becce8e",
-    "captured_at": "2026-09-20T17:51:24.308703+00:00",
+    "id": "scn_de5bb281ed3c",
+    "captured_at": "2026-09-20T17:54:12.310204+00:00",
     "files_changed": 2,
-    "additions": 326,
+    "additions": 3,
     "deletions": 0,
     "findings": 12,
     "critical": 12,
     "high": 0
   },
   "commit": {
-    "sha": "64183becce8e91d3c89b4cca3fbd696af1e3f41c",
-    "author": "Adi-Deshmukh",
+    "sha": "de5bb281ed3ccaeb9d327c100b12eacb3e99ab83",
+    "author": "dis-craft",
     "branch": "main",
     "message": "Merge branch 'main' of https://github.com/dis-craft/Pre-prod-tester",
-    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/64183becce8e91d3c89b4cca3fbd696af1e3f41c"
+    "url": "https://github.com/dis-craft/Pre-prod-tester/commit/de5bb281ed3ccaeb9d327c100b12eacb3e99ab83"
   },
-  "pull_request": {
-    "number": 11,
-    "url": "https://github.com/dis-craft/Pre-prod-tester/pull/11",
-    "state": "open",
-    "head": "security/ai-remediation/64183becce8e",
-    "head_sha": "4d3a9997df04f418fb7e3b726f255a9b5c7db7bb",
-    "base": "main",
-    "merged": false
-  },
+  "pull_request": null,
   "stages": [
     {
       "label": "1. Commit received",
       "status": "pass",
-      "detail": "Commit 64183becce8e received.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/commit/64183becce8e91d3c89b4cca3fbd696af1e3f41c",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "detail": "Commit de5bb281ed3c received.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/commit/de5bb281ed3ccaeb9d327c100b12eacb3e99ab83",
+      "pr_url": null
     },
     {
       "label": "2. Capture exact diff",
       "status": "pass",
-      "detail": "Canonical diff captured: 2 file(s), +326/-0.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527185833",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "detail": "Canonical diff captured: 2 file(s), +3/-0.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527328563",
+      "pr_url": null
     },
     {
       "label": "3. Security scan",
       "status": "pass",
       "detail": "Security scan completed; 12 finding(s): 12 critical, 0 high. Merge remains blocked until remediation is verified.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527185833",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527328563",
+      "pr_url": null
     },
     {
       "label": "4. AI remediation",
-      "status": "pass",
-      "detail": "Run scanner and AI remediation completed successfully.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527185833/job/106121324210",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "status": "fail",
+      "detail": "Run scanner and AI remediation ended as failure.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527328563/job/106121708680",
+      "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
-      "status": "pass",
-      "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527185833/job/106121324210",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "status": "waiting",
+      "detail": "Validation was not reached because AI remediation failed.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527328563/job/106121708680",
+      "pr_url": null
     },
     {
       "label": "6. Post-fix verification",
-      "status": "pass",
-      "detail": "Sandbox validation and post-fix verification are executed inside the remediation engine.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527185833/job/106121324210",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "status": "waiting",
+      "detail": "Validation was not reached because AI remediation failed.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527328563/job/106121708680",
+      "pr_url": null
     },
     {
       "label": "7. Remediation PR",
-      "status": "pass",
-      "detail": "Remediation PR #11 is open.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "status": "fail",
+      "detail": "No remediation PR has been created for this commit.",
+      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527328563",
+      "pr_url": null
     },
     {
       "label": "8. Full PR security re-scan",
       "status": "waiting",
-      "detail": "Waiting for Enforce security gate for review.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35527287694",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "detail": "Waiting for a remediation PR.",
+      "run_url": null,
+      "pr_url": null
     },
     {
       "label": "9. Human review",
       "status": "waiting",
-      "detail": "Automated checks are represented above; human review is required before merge.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "detail": "Waiting for a remediation PR requiring human review.",
+      "run_url": null,
+      "pr_url": null
     },
     {
       "label": "10. Merge / completed",
       "status": "waiting",
       "detail": "Waiting for merge.",
-      "run_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11",
-      "pr_url": "https://github.com/dis-craft/Pre-prod-tester/pull/11"
+      "run_url": null,
+      "pr_url": null
     }
   ]
 }
