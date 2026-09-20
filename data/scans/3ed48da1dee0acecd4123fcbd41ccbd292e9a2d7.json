@@ -6332,22 +6332,5 @@
         }
       ]
     }
-  ],
-  "security_engine": {
-    "status": "PASSED",
-    "scanner": "Pre-Prod-Orchestrator/rule_engine",
-    "findings": [],
-    "scan_metadata": {
-      "timestamp": "2026-09-20T16:44:04.996320",
-      "total_findings": 0,
-      "by_severity": {
-        "CRITICAL": 0,
-        "HIGH": 0,
-        "MEDIUM": 0,
-        "LOW": 0,
-        "INFO": 0
-      },
-      "model_used": "none"
-    }
-  }
+  ]
 }

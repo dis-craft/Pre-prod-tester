@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_3ed48da1dee0",
+      "commit": "3ed48da1dee0acecd4123fcbd41ccbd292e9a2d7",
+      "parent": "5e286048883509720ac8952ec549a47c2de83d36",
+      "branch": "main",
+      "message": "fix: make flow consume canonical scan state",
+      "captured_at": "2026-09-20T16:43:56.011013+00:00",
+      "files_changed": 1,
+      "additions": 188,
+      "deletions": 60,
+      "url": "scans/3ed48da1dee0acecd4123fcbd41ccbd292e9a2d7.json"
+    },
+    {
       "scan_id": "scn_ac7121e0095a",
       "commit": "ac7121e0095a60a3e3200f7acab25ab038fc69b8",
       "parent": "100f98913d12f20bad6efe17c3ce6d67957ad8a2",
