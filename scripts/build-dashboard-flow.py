@@ -217,7 +217,7 @@ else:
     human_state, human_detail = "waiting", "Waiting for a remediation PR requiring human review."
 
 merge_state = (
-    "pass" if pr and pr.get("merged_at")
+    "pass" if (pr and pr.get("merged_at")) or (scan and not findings)
     else "fail" if pr and pr.get("state") == "closed"
     else "waiting"
 )
