@@ -1,5 +1,5 @@
 name: Pre-prod Diff Capture
-description: Capture the exact Git push diff from the calling repository as structured JSON.
+description: Capture the exact Git push or pull-request diff from the calling repository as structured JSON.
 inputs:
   output:
     description: Output JSON path relative to the calling repository workspace.
@@ -17,13 +17,16 @@ runs:
       shell: bash
       env:
         PREPROD_OUTPUT: ${{ inputs.output }}
-        PREPROD_BEFORE: ${{ github.event.before }}
-        PREPROD_AFTER: ${{ github.sha }}
+        PREPROD_BEFORE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        PREPROD_AFTER: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
         PREPROD_REPOSITORY: ${{ github.repository }}
         PREPROD_SERVER: ${{ github.server_url }}
-        PREPROD_REF: ${{ github.ref_name }}
+        PREPROD_REF: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
         PREPROD_RUN_ID: ${{ github.run_id }}
-        PREPROD_ACTION_PATH: ${{ github.action_path }}
+        PREPROD_EVENT: ${{ github.event_name }}
+        PREPROD_PR_NUMBER: ${{ github.event_name == 'pull_request' && github.event.pull_request.number || '' }}
+        PREPROD_PR_BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.ref || '' }}
+        PREPROD_PR_HEAD: ${{ github.event_name == 'pull_request' && github.head_ref || '' }}
       run: |
-        python3 "$PREPROD_ACTION_PATH/capture.py"
+        python3 "$GITHUB_ACTION_PATH/capture.py"
         echo "scan_file=$PREPROD_OUTPUT" >> "$GITHUB_OUTPUT"
