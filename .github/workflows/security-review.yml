@@ -1,0 +1,16 @@
+name: Security Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  security:
+    uses: dis-craft/Pre-Prod-Orchestrator/.github/workflows/preprod-security.yml@main
+    with:
+      generate-remediation: false
+      test-command: ""
