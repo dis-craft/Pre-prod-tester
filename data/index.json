@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_7680c034b01b",
+      "commit": "7680c034b01b17b5bd3a5612f831ac1d034b89a7",
+      "parent": "65072204d034a21bb9d2a4ca4bf6c3fe5c890557",
+      "branch": "main",
+      "message": "fix: decode non-UTF8 git diffs safely in reusable capture action",
+      "captured_at": "2026-09-20T08:04:11.871827+00:00",
+      "files_changed": 1,
+      "additions": 3,
+      "deletions": 3,
+      "url": "scans/7680c034b01b17b5bd3a5612f831ac1d034b89a7.json"
+    },
+    {
       "scan_id": "scn_3ea5a1094bbb",
       "commit": "3ea5a1094bbbd695789f5344860bc276fe76b95b",
       "parent": "94b0a38a41ab37f007ec7127370833e70911f9bf",
