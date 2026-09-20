@@ -81,7 +81,7 @@ def event_sha(event):
 sha = event_sha(os.environ.get("GITHUB_EVENT_NAME", ""))
 commit = api(f"/commits/{sha}")
 runs = api("/actions/runs?per_page=100&sort=created&direction=desc")
-prs = api("/pulls?state=all&per_page=100&sort=updated&direction=desc").get("items", [])
+prs = api("/pulls?state=all&per_page=100&sort=updated&direction=desc")
 
 capture = find_run(runs, "Capture Changes and Publish", sha)
 ai = find_run(runs, "AI Security Remediation", sha)
