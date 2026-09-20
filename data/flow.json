@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0",
-  "generated_at": "2026-09-20T17:05:21.768042+00:00",
-  "current_stage_label": "2. Capture exact diff",
+  "generated_at": "2026-09-20T17:05:33.861415+00:00",
+  "current_stage_label": "8. Full PR security re-scan",
   "source_of_truth": {
     "capture": "data/latest.json or data/scans/<commit>.json",
     "security": "security_engine embedded in canonical scan data",
@@ -10,11 +10,11 @@
     "merge": "GitHub PR state"
   },
   "scan": {
-    "id": null,
-    "captured_at": null,
-    "files_changed": null,
-    "additions": null,
-    "deletions": null,
+    "id": "scn_563ca4838c52",
+    "captured_at": "2026-09-20T17:05:17.843927+00:00",
+    "files_changed": 1,
+    "additions": 2,
+    "deletions": 0,
     "findings": 0,
     "critical": 0,
     "high": 0
@@ -37,15 +37,15 @@
     },
     {
       "label": "2. Capture exact diff",
-      "status": "running",
-      "detail": "Waiting for the canonical capture workflow to finish.",
+      "status": "pass",
+      "detail": "Canonical diff captured: 1 file(s), +2/-0.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294",
       "pr_url": null
     },
     {
       "label": "3. Security scan",
-      "status": "waiting",
-      "detail": "Waiting for the canonical security scan results.",
+      "status": "pass",
+      "detail": "Security scan completed with no blocking findings.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35524735294",
       "pr_url": null
     },
