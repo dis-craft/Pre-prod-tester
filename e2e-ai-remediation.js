@@ -1,6 +1,7 @@
 const mysql = require('mysql2');
 
 /* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */
+// Re-run marker after Gemini retry + full-rescan validation fixes.
 function getCustomer(db, username) {
   const query = `SELECT * FROM customers WHERE username = '${username}'`;
   return db.query(query);
