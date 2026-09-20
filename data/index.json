@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_41d2a136cccb",
+      "commit": "41d2a136cccb362d7835be3a595d8194d73d9e29",
+      "parent": "f9ab624d8ef01affe90932191342235e20a5bd59",
+      "branch": "main",
+      "message": "test: verify canonical scan and Gemini remediation",
+      "captured_at": "2026-09-20T17:00:14.537613+00:00",
+      "files_changed": 1,
+      "additions": 6,
+      "deletions": 0,
+      "url": "scans/41d2a136cccb362d7835be3a595d8194d73d9e29.json"
+    },
+    {
       "scan_id": "scn_52861c38e229",
       "commit": "52861c38e229da0c2ce9c05fba0dd54af73283b0",
       "parent": "626f40e20dfcae2c931a1ec97524069d4c95603d",
