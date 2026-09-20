@@ -2,16 +2,16 @@
   "schema_version": "1.1",
   "scans": [
     {
-      "scan_id": "scn_b3975ab5b46e",
-      "commit": "b3975ab5b46ed228d40069c326e06c0cb1f0f28b",
-      "parent": "b093add514fe49e16f6f3fcbf19fea5af9777135",
+      "scan_id": "scn_8e2340f4a938",
+      "commit": "8e2340f4a938e6942d6070c28b15419f4124f953",
+      "parent": "0dd56f3297c7f4c59268b11588049be8f2167ac6",
       "branch": "main",
-      "message": "fix: publish flow only after workflow completion",
-      "captured_at": "2026-09-20T17:06:08.215508+00:00",
+      "message": "test: verify security flow and GitHub Pages sync",
+      "captured_at": "2026-09-20T17:06:52.095278+00:00",
       "files_changed": 1,
-      "additions": 1,
-      "deletions": 1,
-      "url": "scans/b3975ab5b46ed228d40069c326e06c0cb1f0f28b.json"
+      "additions": 7,
+      "deletions": 0,
+      "url": "scans/8e2340f4a938e6942d6070c28b15419f4124f953.json"
     },
     {
       "scan_id": "scn_563ca4838c52",
