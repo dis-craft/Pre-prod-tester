@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_bc497a7d7c2c",
+      "commit": "bc497a7d7c2c6af601f95c677c47d09146053ec6",
+      "parent": "3d3a7507d7f03fef9e1616e18409e728d27336d1",
+      "branch": "main",
+      "message": "fix: align capture workflow permissions",
+      "captured_at": "2026-09-20T16:34:48.023597+00:00",
+      "files_changed": 1,
+      "additions": 2,
+      "deletions": 2,
+      "url": "scans/bc497a7d7c2c6af601f95c677c47d09146053ec6.json"
+    },
+    {
       "scan_id": "scn_70a48afa5691",
       "commit": "70a48afa5691d92a6eeb93ae5f29cf1bac1366d3",
       "parent": "9cac1efc90cacc13727a1900388d93221b3ba069",
