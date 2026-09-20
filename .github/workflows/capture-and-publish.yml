@@ -83,7 +83,7 @@ jobs:
           remediation_prs = []
           for pr in prs:
               head = pr.get("head", {}).get("ref", "")
-              if not head.startswith("security-remediation/"):
+              if not (head.startswith("security-remediation/") or head.startswith("security/ai-remediation/")):
                   continue
               remediation_prs.append({
                   "number": pr.get("number"),
