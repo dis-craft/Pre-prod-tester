@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_52861c38e229",
+      "commit": "52861c38e229da0c2ce9c05fba0dd54af73283b0",
+      "parent": "626f40e20dfcae2c931a1ec97524069d4c95603d",
+      "branch": "main",
+      "message": "test: rerun Gemini remediation after fix",
+      "captured_at": "2026-09-20T16:57:47.559834+00:00",
+      "files_changed": 1,
+      "additions": 6,
+      "deletions": 0,
+      "url": "scans/52861c38e229da0c2ce9c05fba0dd54af73283b0.json"
+    },
+    {
       "scan_id": "scn_010b730ca698",
       "commit": "010b730ca6985cf787ef7ce956e7d9fed587bfce",
       "parent": "8ee965d0e4c1065964698a0035ca8a78503cbae5",
