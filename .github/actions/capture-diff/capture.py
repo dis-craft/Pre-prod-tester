@@ -106,15 +106,7 @@ def capture(before: str, after: str):
             "path": path,
             "status": status,
             "language": Path(path).suffix.lstrip(".") or "unknown",
-            **({
-            "pull_request": {
-                "number": int(pr_number),
-                "base": pr_base,
-                "head": pr_head,
-                "url": f"{server}/{repo}/pull/{pr_number}",
-            }
-        } if pr_number else {}),
-        "changes": {
+            "changes": {
                 "additions": additions,
                 "deletions": deletions,
                 "total": additions + deletions,
@@ -181,6 +173,14 @@ def main():
             "deletions": deletions,
             "net_lines": additions - deletions,
         },
+        **({
+            "pull_request": {
+                "number": int(pr_number),
+                "base": pr_base,
+                "head": pr_head,
+                "url": f"{server}/{repo}/pull/{pr_number}",
+            }
+        } if pr_number else {}),
         "changes": {
             "format": "github-style-unified-diff",
             "legend": {"added": "+", "removed": "-", "context": " "},
