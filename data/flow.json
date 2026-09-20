@@ -1,6 +1,6 @@
 {
   "schema_version": "1.3",
-  "generated_at": "2026-09-20T16:35:57.669297+00:00",
+  "generated_at": "2026-09-20T16:36:29.676771+00:00",
   "current_stage_label": "4. AI remediation",
   "commit": {
     "sha": "ac7121e0095a60a3e3200f7acab25ab038fc69b8",
@@ -34,28 +34,28 @@
     },
     {
       "label": "4. AI remediation",
-      "status": "running",
-      "detail": "Run scanner and AI remediation is running.",
+      "status": "fail",
+      "detail": "Run scanner and AI remediation ended as failure.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171808/job/106110673829",
       "pr_url": null
     },
     {
       "label": "5. Sandbox validation",
-      "status": "running",
+      "status": "fail",
       "detail": "Validation is performed inside the remediation stage.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171808/job/106110673829",
       "pr_url": null
     },
     {
       "label": "6. Post-fix scan",
-      "status": "running",
+      "status": "fail",
       "detail": "The modified repository is rescanned before a PR is created.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171808/job/106110673829",
       "pr_url": null
     },
     {
       "label": "7. Remediation PR",
-      "status": "waiting",
+      "status": "fail",
       "detail": "No remediation PR has been created for this commit.",
       "run_url": "https://github.com/dis-craft/Pre-prod-tester/actions/runs/35523171808",
       "pr_url": null
