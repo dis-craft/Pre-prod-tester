@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_483a9977a8cf",
+      "commit": "483a9977a8cf51613033b3a6c7174e8fc2b11d6f",
+      "parent": "a93b31ad1bbdb10422eda20fb30ccfac27e4f3ac",
+      "branch": "main",
+      "message": "fix: publish PR state from pull request event payload",
+      "captured_at": "2026-09-20T11:26:17.025251+00:00",
+      "files_changed": 1,
+      "additions": 42,
+      "deletions": 41,
+      "url": "scans/483a9977a8cf51613033b3a6c7174e8fc2b11d6f.json"
+    },
+    {
       "scan_id": "scn_7b62b2b2605a",
       "commit": "7b62b2b2605a3c8f37daa3d7a4addbc870830ba9",
       "parent": "afbcef7f50ebca3f1e623010df93425ab8a0d06d",
