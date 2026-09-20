@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_4ad6633e5026",
+      "commit": "4ad6633e50261d49bb8c098e208ce4594f4d025e",
+      "parent": "c6970bc4bb1cb9ed4349055320a3d008148e7f32",
+      "branch": "main",
+      "message": "feat: publish live remediation PR state",
+      "captured_at": "2026-09-20T10:37:46.796154+00:00",
+      "files_changed": 1,
+      "additions": 88,
+      "deletions": 0,
+      "url": "scans/4ad6633e50261d49bb8c098e208ce4594f4d025e.json"
+    },
+    {
       "scan_id": "scn_7a1fcb7cf94c",
       "commit": "7a1fcb7cf94c34c17e955b134660e49816b79fe9",
       "parent": "14e132d596c8793a055f3bfbacd78e32c063bd02",
