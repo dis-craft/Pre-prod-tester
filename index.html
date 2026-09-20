@@ -19,7 +19,7 @@ a{color:#58a6ff;text-decoration:none}a:hover{text-decoration:underline}
 .empty{padding:20px;color:#8b949e}
 .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px}.button{border:1px solid #30363d;border-radius:6px;padding:7px 11px;background:#21262d}
 @media(max-width:700px){main{padding:20px 10px}.line{grid-template-columns:42px 42px 24px minmax(0,1fr)}}
-</style>
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:9px;border-bottom:1px solid #30363d;text-align:left;vertical-align:top}th{color:#8b949e}</style>
 </head>
 <body>
 <main>
@@ -33,7 +33,30 @@ a{color:#58a6ff;text-decoration:none}a:hover{text-decoration:underline}
       <a class="button" href="data/index.json">Scan index</a>
     </div>
   </div>
-</main>
+<div class="card"><h2>Commit & Security History</h2><div id="history">Loading history…</div></div>
+<script>
+async function loadHistory(){
+ const el=document.getElementById('history');
+ try{
+  const idx=await (await fetch('data/index.json?'+Date.now(),{cache:'no-store'})).json();
+  const rows=[];
+  for(const s of (idx.scans||[]).slice(0,30)){
+   try{
+    const d=await (await fetch('data/'+s.url+'?'+Date.now(),{cache:'no-store'})).json();
+    const se=d.security_engine||{};
+    const fs=se.findings||[];
+    const blocking=fs.filter(f=>['HIGH','CRITICAL'].includes(String(f.severity||'').toUpperCase()));
+    const status=se.status||'NOT_SCANNED';
+    const author=d.commit?.author?.name||'unknown';
+    const issues=blocking.length?blocking.map(f=>String(f.rule||'')+' — '+String(f.file||'')).join('<br>'):'No HIGH/CRITICAL findings';
+    rows.push('<tr><td>'+esc(s.commit.slice(0,12))+'</td><td>'+esc(s.message)+'</td><td>'+esc(author)+'</td><td>'+esc(status)+'</td><td>'+issues+'</td><td><a href="https://github.com/'+esc(d.repository.full_name)+'/commit/'+esc(s.commit)+'" target="_blank">commit ↗</a></td></tr>');
+   }catch(e){}
+  }
+  el.innerHTML='<div style="overflow:auto"><table><thead><tr><th>Commit</th><th>Change</th><th>Author</th><th>Status</th><th>Issue</th><th>GitHub</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';
+ }catch(e){el.textContent='Unable to load history: '+e.message}
+}
+loadHistory();
+</script></main>
 <script>
 const esc = s => String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 function lineHtml(line){
