@@ -80,7 +80,7 @@
                 "type": "context",
                 "old_line": 3,
                 "new_line": 3,
-                "content": "/* INTENTIONAL E2E SECURITY TEST \u2014 workflow must detect and remediate both findings. */"
+                "content": "/* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */"
               },
               {
                 "type": "added",
@@ -176,7 +176,7 @@
         "deletions": 0,
         "total": 1
       },
-      "diff": "diff --git a/e2e-ai-remediation.js b/e2e-ai-remediation.js\nindex 2c1ddcf..ae65b28 100644\n--- a/e2e-ai-remediation.js\n+++ b/e2e-ai-remediation.js\n@@ -1,14 +1,15 @@\n const mysql = require('mysql2');\n \n /* INTENTIONAL E2E SECURITY TEST \u2014 workflow must detect and remediate both findings. */\n+// Re-run marker after Gemini retry + full-rescan validation fixes.\n function getCustomer(db, username) {\n   const query = `SELECT * FROM customers WHERE username = '${username}'`;\n   return db.query(query);\n }\n \n function getInvoice(db, invoiceId) {\n   const query = \"SELECT * FROM invoices WHERE id = \" + invoiceId;\n   return db.query(query);\n }\n \n module.exports = { getCustomer, getInvoice };\n",
+      "diff": "diff --git a/e2e-ai-remediation.js b/e2e-ai-remediation.js\nindex 2c1ddcf..ae65b28 100644\n--- a/e2e-ai-remediation.js\n+++ b/e2e-ai-remediation.js\n@@ -1,14 +1,15 @@\n const mysql = require('mysql2');\n \n /* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */\n+// Re-run marker after Gemini retry + full-rescan validation fixes.\n function getCustomer(db, username) {\n   const query = `SELECT * FROM customers WHERE username = '${username}'`;\n   return db.query(query);\n }\n \n function getInvoice(db, invoiceId) {\n   const query = \"SELECT * FROM invoices WHERE id = \" + invoiceId;\n   return db.query(query);\n }\n \n module.exports = { getCustomer, getInvoice };\n",
       "hunks": [
         {
           "header": "@@ -1,14 +1,15 @@",
@@ -201,7 +201,7 @@
               "type": "context",
               "old_line": 3,
               "new_line": 3,
-              "content": "/* INTENTIONAL E2E SECURITY TEST \u2014 workflow must detect and remediate both findings. */"
+              "content": "/* INTENTIONAL E2E SECURITY TEST — workflow must detect and remediate both findings. */"
             },
             {
               "type": "added",
@@ -285,114 +285,6 @@
         }
       ],
       "removed_lines": []
-    }
-  ],
-  "security_engine": {
-    "status": "FAILED",
-    "scanner": "Pre-Prod-Orchestrator/rule_engine",
-    "findings": [
-      {
-        "id": "e39410e9-8c61-4fae-a710-4e44a3ac9a9d",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "e2e-ai-remediation.js",
-        "line": 6,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 6,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 6:\n  const query = `SELECT * FROM customers WHERE username = '${username}'`;",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "e2e-ai-remediation.js",
-            "line": 6
-          }
-        ]
-      },
-      {
-        "id": "b5b178fb-3135-490a-9ce2-35434a38d166",
-        "tool": "rule_engine",
-        "rule": "INJ-SQL-JS",
-        "severity": "CRITICAL",
-        "file": "e2e-ai-remediation.js",
-        "line": 7,
-        "message": "Unsafe string formatting or template literals in SQL execution.",
-        "confidence": 0.5,
-        "fixability": "UNKNOWN",
-        "metadata": {},
-        "end_line": 7,
-        "cwe": "89",
-        "category": "Injection",
-        "what_and_why": "Attacker can execute arbitrary SQL queries.",
-        "location_detail": "Line 7:\n  return db.query(query);",
-        "how_to_fix": "Use parameterized queries.",
-        "why_fix_helps": "Mitigates vulnerability",
-        "llm_confirmed": true,
-        "occurrences": [
-          {
-            "file": "e2e-ai-remediation.js",
-            "line": 7
-          }
-        ]
-      }
-    ],
-    "scan_metadata": {
-      "timestamp": "2026-09-20T11:14:53.881821",
-      "total_findings": 2,
-      "by_severity": {
-        "CRITICAL": 2,
-        "HIGH": 0,
-        "MEDIUM": 0,
-        "LOW": 0,
-        "INFO": 0
-      },
-      "model_used": "none"
-    }
-  },
-  "pull_requests": [
-    {
-      "number": 7,
-      "title": "fix: AI-generated security remediation",
-      "state": "open",
-      "merged": false,
-      "head": "security-remediation/86219fd94f50",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/7",
-      "created_at": "2026-09-20T11:11:17Z",
-      "updated_at": "2026-09-20T11:11:17Z",
-      "merged_at": null
-    },
-    {
-      "number": 6,
-      "title": "fix: AI-generated security remediation",
-      "state": "open",
-      "merged": false,
-      "head": "security-remediation/11323c78a922",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/6",
-      "created_at": "2026-09-20T11:08:02Z",
-      "updated_at": "2026-09-20T11:08:02Z",
-      "merged_at": null
-    },
-    {
-      "number": 4,
-      "title": "fix: AI-generated security remediation",
-      "state": "open",
-      "merged": false,
-      "head": "security-remediation/7a1fcb7cf94c",
-      "base": "main",
-      "url": "https://github.com/dis-craft/Pre-prod-tester/pull/4",
-      "created_at": "2026-09-20T09:45:52Z",
-      "updated_at": "2026-09-20T09:45:52Z",
-      "merged_at": null
     }
   ]
 }

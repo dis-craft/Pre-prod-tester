@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_586175ae7f71",
+      "commit": "586175ae7f7132115278429c291114ac8310884a",
+      "parent": "3ae43561670a5cbe44fb087a3c9560baac6f6f3e",
+      "branch": "main",
+      "message": "test: rerun AI remediation after validation fixes",
+      "captured_at": "2026-09-20T11:14:45.441060+00:00",
+      "files_changed": 1,
+      "additions": 1,
+      "deletions": 0,
+      "url": "scans/586175ae7f7132115278429c291114ac8310884a.json"
+    },
+    {
       "scan_id": "scn_bd7f44fddd78",
       "commit": "bd7f44fddd789f94662d654b14361fa6e344cd86",
       "parent": "313b2a79d39d0fedbccfee091ecc8b14ce71aa9e",
