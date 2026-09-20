@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_08d98c26256e",
+      "commit": "08d98c26256e6dbe175c120183c2ae999276e107",
+      "parent": "0f5e68edc598761e20e3fb7f31b39f0372e5dd06",
+      "branch": "main",
+      "message": "fix: make dashboard publishing single-writer and race-safe",
+      "captured_at": "2026-09-20T16:04:06.349471+00:00",
+      "files_changed": 5,
+      "additions": 333,
+      "deletions": 390,
+      "url": "scans/08d98c26256e6dbe175c120183c2ae999276e107.json"
+    },
+    {
       "scan_id": "scn_6fb5283f5d76",
       "commit": "6fb5283f5d76f8db393b9a96397afb8f7ea932bf",
       "parent": "98191c86db60af32edad2efc40d0d90604cebf2a",
