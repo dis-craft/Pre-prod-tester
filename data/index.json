@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_360cf4343111",
+      "commit": "360cf434311103ba6d22859b8da945000745039e",
+      "parent": "d8d576a0ede787673c0be9c1beb23b91bc1a304d",
+      "branch": "main",
+      "message": "test: verify live vulnerability detection",
+      "captured_at": "2026-09-20T08:05:04.669284+00:00",
+      "files_changed": 1,
+      "additions": 8,
+      "deletions": 0,
+      "url": "scans/360cf434311103ba6d22859b8da945000745039e.json"
+    },
+    {
       "scan_id": "scn_7680c034b01b",
       "commit": "7680c034b01b17b5bd3a5612f831ac1d034b89a7",
       "parent": "65072204d034a21bb9d2a4ca4bf6c3fe5c890557",
