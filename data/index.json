@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_a33ac0bd4e82",
+      "commit": "a33ac0bd4e82cee74c011478c72fcc8a5a69156f",
+      "parent": "a98c83bdc59bc580fb8921d4f1ee06117e4b4ef5",
+      "branch": "main",
+      "message": "fix: persist findings in per-commit scan artifact",
+      "captured_at": "2026-09-20T16:48:16.620911+00:00",
+      "files_changed": 1,
+      "additions": 16,
+      "deletions": 1,
+      "url": "scans/a33ac0bd4e82cee74c011478c72fcc8a5a69156f.json"
+    },
+    {
       "scan_id": "scn_533eeb3194e5",
       "commit": "533eeb3194e5f8f1cea37a78ea0a459e7eb095bd",
       "parent": "95e150d9bc60ea5f4af4766111494a86e10e2493",
