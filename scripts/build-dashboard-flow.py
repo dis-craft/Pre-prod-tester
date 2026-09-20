@@ -78,7 +78,7 @@ def event_sha(event):
         return payload.get("pull_request", {}).get("head", {}).get("sha") or os.environ["GITHUB_SHA"]
     return os.environ["GITHUB_SHA"]
 
-sha = event_sha()
+sha = event_sha(os.environ.get("GITHUB_EVENT_NAME", ""))
 commit = api(f"/commits/{sha}")
 runs = api("/actions/runs?per_page=100&sort=created&direction=desc")
 prs = api("/pulls?state=all&per_page=100&sort=updated&direction=desc").get("items", [])
