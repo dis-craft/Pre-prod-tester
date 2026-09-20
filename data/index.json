@@ -2,6 +2,18 @@
   "schema_version": "1.1",
   "scans": [
     {
+      "scan_id": "scn_563ca4838c52",
+      "commit": "563ca4838c52d56b10b44afc3c123fd83d0d6763",
+      "parent": "62f6ba46921e58b4f06954e77c8c5e095175941a",
+      "branch": "main",
+      "message": "test: verify flow and website sync",
+      "captured_at": "2026-09-20T17:05:17.843927+00:00",
+      "files_changed": 1,
+      "additions": 2,
+      "deletions": 0,
+      "url": "scans/563ca4838c52d56b10b44afc3c123fd83d0d6763.json"
+    },
+    {
       "scan_id": "scn_41d2a136cccb",
       "commit": "41d2a136cccb362d7835be3a595d8194d73d9e29",
       "parent": "f9ab624d8ef01affe90932191342235e20a5bd59",
