@@ -106,7 +106,9 @@ capture = find_run(runs, {"Capture Changes and Publish"}, sha)
 ai = find_run(runs, {"AI Security Remediation"}, sha)
 
 capture_jobs = jobs_for(capture)
-ai_jobs = jobs_for(ai)
+# Remediation is a job in the same canonical Capture Changes and Publish run.
+ai = capture
+ai_jobs = capture_jobs
 
 scan = load_canonical_scan(sha)
 scan_url = (scan or {}).get("scan", {}).get("workflow_url") or (capture or {}).get("html_url")
