@@ -1,0 +1,2 @@
+FLOW_SYNC_TEST
+Verify canonical capture, published flow.json, and GitHub Pages website synchronization.
