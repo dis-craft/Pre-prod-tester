@@ -1,0 +1,26 @@
+{
+  "status": "APPLIED",
+  "findings": 1,
+  "fixed": 1,
+  "written_files": [
+    "e2e-single-sqli.js"
+  ],
+  "results": [
+    {
+      "finding_id": "058dc3fe-de13-4f82-9f84-f8a98e51b28f",
+      "status": "APPLIED",
+      "edits": [
+        {
+          "file": "e2e-single-sqli.js",
+          "start_line": 4,
+          "end_line": 5,
+          "original": "  const query = \"SELECT * FROM users WHERE username = '\" + username + \"'\";\n  return db.query(query);",
+          "replacement": "  return db.query(\"SELECT * FROM users WHERE username = ?\", [username]);",
+          "explanation": "Use a parameterized query to prevent SQL injection."
+        }
+      ],
+      "error": null
+    }
+  ],
+  "model": "gemini-3.5-flash"
+}
